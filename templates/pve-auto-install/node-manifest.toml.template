@@ -1,0 +1,145 @@
+# Non-secret planning contract for one generated PVE installer.
+#
+# Copy this file into a node-specific implementation packet and replace every
+# REQUIRED_* token. It records evidence and intent; it grants no authority to
+# generate media, write removable media, or install a host.
+
+schema_version = "2.0"
+template_kind = "pve-auto-install-node-contract"
+status = "planning"
+node_name = "REQUIRED_NODE_NAME"
+node_fqdn = "REQUIRED_NODE_FQDN"
+
+[provenance]
+baseline_archive = "REQUIRED_PRIVATE_BASELINE_ARCHIVE"
+baseline_archive_sha256 = "REQUIRED_BASELINE_ARCHIVE_SHA256"
+collection_started_at_utc = "REQUIRED_COLLECTION_STARTED_AT_UTC"
+collection_ended_at_utc = "REQUIRED_COLLECTION_ENDED_AT_UTC"
+collector_name = "REQUIRED_COLLECTOR_NAME"
+collector_version = "REQUIRED_COLLECTOR_VERSION"
+review_status = "REQUIRED_REVIEW_STATUS"
+material_limitations = ["REQUIRED_MATERIAL_LIMITATION"]
+
+[platform]
+expected_vendor = "REQUIRED_PLATFORM_VENDOR"
+expected_model = "REQUIRED_PLATFORM_MODEL"
+firmware_version_observed = "REQUIRED_FIRMWARE_VERSION"
+
+[installer]
+pve_release = "REQUIRED_PVE_RELEASE"
+assistant_version = "REQUIRED_AUTO_INSTALL_ASSISTANT_VERSION"
+source_iso_path = "REQUIRED_NON_GIT_SOURCE_ISO_PATH"
+source_iso_url = "REQUIRED_VENDOR_SOURCE_URL"
+source_iso_sha256 = "REQUIRED_VENDOR_VERIFIED_SHA256"
+answer_template = "templates/pve-auto-install/answer.toml.template"
+fetch_mode = "iso"
+
+[network]
+management_cidr = "REQUIRED_MANAGEMENT_CIDR"
+management_gateway = "REQUIRED_MANAGEMENT_GATEWAY"
+bootstrap_dns_server = "REQUIRED_BOOTSTRAP_DNS_SERVER"
+interface_identity = "REQUIRED_STABLE_INTERFACE_IDENTITY"
+expected_bridge = "REQUIRED_EXPECTED_BRIDGE"
+break_glass_path = "REQUIRED_BREAK_GLASS_PATH"
+
+[boot_pool]
+filesystem = "zfs"
+layout = "raid1"
+selection_strategy = "explicit installer device list correlated to exact stable identities at the installer console"
+installer_disk_list = ["REQUIRED_BOOT_DISK_0", "REQUIRED_BOOT_DISK_1"]
+identity_evidence = "REQUIRED_DISK_IDENTITY_EVIDENCE_PATH"
+console_recheck_required = true
+
+[[boot_pool.approved_disks]]
+slot = 0
+model = "REQUIRED_BOOT_DISK_0_MODEL"
+serial = "REQUIRED_BOOT_DISK_0_SERIAL"
+by_id = "REQUIRED_BOOT_DISK_0_BY_ID"
+installer_device = "REQUIRED_BOOT_DISK_0"
+
+[[boot_pool.approved_disks]]
+slot = 1
+model = "REQUIRED_BOOT_DISK_1_MODEL"
+serial = "REQUIRED_BOOT_DISK_1_SERIAL"
+by_id = "REQUIRED_BOOT_DISK_1_BY_ID"
+installer_device = "REQUIRED_BOOT_DISK_1"
+
+[[storage.excluded_devices]]
+identity = "REQUIRED_EXCLUDED_DEVICE_IDENTITY"
+reason = "REQUIRED_EXCLUSION_REASON"
+
+[authentication]
+root_password_reference = "REQUIRED_NON_GIT_SECRET_REFERENCE"
+root_ssh_public_key_reference = "REQUIRED_APPROVED_PUBLIC_KEY_REFERENCE"
+generated_answer_is_sensitive = true
+generated_iso_is_sensitive = true
+
+[postinstall]
+base_installer_modules = []
+contract = "templates/POSTINSTALL_CONTRACT.md"
+separate_implementation_packet_required = true
+dependency_preflight_required = true
+finite_retry_policy_required = true
+notification_enrollment_automatic = false
+outbound_notification_test_automatic = false
+
+[postinstall.dns_enrollment]
+enabled = true
+contact_method = "SSH to the reviewed static management address"
+search_domain = "REQUIRED_INTERNAL_SEARCH_DOMAIN"
+primary_resolver = "REQUIRED_INTERNAL_DNS_PRIMARY"
+secondary_resolver = "REQUIRED_INTERNAL_DNS_SECONDARY"
+dns_only_probe = "REQUIRED_DNS_ONLY_PROBE"
+dns_only_probe_expected_ipv4 = "REQUIRED_DNS_ONLY_PROBE_IPV4"
+node_forward_names = ["REQUIRED_NODE_SHORT_NAME", "REQUIRED_NODE_FQDN"]
+node_reverse_ipv4 = "REQUIRED_MANAGEMENT_IPV4"
+publication_mode = "guarded selected-record deployment"
+publication_implementation_packet = "REQUIRED_DNS_PUBLICATION_PACKET"
+rollback = "restore the captured bootstrap resolver configuration through the PVE DNS API"
+
+[output]
+generated_iso_path = "REQUIRED_NON_GIT_OUTPUT_PATH"
+generated_iso_sha256 = "PENDING"
+inspected_answer_summary_path = "REQUIRED_NON_SECRET_EVIDENCE_PATH"
+
+[validation]
+qemu_rehearsal_evidence = "REQUIRED_REHEARSAL_EVIDENCE_PATH"
+pre_write_console_check = "confirm each installer device maps to its approved model, serial, and by-id; confirm every excluded device remains unselected"
+post_install_checks = [
+  "hostname and FQDN",
+  "management address and route before changing bootstrap DNS",
+  "SSH access using the approved key",
+  "direct answers from both intended internal resolvers for a DNS-only probe absent from /etc/hosts",
+  "PVE DNS API and resolver-file enrollment after verified SSH contact",
+  "configured-path DNS-only probe and external-name resolution",
+  "selected-record publication and direct forward/reverse answers for the node identity",
+  "PVE version and core services",
+  "ZFS mirror membership and health",
+  "PVE storage backends",
+  "failed systemd units",
+  "absence of unapproved guests, cluster membership, storage, and network configuration",
+]
+evidence_destination = "REQUIRED_POST_INSTALL_EVIDENCE_DESTINATION"
+
+[rollback]
+before_disk_write = "remove only the named generated ISO and checksum sidecar from approved media"
+after_disk_write = "REQUIRED_REBUILD_OR_RESTORE_PATH"
+stop_conditions = [
+  "platform identity differs from the reviewed manifest",
+  "firmware identity differs and the change has not been reviewed",
+  "either approved disk cannot be mapped exactly",
+  "any excluded disk is selected",
+  "management interface identity differs",
+  "SSH contact by the reviewed management address is not established before DNS enrollment",
+  "either intended internal resolver fails the DNS-only probe or external resolution",
+  "the node DNS publication diff contains an unrelated live record",
+  "source or generated ISO checksum differs",
+  "operator installation authority is absent or ambiguous",
+]
+
+[approval]
+answer_render = "not authorized"
+installer_generation = "not authorized"
+installer_media_write = "not authorized"
+host_disk_write = "not authorized"
+postinstall_mutation = "not authorized"

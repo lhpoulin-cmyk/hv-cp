@@ -1,0 +1,49 @@
+# Shared Proxmox VE auto-install answer template for a two-disk ZFS mirror.
+#
+# This file is not a usable answer file. Render every REQUIRED_* token into a
+# mode-0600 temporary file, validate that file with the version-matched
+# proxmox-auto-install-assistant, and keep the generated ISO outside Git.
+# Authentication values make the rendered answer and ISO sensitive.
+
+[global]
+keyboard = "en-us"
+country = "us"
+fqdn = "REQUIRED_NODE_FQDN"
+mailto = "REQUIRED_OPERATOR_MAILTO"
+timezone = "America/Detroit"
+root-password-hashed = "REQUIRED_ROOT_PASSWORD_HASH"
+root-ssh-keys = [
+  "REQUIRED_ROOT_SSH_PUBLIC_KEY",
+]
+reboot-on-error = false
+reboot-mode = "power-off"
+
+[network]
+source = "from-answer"
+cidr = "REQUIRED_MANAGEMENT_CIDR"
+# This is the reachable bootstrap resolver used until the operator has made
+# verified SSH contact by management IP. Internal resolver enrollment is a
+# separate post-contact gate in the node manifest.
+dns = "REQUIRED_BOOTSTRAP_DNS_SERVER"
+gateway = "REQUIRED_MANAGEMENT_GATEWAY"
+
+[network.filter]
+# Use an observed predictable interface identity, and confirm the selected
+# physical port at the installer console before authorizing a disk write.
+ID_NET_NAME = "REQUIRED_MANAGEMENT_INTERFACE"
+
+[disk-setup]
+filesystem = "zfs"
+# PVE filters cannot express an exact OR across two unrelated disk serials.
+# The generated names therefore must be correlated immediately before install
+# with the two stable identities recorded in the reviewed node manifest.
+disk-list = ["REQUIRED_BOOT_DISK_0", "REQUIRED_BOOT_DISK_1"]
+zfs.raid = "raid1"
+zfs.ashift = 12
+zfs.compress = "lz4"
+zfs.checksum = "on"
+zfs.copies = 1
+
+# First-boot automation is deliberately absent from the base contract. Add a
+# [first-boot] section only for a separately reviewed, dependency-complete,
+# rehearsed hook governed by templates/POSTINSTALL_CONTRACT.md.

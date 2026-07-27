@@ -24,7 +24,7 @@ fi
 
 host="$(hostname -s)"
 observed_at="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-title="hv-cp Discord canary"
+title="${host} Discord canary"
 message="canary.delivery node_id=${node_id} host=${host} observed_at_utc=${observed_at}"
 
 exec timeout 20s env \

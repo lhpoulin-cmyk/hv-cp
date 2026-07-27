@@ -47,6 +47,24 @@ and exit status `0`, then returned to slow mode.
 Current read-only verification found both hosts in slow mode: the effective
 drop-in sets `OnUnitActiveSec=5min`, and each fast-expiry timer is inactive.
 
+## New-node enrollment note
+
+Matrix's 2026-07-27 first enrollment established that enabling this accepted
+timer after the host has been up for some time may leave no next elapse until
+the oneshot service has run once: the base `OnBootSec=5s` is already in the
+past, while slow mode's `OnUnitActiveSec=5min` needs a prior activation to seed
+its relative schedule.
+
+A new-node packet must therefore authorize exactly one initial heartbeat
+service run, require its local/server acceptance, and then confirm a five-minute
+next elapse. Do not retry the separate one-shot canary and do not switch to fast
+mode merely to seed the schedule. A future template revision may replace this
+procedural seed with a separately reviewed `OnActiveSec` design.
+
+Matrix's initial seed completed at `15:59:49 EDT`. Its first automatic
+five-minute run completed at `16:04:50 EDT` with exit status `0`, then scheduled
+the next run five minutes later. This is the acceptance pattern for a new node.
+
 ## Rollback
 
 Run `sudo ntfy-heartbeat-mode slow`. To remove the feature, remove only the

@@ -37,7 +37,9 @@ tools, large archives, or the private node record.
 3. Use [the operator SSH runbook](runbooks/OPERATOR_SSH.md) for normal access.
 4. Use [the controlled-change runbook](runbooks/CONTROLLED_CHANGE.md) before
    any live mutation.
-5. Begin a new node with the templates in `templates/`, then create a
+5. For a new PVE installation, begin with the
+   [PVE auto-install contract](templates/pve-auto-install/README.md).
+6. Begin a new node with the templates in `templates/`, then create a
    node-specific implementation packet.
 
 ## Current facts
