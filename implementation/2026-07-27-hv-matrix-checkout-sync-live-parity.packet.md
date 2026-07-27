@@ -105,9 +105,54 @@ No live-service rollback is expected because validation is read-only.
 | `infrastructure/nodes/hv-matrix/CURRENT_STATE.md` | update; exact synchronized checkout commit |
 | `infrastructure/nodes/hv-matrix/command-log/2026-07-27-hv-cp-sync-live-parity.md` | create; Matrix mutation and cross-node result |
 | private Matrix node `CURRENT_STATE.md` | update; exact synchronized checkout commit and preservation path |
-| Lore/Katra canonical and private current-state files | not affected if read-only validation confirms existing facts |
+| `infrastructure/nodes/hv-katra/CURRENT_STATE.md` and dated command log | update; unscheduled heartbeat and failed CT 131 unit |
+| private Katra node `CURRENT_STATE.md` | update; same fresh operational exceptions |
+| Lore canonical and private current-state files | not affected; fresh validation confirmed current facts |
 | `LAB_IPS.md` and `standards/IP_ADDRESSING.md` | not affected; no identity, address, or role change |
 
 ## Result
 
-Pending execution.
+Executed 2026-07-27.
+
+### Checkout synchronization: PASS
+
+- Source and target bundle SHA-256:
+  `1027d4e77861da02f01ebec6ae9b6737421a3a4170e38a5515cfc103f7d73795`
+- Matrix `main` fast-forwarded from
+  `c974305bcec4295c59a65f55ea7485ce6f5d4080` to the exact permitted packet
+  commit `474576b78576171049e0a8b18c98c2f82e414be5`.
+- Rollback branch: `pre-sync-20260727-c974305`
+- Preserved originals:
+  `/home/louis/hv-cp-pre-sync-20260727T212316Z/`; its checksum manifest
+  verifies, and the directory remains mode `0700`.
+- Matrix's checkout is clean. It reports `main...origin/main [ahead 7]`
+  because its offline `origin/main` tracking reference was not fetched or
+  rewritten; this is expected and does not alter the verified target commit.
+
+No live service, timer, notification, guest, package, network, or credential
+state was changed.
+
+### Fresh live parity: FAIL
+
+The read-only comparison found common identity, timezone, notification relay
+posture, secret-file modes, PVE endpoint, and byte-identical seven-file ntfy
+heartbeat implementation. Lore's heartbeat timer also had a last trigger and
+valid next elapse.
+
+The fleet does not currently satisfy one operational contract:
+
+- Katra and Matrix reported the heartbeat timer enabled and active with the
+  five-minute cadence configured, but neither reported a last trigger or a
+  next elapse after its current boot.
+- Katra reported one failed systemd unit, `pve-container@131.service`.
+- Lore/Katra retain the earlier daily-mail helper and timer comments; Matrix
+  matches the current reviewed templates. These comment-only differences do
+  not change runtime behavior.
+- After immutable node IDs are treated as expected identity data, Matrix's
+  Discord wrapper still differs from Lore/Katra: Matrix derives the title as
+  `${host} Discord canary`, while Lore/Katra use `hv-cp Discord canary`.
+
+The comparison did not restart the heartbeat timer, start container 131,
+replace artifacts, or send a canary because those actions are outside this
+packet. The full non-secret result is preserved in
+`evidence/2026-07-27-hypervisor-control-plane-live-parity.md`.
