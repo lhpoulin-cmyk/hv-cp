@@ -1,0 +1,12 @@
+[Unit]
+Description=Run the Helix-ARPA daily outbound-mail canary
+
+[Timer]
+# Uses host-local time; preflight requires America/Detroit for this fleet.
+OnCalendar=*-*-* 09:15:00
+RandomizedDelaySec=10m
+Persistent=true
+Unit=helix-arpa-daily-mail-canary.service
+
+[Install]
+WantedBy=timers.target

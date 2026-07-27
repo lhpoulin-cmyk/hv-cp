@@ -1,0 +1,11 @@
+## Production-only encrypted node input. Keep the real .sops.yaml ignored.
+## quoting: none/none — operator mailbox; enter no quote characters.
+operator-mailto: operator@example.invalid
+
+## quoting: literal block (|-). Every character on the next line is secret
+## data, including ' and ". Do not add wrapper quotes unless they are wanted.
+louis-password: |-
+  REPLACE-WITH-THE-EXACT-SECRET
+
+## quoting: none/none — SSH public-key text; enter no quote characters.
+louis-authorized-key: ssh-ed25519 REPLACE-WITH-APPROVED-PUBLIC-KEY node-label

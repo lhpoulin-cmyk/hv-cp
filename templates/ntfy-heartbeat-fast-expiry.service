@@ -1,0 +1,6 @@
+[Unit]
+Description=Return the ntfy heartbeat to slow mode
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/ntfy-heartbeat-mode slow

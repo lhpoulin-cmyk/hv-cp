@@ -1,0 +1,13 @@
+# Node-specific encrypted inputs are operator material, never repository data.
+secrets/*.sops.yaml
+secrets/*.sops.yml
+
+# Raw recovery and generated-install artifacts remain outside Git.
+inbox/*.tar
+inbox/*.tar.gz
+inbox/*.zip
+inbox/*.iso
+inbox/*.BIN
+inbox/*.pyz
+inbox/*.img
+evidence/generated/

@@ -1,0 +1,45 @@
+#!/bin/sh
+set -eu
+
+heartbeat_timer="ntfy-hypervisor-canary-heartbeat.timer"
+expiry_timer="ntfy-heartbeat-fast-expiry.timer"
+dropin_dir="/etc/systemd/system/${heartbeat_timer}.d"
+dropin_file="${dropin_dir}/10-cadence.conf"
+
+usage() {
+  echo "usage: ntfy-heartbeat-mode {slow|fast|status}" >&2
+  exit 64
+}
+
+write_cadence() {
+  interval="$1"
+  /usr/bin/install -d -m 0755 "$dropin_dir"
+  /usr/bin/printf '[Timer]\nOnUnitActiveSec=\nOnUnitActiveSec=%s\nAccuracySec=1s\n' \
+    "$interval" > "$dropin_file"
+}
+
+restart_heartbeat_timer() {
+  /usr/bin/systemctl daemon-reload
+  /usr/bin/systemctl restart "$heartbeat_timer"
+}
+
+case "${1:-}" in
+  slow)
+    write_cadence "5min"
+    restart_heartbeat_timer
+    /usr/bin/systemctl disable --now "$expiry_timer"
+    ;;
+  fast)
+    write_cadence "5s"
+    restart_heartbeat_timer
+    /usr/bin/systemctl enable "$expiry_timer"
+    /usr/bin/systemctl restart "$expiry_timer"
+    ;;
+  status)
+    /usr/bin/systemctl is-active "$heartbeat_timer"
+    /usr/bin/systemctl is-enabled "$heartbeat_timer"
+    /usr/bin/sed -n '1,80p' "$dropin_file"
+    /usr/bin/systemctl list-timers "$heartbeat_timer" "$expiry_timer" --all --no-pager
+    ;;
+  *) usage ;;
+esac

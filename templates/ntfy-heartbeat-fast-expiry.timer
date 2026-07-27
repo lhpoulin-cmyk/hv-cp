@@ -1,0 +1,10 @@
+[Unit]
+Description=Expire ntfy heartbeat fast mode after 15 minutes
+
+[Timer]
+OnActiveSec=15min
+AccuracySec=1s
+Unit=ntfy-heartbeat-fast-expiry.service
+
+[Install]
+WantedBy=timers.target

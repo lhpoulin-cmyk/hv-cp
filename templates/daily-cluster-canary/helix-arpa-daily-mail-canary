@@ -1,0 +1,28 @@
+#!/bin/bash
+# Install only through an approved host-specific implementation packet.
+# Root-only local submission through the host's existing Postfix relay.
+set -euo pipefail
+
+recipient='cluster_admin@poulin-arpa.com'
+sender='Helix-Arpa-Cluster <cluster_node@poulin-arpa.com>'
+host="$(hostname -f)"
+timestamp="$(date --iso-8601=seconds)"
+
+/usr/sbin/sendmail -t -oi <<EOF
+From: ${sender}
+To: ${recipient}
+Subject: [Helix-ARPA daily canary] ${host}
+Auto-Submitted: auto-generated
+
+Helix-ARPA daily outbound-mail canary.
+
+Host: ${host}
+Generated: ${timestamp}
+Transport: local Postfix relay to Fastmail
+
+This message confirms local submission. Receipt at cluster_admin is the
+operator-visible end-to-end canary.
+EOF
+
+/usr/bin/logger -t helix-arpa-daily-canary \
+  "submitted daily outbound-mail canary for ${host} to ${recipient}"

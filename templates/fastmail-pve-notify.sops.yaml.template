@@ -1,0 +1,17 @@
+## Encrypted operator input for the PVE Fastmail SMTP canaries. Keep the real
+## .sops.yaml ignored; never commit or paste its decrypted values.
+##
+## Fastmail app passwords are not the Fastmail web password. This approved
+## design uses one shared, Mail-only app password named helix-arpa-cluster.
+## The SMTP login is Louis's Fastmail user address. cluster_node is the shared
+## sender identity; cluster_admin is the daily operator-visible destination.
+## Rotating/revoking this one credential affects every enrolled hypervisor.
+
+## quoting: none/none — SMTP login address; enter no quote characters.
+fastmail-smtp-username: louis@poulin-arpa.com
+
+## quoting: literal block (|-). Every character on the next line is secret
+## data, including ' and ". Do not add wrapper quotes unless they are wanted.
+## Fastmail app password: name it helix-arpa-cluster and select Mail only.
+fastmail-shared-smtp-app-password: |-
+  REPLACE-WITH-HELIX-HYPERVISORS-SMTP-APP-PASSWORD

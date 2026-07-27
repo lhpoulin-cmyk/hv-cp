@@ -1,0 +1,29 @@
+## Sanitized per-node notification input template. Encrypt a copied file and
+## keep it outside Git. Values below are placeholders, not usable credentials.
+
+## quoting: none/none — a newly assigned immutable ID; no wrapper quotes.
+node-id: helix-node-REPLACE-WITH-NEW-UUID
+
+fastmail:
+  ## quoting: none/none — SMTP login address; no wrapper quotes.
+  smtp-username: operator@example.invalid
+  ## quoting: literal block (|-). Every next-line character is data.
+  smtp-app-password: |-
+    REPLACE-WITH-MAIL-ONLY-APP-PASSWORD
+
+discord:
+  ## quoting: none/none — boolean; true only for an approved webhook.
+  enabled: false
+  ## quoting: literal block (|-). Every next-line character is data.
+  webhook-url: |-
+    REPLACE-WITH-APPROVED-DISCORD-WEBHOOK
+
+ntfy:
+  ## quoting: none/none — boolean; false until the route/lane is approved.
+  enabled: false
+  ## quoting: none/none — endpoint URL only when ntfy is enabled.
+  base-url: REQUIRED-NTFY-BASE-URL-WHEN-ENABLED
+  ## quoting: none/none — topic only when ntfy is enabled.
+  topic: REQUIRED-NTFY-TOPIC-WHEN-ENABLED
+  ## quoting: literal block (|-). Optional token; leave the next line blank if unused.
+  access-token: |-
