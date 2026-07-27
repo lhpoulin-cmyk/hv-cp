@@ -1,9 +1,9 @@
 # hv-cp: hypervisor control plane
 
-> **Bottom line up front:** hv-cp v1.1.1 is documented, human-supervised
-> hypervisor work control with proven first-article workflows; agent-enforcement
-> and automated conformance checks are under development along with more
-> advanced tooling and metrics.
+> **Bottom line up front:** hv-cp v1.1.1 is documented, human-supervised control
+> for independent hypervisor work with proven first-article workflows; it grants
+> no live-host authority, and agent enforcement, automated conformance, advanced
+> tooling, and metrics remain under development.
 
 `hv-cp` is the durable, reusable control plane for independent hypervisors.
 It began by recovering the `hv-katra` installation method; Katra and Lore are
