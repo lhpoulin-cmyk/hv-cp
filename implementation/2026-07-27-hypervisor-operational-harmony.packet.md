@@ -154,4 +154,30 @@ Run the canonical heartbeat documentation validator before completion.
 
 ## Result
 
-Pending execution.
+Executed 2026-07-27: **PASS for hypervisor control-plane operational harmony**.
+
+- Exact execution commit: `a790d24f7377a5429e52da0294b673e4da8ec437`.
+- Root-only rollback directory on each host:
+  `/root/hv-cp-operational-harmony-20260727T181749-0400/`; each checksum
+  manifest verified before mutation.
+- Heartbeat helper, base timer, generated slow-cadence drop-in, publisher,
+  service, and fast-expiry units are byte-identical across all three. Timer
+  activation produced successful first runs at `18:20:16` Lore, `18:20:53`
+  Katra, and `18:21:19` Matrix.
+- Untouched five-minute recurrences succeeded at `18:25:17`, `18:25:54`, and
+  `18:26:20`, respectively, and each timer retained another future elapse.
+- Daily-mail helper/service/timer artifacts now match exactly. Discord wrappers
+  have the same normalized digest and host-qualified title behavior; assigned
+  node IDs remain intentionally different.
+- PVE core services, `pve-guests`, Postfix, daily mail, and heartbeat are
+  enabled/active as appropriate on all three; fast-expiry is
+  disabled/inactive and no systemd units are failed.
+- Katra CT 131 is stopped with `onboot: 0`; all remaining configured on-boot
+  guests are running and `pve-guests.service` is successful. Its missing bind
+  source and unavailable encrypted dataset were not changed, so the private
+  Jellyfin role is explicitly **not restored** by this result.
+
+No Discord or daily-mail canary was invoked. The only outbound events were the
+normal heartbeat publications required to prove activation and recurrence.
+Full non-secret evidence is in
+`evidence/2026-07-27-hypervisor-operational-harmony.md`.
