@@ -1,8 +1,8 @@
 # Fastmail/Postfix and daily-mail canary standard
 
 **Status:** implemented and receipt-confirmed on `hv-katra` and `hv-lore` on
-2026-07-26. This is the reusable pattern for a future hypervisor; it is not
-authority to enroll one.
+2026-07-26 and on `hv-matrix` on 2026-07-27. This is the reusable pattern for
+a future hypervisor; it is not authority to enroll one.
 
 ## Established baseline
 
@@ -55,10 +55,10 @@ For each node, an implementation packet must establish all of the following:
    records Fastmail SMTP acceptance.
 5. An operator confirms receipt at `cluster_admin@poulin-arpa.com`.
 
-Katra and Lore passed all five conditions on 2026-07-26. Their canonical node
-records contain the non-secret observed result. A new node, including Matrix,
-requires its own packet, preflight, one-message test, receipt confirmation,
-and result record.
+Katra and Lore passed all five conditions on 2026-07-26; Matrix passed them on
+2026-07-27. Their canonical node records contain the non-secret observed
+results. Every future node requires its own packet, preflight, one-message test,
+receipt confirmation, and result record.
 
 ## Rollback
 

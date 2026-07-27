@@ -8,9 +8,9 @@
 
 ## Outcome
 
-`hv-lore` and `hv-katra` publish only short hostname and human-readable uptime
-to `ntfy-canary`. Normal cadence is five minutes. Fast mode is five seconds
-and expires to slow mode after 15 minutes.
+`hv-lore`, `hv-katra`, and `hv-matrix` publish only short hostname and
+human-readable uptime to `ntfy-canary`. Normal cadence is five minutes. Fast
+mode is five seconds and expires to slow mode after 15 minutes.
 
 The LXC heartbeat remains outside this control at five seconds. These signals
 are best effort, not health guarantees, subscriber receipts, or control paths.
