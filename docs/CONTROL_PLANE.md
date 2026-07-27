@@ -20,6 +20,24 @@ lets an operator answer four questions without relying on memory:
 | Active method | templates, decisions, runbooks, implementation packets | this project | Small commits; safe to evolve. |
 | Live execution | services, disks, networking, and access | node itself | Only after explicit target, rollback, and evidence destination. |
 
+The canonical operations layer follows
+[the canonical node documentation contract](CANONICAL_NODE_DOCUMENTATION_CONTRACT.md).
+Every packet names exact canonical output paths, and runtime success does not
+close a task whose documentation projection remains incomplete.
+
+## Checkout currency
+
+Repository cleanliness and repository currency are different checks. Before a
+template or packet is used from an online checkout, fetch `origin` and compare
+the checked-out commit with the intended upstream branch. Two clean checkouts
+can report `main...origin/main` while their locally cached `origin/main` refs
+point to different commits.
+
+Record the exact hv-cp commit in every implementation packet. An intentionally
+offline checkout, including a verified Git-bundle checkout, must compare
+against the explicitly approved commit and state that it cannot establish
+remote currency. Do not silently mix packet sources from separate checkouts.
+
 ## Required operator path
 
 Use SSH as the normal path for host and virtual-machine work. It supports
@@ -67,10 +85,10 @@ new scheduler, Fastmail credential, or fleet rollout without a node-specific
 packet and operator approval.
 
 The current integration design is
-[NTFY_HYPERVISOR_INTEGRATION.md](NTFY_HYPERVISOR_INTEGRATION.md). Lore and
-Katra are the proven publishers. Matrix is operational and baseline-verified,
-but notification enrollment still requires its immutable notification
-identity, a node-specific packet, and receipt evidence.
+[NTFY_HYPERVISOR_INTEGRATION.md](NTFY_HYPERVISOR_INTEGRATION.md). Lore, Katra,
+and Matrix are proven publishers with separately assigned immutable identities,
+node-specific packets, and receipt evidence. This does not authorize another
+node or a fleet rollout.
 
 The reusable post-install method is documented in
 [POSTINSTALL_NOTIFICATION_ENROLLMENT_EXAMPLE.md](POSTINSTALL_NOTIFICATION_ENROLLMENT_EXAMPLE.md).
@@ -80,13 +98,14 @@ ntfy may have different approval and acceptance paths on the same host.
 ## Node lifecycle
 
 ```text
-Observe → record identity/evidence → plan → approve → change → validate → publish non-secret state
-                                      ↑                                      ↓
-                              rollback boundary                     archive new evidence
+Observe → record identity/evidence → plan → approve → change → validate runtime
+                                      ↑                                 ↓
+                              rollback boundary       publish + validate canonical state
 ```
 
 Each arrow is intentional. A script does not skip the planning or approval
-step merely because it exists.
+step merely because it exists. Completion requires both the runtime gate and
+the canonical-documentation gate.
 
 ## Cluster and Ceph change contract
 

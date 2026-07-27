@@ -1,9 +1,9 @@
 # hv-cp: hypervisor control plane
 
-> **Bottom line up front:** hv-cp v1.1.1 is documented, human-supervised control
+> **Bottom line up front:** hv-cp v1.2.0 is documented, human-supervised control
 > for independent hypervisor work with proven first-article workflows; it grants
-> no live-host authority, and agent enforcement, automated conformance, advanced
-> tooling, and metrics remain under development.
+> no live-host authority. Static canonical-node conformance is now enforced;
+> live-state enforcement, advanced tooling, and metrics remain under development.
 
 `hv-cp` is the durable, reusable control plane for independent hypervisors.
 It began by recovering the `hv-katra` installation method; Katra and Lore are
@@ -41,6 +41,13 @@ tools, large archives, or the private node record.
    [PVE auto-install contract](templates/pve-auto-install/README.md).
 6. Begin a new node with the templates in `templates/`, then create a
    node-specific implementation packet.
+7. Before completion, apply the
+   [canonical node documentation contract](docs/CANONICAL_NODE_DOCUMENTATION_CONTRACT.md)
+   and run its validator.
+
+Before step 5 or 6, fetch the online checkout and record the exact hv-cp commit
+used. A clean checkout with a stale cached `origin/main` is not current proof;
+offline bundle checkouts must name their approved commit and limitation.
 
 ## Current facts
 
@@ -48,9 +55,10 @@ tools, large archives, or the private node record.
 receipt-confirmed loopback-only Postfix/Fastmail relays and a daily outbound
 mail canary; see [the reusable standard](docs/FASTMAIL_DAILY_CANARY_STANDARD.md).
 Their full Lifetap baselines and management records live in their private node
-records. Matrix passed its first post-install virtualization baseline on
-2026-07-27; that result does not imply notification, cluster, Ceph, guest, or
-workload enrollment. The recovered first-boot sources are evidence of a prior
+records. Matrix passed its first post-install virtualization baseline and
+separately completed Fastmail, Discord, and ntfy outbound-plane acceptance on
+2026-07-27. That result does not imply cluster, Ceph, guest, or workload
+enrollment. The recovered first-boot sources are evidence of a prior
 installation path, not approved production automation.
 
 For a sanitized Matrix-style post-install notification sequence, including

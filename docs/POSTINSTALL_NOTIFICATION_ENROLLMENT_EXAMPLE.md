@@ -1,8 +1,9 @@
 # Post-install notification enrollment example
 
-This is the sanitized Matrix-style post-install pattern. It documents the
-reusable method but does not claim that Matrix has completed notification
-enrollment. `hv-dog` and `hv-cat` are fictional examples only: they have no
+This is the sanitized pattern refined through Matrix's completed post-install
+notification enrollment. It documents the reusable method without granting
+standing authority to repeat Matrix's changes. `hv-dog` and `hv-cat` are
+fictional examples only: they have no
 relationship to a real hostname, address, node identifier, credential, or
 service target.
 
@@ -119,6 +120,7 @@ transport. It must not alter DNS, firewall policy, PVE cluster state, other
 hosts' credentials, or a shared provider account. Credential revocation and
 rotation are separate changes because they affect every dependent node.
 
-Record non-secret results in the private node record and the relevant
-canonical operational record. Preserve the packet and immutable evidence;
-never replace earlier results with a later success.
+Record non-secret results in the private node record and every exact canonical
+path declared by the packet. Validate the canonical projection under
+`CANONICAL_NODE_DOCUMENTATION_CONTRACT.md`. Preserve the packet and immutable
+evidence; never replace earlier results with a later success.

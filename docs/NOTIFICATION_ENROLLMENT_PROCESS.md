@@ -98,6 +98,10 @@ deliberate retry. A rollback removes only this enrollment's helpers, units,
 timer, local maps, and relay settings. Rotating a shared Fastmail credential or
 Discord webhook is a separate multi-node change.
 
-Record non-secret local results in the private canonical node record and the
-shared operational result where appropriate. Never copy credentials, webhook
-URLs, encrypted runtime maps, or decrypted input into those records.
+Record non-secret local results in the private canonical node record and every
+exact shared operational path declared by the packet. Apply
+`CANONICAL_NODE_DOCUMENTATION_CONTRACT.md`, including the identity-only
+`NOTIFICATION_IDENTITY.md`, conditional `NTFY_HEARTBEAT_MODE.md`, dated command
+log, current-state/validation updates, and conformance check. Never copy
+credentials, webhook URLs, encrypted runtime maps, or decrypted input into
+those records.

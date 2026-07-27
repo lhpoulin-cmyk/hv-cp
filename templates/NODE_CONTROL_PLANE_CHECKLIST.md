@@ -5,6 +5,8 @@ bracketed field; do not copy another node's identity or secrets.
 
 ## Identity and authority
 
+- [ ] Exact hv-cp source commit recorded; online checkout fetched/current or
+      offline approved commit and update limitation documented.
 - [ ] Node hostname/FQDN: `[node.example]`
 - [ ] Role and owner: `[role]`
 - [ ] Management address and access boundary verified from observation.
@@ -26,4 +28,10 @@ bracketed field; do not copy another node's identity or secrets.
 - [ ] SSH-first access has been tested; graphical console remains break-glass.
 - [ ] Post-install tests cover hostname, network, SSH, operator `id`, and
       `sudo -n true`.
-- [ ] Results have been recorded in the private and canonical homes as needed.
+- [ ] Exact canonical paths are listed as `create`, `update`, or `not affected`
+      under the canonical node documentation contract.
+- [ ] Results have been recorded in every declared private and canonical home.
+- [ ] Superseded hv-cp status statements and affected cross-node inventory have
+      been reconciled.
+- [ ] `tools/validate-node-documentation-contract.sh` passes for the node.
+- [ ] Runtime acceptance and documentation acceptance are both complete.

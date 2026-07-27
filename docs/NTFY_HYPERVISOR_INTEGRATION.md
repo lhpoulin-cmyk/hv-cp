@@ -87,9 +87,9 @@ channel is authorized by this design.
 3. Repeat from scratch for Katra. Do not copy Lore's current state or receipt
    as Katra evidence.
 4. Review both records before proposing one `ntfy-comms` lifecycle use case.
-5. Before Matrix or any future hypervisor is enrolled, assign or verify its
-   durable canonical `node_id` and then create a new packet. Do not reuse an
-   old hostname as its `node_id`.
+5. Before any future hypervisor is enrolled, assign or verify its durable
+   canonical `node_id` and then create a new packet. Do not reuse an old
+   hostname as its `node_id`.
 
 ## Current state
 
@@ -99,3 +99,9 @@ bounded fast-test mode is five seconds and expires after 15 minutes. It is not
 a `ntfy-comms` promotion or a durable health signal. Its packets define the
 exact local implementation and rollback. No credentials, ACL, DNS record,
 firewall rule, topic subscription, or inbound consumer has been changed.
+
+Matrix completed the same separately authorized publisher and five-minute
+heartbeat profile on 2026-07-27. Its manual seed, first automatic run, and
+later operator-visible one-shot receipt are preserved in the Matrix packets
+and evidence. Matrix's acceptance does not broaden the lane or authorize a
+future node.
