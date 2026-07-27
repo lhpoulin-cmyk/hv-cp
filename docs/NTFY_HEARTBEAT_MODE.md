@@ -22,8 +22,9 @@ are best effort, not health guarantees, subscriber receipts, or control paths.
 - Mode helper: `/usr/local/sbin/ntfy-heartbeat-mode`
 - Fast expiry: `ntfy-heartbeat-fast-expiry.timer` and service
 
-The helper writes the heartbeat timer cadence drop-in, restarts only that
-timer, and either starts or disables the 15-minute fast-expiry timer.
+The helper writes the heartbeat timer cadence drop-in, preserves a five-second
+activation-relative first run, restarts only that timer, and either starts or
+disables the 15-minute fast-expiry timer.
 
 ## Operator use
 
@@ -47,23 +48,23 @@ and exit status `0`, then returned to slow mode.
 Current read-only verification found both hosts in slow mode: the effective
 drop-in sets `OnUnitActiveSec=5min`, and each fast-expiry timer is inactive.
 
-## New-node enrollment note
+## Durable activation and reboot behavior
 
-Matrix's 2026-07-27 first enrollment established that enabling this accepted
-timer after the host has been up for some time may leave no next elapse until
-the oneshot service has run once: the base `OnBootSec=5s` is already in the
-past, while slow mode's `OnUnitActiveSec=5min` needs a prior activation to seed
-its relative schedule.
+The cadence drop-in resets the inherited monotonic timer list before selecting
+slow or fast cadence. Earlier versions restored only `OnUnitActiveSec`; this
+also cleared the base `OnBootSec` seed and left a freshly booted host in
+systemd's `elapsed` state until the service was started by some other action.
 
-A new-node packet must therefore authorize exactly one initial heartbeat
-service run, require its local/server acceptance, and then confirm a five-minute
-next elapse. Do not retry the separate one-shot canary and do not switch to fast
-mode merely to seed the schedule. A future template revision may replace this
-procedural seed with a separately reviewed `OnActiveSec` design.
+The current helper restores `OnActiveSec=5s` together with the selected
+`OnUnitActiveSec` cadence. Timer activation therefore schedules one first run
+five seconds later, including after reboot, and a successful service activation
+seeds subsequent interval-relative runs. New-node and repair packets must
+confirm both a first successful run and a later future elapse. They do not need
+to start the service separately.
 
-Matrix's initial seed completed at `15:59:49 EDT`. Its first automatic
-five-minute run completed at `16:04:50 EDT` with exit status `0`, then scheduled
-the next run five minutes later. This is the acceptance pattern for a new node.
+Matrix's earlier procedural seed at `15:59:49 EDT` and first automatic run at
+`16:04:50 EDT` remain historical acceptance evidence; they are not the current
+durability mechanism.
 
 ## Rollback
 

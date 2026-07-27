@@ -14,7 +14,10 @@ usage() {
 write_cadence() {
   interval="$1"
   /usr/bin/install -d -m 0755 "$dropin_dir"
-  /usr/bin/printf '[Timer]\nOnUnitActiveSec=\nOnUnitActiveSec=%s\nAccuracySec=1s\n' \
+  # An empty monotonic timer assignment clears every monotonic expression,
+  # including the base unit's OnBootSec. Re-add an activation-relative seed
+  # so every daemon start and reboot has a first run before cadence takes over.
+  /usr/bin/printf '[Timer]\nOnActiveSec=\nOnActiveSec=5s\nOnUnitActiveSec=%s\nAccuracySec=1s\n' \
     "$interval" > "$dropin_file"
 }
 

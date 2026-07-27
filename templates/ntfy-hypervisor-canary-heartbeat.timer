@@ -1,0 +1,11 @@
+[Unit]
+Description=Schedule hypervisor ntfy canary heartbeat
+
+[Timer]
+OnActiveSec=5s
+OnUnitActiveSec=5s
+AccuracySec=1s
+Unit=ntfy-hypervisor-canary-heartbeat.service
+
+[Install]
+WantedBy=timers.target
