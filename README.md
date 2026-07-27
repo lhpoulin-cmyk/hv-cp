@@ -7,8 +7,8 @@
 
 `hv-cp` is the durable, reusable control plane for independent hypervisors.
 It began by recovering the `hv-katra` installation method; Katra and Lore are
-its first proven instances, while Matrix is a future consumer with its own
-verified identity and packet.
+its first proven instances. Matrix is now an operational consumer with its own
+verified identity, standalone checkout, and post-install Lifetap baseline.
 
 ## What this project owns
 
@@ -24,10 +24,10 @@ tools, large archives, or the private node record.
 
 | Need | Durable home | Rule |
 | --- | --- | --- |
-| Private hardware, management, and Lifetap baseline | `helix-arpa-private/nodes/local-compute/hv/hv-katra/` | Private authority; archive checksum required. |
+| Private hardware, management, and Lifetap baseline | `helix-arpa-private/nodes/local-compute/hv/<node>/` | Private authority; archive checksum required. |
 | Shareable operational node facts | canonical `infrastructure` repository | Non-secret, reviewable changes only. |
 | Recovery method and reusable templates | this active project | Planning and implementation; no direct live authority. |
-| Live host state | `hv-katra` itself | Inspect over SSH and capture dated evidence before inference. |
+| Live host state | the named hypervisor itself | Inspect over SSH and capture dated evidence before inference. |
 
 ## Start here
 
@@ -46,8 +46,10 @@ tools, large archives, or the private node record.
 receipt-confirmed loopback-only Postfix/Fastmail relays and a daily outbound
 mail canary; see [the reusable standard](docs/FASTMAIL_DAILY_CANARY_STANDARD.md).
 Their full Lifetap baselines and management records live in their private node
-records. The recovered first-boot sources are evidence of a prior installation
-path, not approved production automation.
+records. Matrix passed its first post-install virtualization baseline on
+2026-07-27; that result does not imply notification, cluster, Ceph, guest, or
+workload enrollment. The recovered first-boot sources are evidence of a prior
+installation path, not approved production automation.
 
 For a sanitized Matrix-style post-install notification sequence, including
 fictional `hv-dog` and `hv-cat` examples, see

@@ -68,9 +68,9 @@ packet and operator approval.
 
 The current integration design is
 [NTFY_HYPERVISOR_INTEGRATION.md](NTFY_HYPERVISOR_INTEGRATION.md). Lore and
-Katra are the proven publishers; Matrix becomes eligible through its own
-verified identity, operational state, implementation packet, and receipt
-evidence.
+Katra are the proven publishers. Matrix is operational and baseline-verified,
+but notification enrollment still requires its immutable notification
+identity, a node-specific packet, and receipt evidence.
 
 The reusable post-install method is documented in
 [POSTINSTALL_NOTIFICATION_ENROLLMENT_EXAMPLE.md](POSTINSTALL_NOTIFICATION_ENROLLMENT_EXAMPLE.md).
@@ -113,7 +113,7 @@ inventory.
 Reuse the structure, validation gates, SOPS procedure, SSH-first access, and
 evidence destinations. Do not reuse Katra's IP, NIC selector, disk selector,
 firmware facts, passwords, public-key labels, or assumptions about its
-PowerSpec platform. Build `hv-matrix` from its own verified identity and its
-own encrypted inputs. This pattern applies to independent PVE hosts, future
-clusters, and Ceph planning; it does not authorize a cluster join, storage
-mutation, or other live action.
+PowerSpec platform. Matrix was built from its own verified identity and
+encrypted inputs; future nodes require the same separation. This pattern
+applies to independent PVE hosts, future clusters, and Ceph planning; it does
+not authorize a cluster join, storage mutation, or other live action.

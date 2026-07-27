@@ -1,8 +1,10 @@
 # Post-install notification enrollment example
 
-This is a sanitized pattern for a future hypervisor such as `hv-matrix`.
-`hv-dog` and `hv-cat` are fictional examples only: they have no relationship
-to a real hostname, address, node identifier, credential, or service target.
+This is the sanitized Matrix-style post-install pattern. It documents the
+reusable method but does not claim that Matrix has completed notification
+enrollment. `hv-dog` and `hv-cat` are fictional examples only: they have no
+relationship to a real hostname, address, node identifier, credential, or
+service target.
 
 The pattern deliberately separates **installation** from **outbound proof**.
 First boot may place root-owned configuration and disabled one-shot canary

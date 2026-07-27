@@ -9,12 +9,11 @@
 ## Scope
 
 This is the control-plane design proven first on `hv-lore` and `hv-katra` and
-reusable by future hypervisors. `hv-matrix` is not yet up or enrolled, so it
-has no inferred configuration or acceptance result.
-
-The goal is to make notification enrollment idempotent when a future node is
-ready, not to preconfigure an absent node. A successful Lore or Katra canary
-does not authorize Matrix enrollment.
+reusable by future hypervisors. Matrix is now operational and has a verified
+post-install baseline, but no evidence in this repository establishes its ntfy
+enrollment. The goal is to make notification enrollment idempotent when a node
+is ready, not to infer it from host installation. A successful Lore or Katra
+canary does not authorize Matrix enrollment.
 
 ## Identity rule
 
@@ -88,9 +87,9 @@ channel is authorized by this design.
 3. Repeat from scratch for Katra. Do not copy Lore's current state or receipt
    as Katra evidence.
 4. Review both records before proposing one `ntfy-comms` lifecycle use case.
-5. When a future hypervisor, including Matrix, is operational, assign or
-   verify its durable canonical `node_id` and then create a new packet. Do not
-   reuse an old hostname as its `node_id`.
+5. Before Matrix or any future hypervisor is enrolled, assign or verify its
+   durable canonical `node_id` and then create a new packet. Do not reuse an
+   old hostname as its `node_id`.
 
 ## Current state
 
