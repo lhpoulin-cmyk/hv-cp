@@ -3,7 +3,7 @@
 Status: draft; execution blocked and not authorized
 Owner: operator
 Prepared: 2026-07-27, America/Detroit
-Method commit: /home/louis/active/hv-cp @ 7ac0555 (dirty; no fresh read/write review before drafting)
+Method commit: pending; record the exact approved hv-cp/firewall-cp commit before use
 
 ## Outcome
 
@@ -28,7 +28,7 @@ Prepare one narrow Lore node change: allow SSH TCP/22 from Hadrian authority ide
 - Runtime enablement: `hv-lore` firewall enabled/running; effective INPUT currently jumps to `PVEFW-INPUT` (from baseline evidence).
 - Node options and ordered rules: node rules are enabled and explicitly ordered; Lore has seven named groups in current order, including existing SSH accepts and post-accept drop management/authority/flat-fabric subnets.
 - Cluster options and ordered rules: cluster firewall is enabled with default input policy `DROP`, output `ACCEPT`; no cluster rules were recorded for Lore.
-- Effective INPUT behavior: explicit SSH allows for Matriarch and legacy sources exist; hadrian-address variants are not accepted; later drops explain SSH timeout from `.10.86`.
+- Effective INPUT behavior: explicit SSH allows for Matriarch and legacy sources exist; Hadrian addresses are not accepted; later drops explain SSH timeout from `.10.86`.
 - Successful operator path: Matriarch identity/source acceptance is currently the observed path to Lore SSH.
 - Independent recovery path: unknown/blocked pending independently verified out-of-band recovery method.
 - Evidence location and collection time: `/home/louis/active/hv-cp/evidence/2026-07-27-local-hypervisor-firewall-baseline.md` (collection date `2026-07-27`, `EDT`).
@@ -47,7 +47,7 @@ Prepare one narrow Lore node change: allow SSH TCP/22 from Hadrian authority ide
 ## Proposed diff
 
 - Insert one node-level INPUT allow for `src=192.168.80.85/32`, `proto=tcp`, `dport=22` on `hv-lore`.
-- Insertion position: after existing non-management/subnet DROP-related rules boundary (the packet must appear before subnet drops that currently terminate management/authority traffic).
+- Insertion position: after the existing narrow SSH accepts and before any subnet drop that would match `.80.85`; the exact index remains unknown until fresh capture.
 - No change to defaults, comments, rule ordering outside the single allow insertion, or cluster rules.
 - Exact command/API object, rule id, and serialized order index: unknown until a fresh node state capture and export are completed.
 
@@ -63,7 +63,7 @@ Prepare one narrow Lore node change: allow SSH TCP/22 from Hadrian authority ide
 ## Success and negative tests
 
 - Positive: Hadrian at `192.168.80.85` reaches `hv-lore` on TCP/22 directly, using Hadrian’s identity and no `ProxyJump`, and with no Matriarch path.
-- Negative: Hadrian Wi-Fi `192.168.10.86/32` does not gain authority behavior solely because VLAN-80 acceptance is later established.
+- Negative: Lore TCP/22 remains denied from Hadrian Wi-Fi `192.168.10.86/32`; the new rule matches only `.80.85/32`.
 - Unchanged: Matriarch accepted flows and non-target Lore baseline flows remain unchanged (for example current accepted `192.168.10.80/32`, `192.168.80.80/32`, `192.168.10.21/32`, `192.168.10.84/32`, `tcp/8006` exceptions) and existing operational behavior.
 - Effective rule-counter or log evidence: unknown until post-change execution/retest.
 

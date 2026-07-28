@@ -44,6 +44,9 @@ tools, large archives, or the private node record.
 7. Before completion, apply the
    [canonical node documentation contract](docs/CANONICAL_NODE_DOCUMENTATION_CONTRACT.md)
    and run its validator.
+8. For Proxmox host-firewall planning, begin with the bounded
+   [firewall control plane](firewall-cp/README.md). It does not authorize live
+   firewall changes.
 
 Before step 5 or 6, fetch the online checkout and record the exact hv-cp commit
 used. A clean checkout with a stale cached `origin/main` is not current proof;
