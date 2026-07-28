@@ -1,14 +1,18 @@
 # hv-cp: hypervisor control plane
 
-> **Bottom line up front:** hv-cp v1.2.0 is documented, human-supervised control
-> for independent hypervisor work with proven first-article workflows; it grants
-> no live-host authority. Static canonical-node conformance is now enforced;
-> live-state enforcement, advanced tooling, and metrics remain under development.
+> **Bottom line up front:** hv-cp v1.2.0 is the documented, human-supervised
+> control plane for every independent Helix-ARPA hypervisor: Lore, Katra,
+> Matrix, and future nodes. It grants no live-host authority. Static
+> canonical-node conformance is now enforced; live-state enforcement, advanced
+> tooling, and metrics remain under development.
 
 `hv-cp` is the durable, reusable control plane for independent hypervisors.
-It began by recovering the `hv-katra` installation method; Katra and Lore are
-its first proven instances. Matrix is now an operational consumer with its own
-verified identity, standalone checkout, and post-install Lifetap baseline.
+Every host has its own verified identity, private node record, evidence,
+implementation packets, and recovery path. No host is the template, transit,
+or authority for another. Recovered Katra-related installation material is
+first-article evidence for reusable method only; it does not give Katra a
+special operational role. Matrix, Lore, and Katra are equal consumers of the
+same control-plane method.
 
 ## What this project owns
 
@@ -52,17 +56,20 @@ Before step 5 or 6, fetch the online checkout and record the exact hv-cp commit
 used. A clean checkout with a stale cached `origin/main` is not current proof;
 offline bundle checkouts must name their approved commit and limitation.
 
-## Current facts
+## Current hypervisor portfolio
 
-`hv-katra` is a PowerSpec G434 node, not an HP Z4 G4. Katra and Lore have
-receipt-confirmed loopback-only Postfix/Fastmail relays and a daily outbound
-mail canary; see [the reusable standard](docs/FASTMAIL_DAILY_CANARY_STANDARD.md).
-Their full Lifetap baselines and management records live in their private node
-records. Matrix passed its first post-install virtualization baseline and
-separately completed Fastmail, Discord, and ntfy outbound-plane acceptance on
-2026-07-27. That result does not imply cluster, Ceph, guest, or workload
-enrollment. The recovered first-boot sources are evidence of a prior
-installation path, not approved production automation.
+| Host | Control-plane posture | Boundary |
+| --- | --- | --- |
+| Lore | Independently documented hypervisor with its own private baseline, implementation packets, and recovery record. | Its firewall, identity, storage, and service work remain Lore-specific decisions. |
+| Katra | Independently documented hypervisor; recovered installation material informs reusable method only. | It is a PowerSpec G434, not an HP Z4 G4; no Katra fact is inherited by another host. |
+| Matrix | Independently documented hypervisor with verified identity, standalone checkout, and post-install Lifetap baseline. | Its 2026-07-27 notification-plane acceptance does not imply cluster, Ceph, guest, or workload enrollment. |
+
+Each host's full Lifetap baseline and management record live in its private
+node record. Lore and Katra have receipt-confirmed loopback-only
+Postfix/Fastmail relays and a daily outbound mail canary; see [the reusable
+standard](docs/FASTMAIL_DAILY_CANARY_STANDARD.md). The recovered first-boot
+sources are evidence of a prior installation path, not approved production
+automation.
 
 For a sanitized Matrix-style post-install notification sequence, including
 fictional `hv-dog` and `hv-cat` examples, see

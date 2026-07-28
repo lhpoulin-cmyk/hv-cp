@@ -18,6 +18,12 @@ implementation work, not permission to change a live host.
 - A runbook describes an action; it does not authorize that action. Create a
   dated implementation packet before changing a host, network, DNS, storage,
   Git hosting, or credentials.
+- An execution-ready live-mutation packet must link to its separate runbook in
+  `runbooks/`. When repeatable multi-command collection is needed, use a
+  narrow, read-only helper in `runbooks/helpers/`; record its purpose and
+  collection boundary in the runbook. Run
+  `../scripts/audit-live-mutation-runbooks.sh` before marking a packet
+  execution-ready. The audit verifies the documentary link, not live authority.
 - Use SSH for ordinary OS and VM work. Reserve a graphical console for
   firmware, installer, and break-glass recovery.
 - Stage only this project's files when committing.

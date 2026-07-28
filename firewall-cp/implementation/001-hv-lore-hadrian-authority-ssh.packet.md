@@ -3,7 +3,8 @@
 Status: draft; execution blocked and not authorized
 Owner: operator
 Prepared: 2026-07-27, America/Detroit
-Method commit: pending; record the exact approved hv-cp/firewall-cp commit before use
+Method commit: local preparation revision `30a62b2ef69f95900f4a7d2f77de05a26773bb62`; remote currency and execution revision remain to be verified
+Execution runbook: [`../runbooks/001-hv-lore-hadrian-authority-ssh.md`](../runbooks/001-hv-lore-hadrian-authority-ssh.md)
 
 ## Outcome
 
@@ -13,7 +14,7 @@ Prepare one narrow Lore node change: allow SSH TCP/22 from Hadrian authority ide
 
 - Node: `hv-lore`
 - Source identity and address: Hadrian authority, `192.168.80.85/32`
-- Destination identity and address: `hv-lore` management INPUT path (exact node management destination IP is unknown from established evidence)
+- Destination identity and address: `hv-lore` management INPUT path, `192.168.10.20`
 - Protocol and port: `tcp/22`
 - Proxmox scope: node
 - Explicit exclusions:
@@ -30,16 +31,17 @@ Prepare one narrow Lore node change: allow SSH TCP/22 from Hadrian authority ide
 - Cluster options and ordered rules: cluster firewall is enabled with default input policy `DROP`, output `ACCEPT`; no cluster rules were recorded for Lore.
 - Effective INPUT behavior: explicit SSH allows for Matriarch and legacy sources exist; Hadrian addresses are not accepted; later drops explain SSH timeout from `.10.86`.
 - Successful operator path: Matriarch identity/source acceptance is currently the observed path to Lore SSH.
-- Independent recovery path: unknown/blocked pending independently verified out-of-band recovery method.
+- Independent recovery path: Lore physical console, operator-confirmed usable
+  on 2026-07-27; re-confirm immediately before mutation.
 - Evidence location and collection time: `/home/louis/active/hv-cp/evidence/2026-07-27-local-hypervisor-firewall-baseline.md` (collection date `2026-07-27`, `EDT`).
 
 ## Dependencies
 
 | Dependency | Owner | Required state | Evidence | Status |
 | --- | --- | --- | --- | --- |
-| Network/VLAN authority path | ops | `ether6` sole endpoint confirmed as Hadrian, with Hadrian authority VLAN-80 attachment | Not yet collected | Blocked |
-| Address and route | ops | Hadrian `192.168.80.85/24` is accepted as authority identity and routable to hv-lore | Not yet collected | Blocked |
-| DNS | ops | DNS and name resolution required for tests/controls are available and accepted | Not yet collected | Blocked |
+| Network/VLAN authority path | ops | Accepted Packet 001b workstation profile remains current | Packet 001b operator acceptance | Accepted |
+| Address and route | ops | Hadrian `192.168.80.85/24`, route to `192.168.10.0/24` via `.80.1`, no wired default | Packet 001b operator acceptance | Accepted |
+| DNS | ops | Not required; validation uses `192.168.10.20` | This packet | Not affected |
 | Credential | ops | Hadrian authority credential and direct SSH trust/client config are established | Not yet collected | Blocked |
 | Recovery and backup | ops | Fresh Lore firewall before-state capture, backup/export, and tested restore path | Not yet collected | Blocked |
 | Management access path | ops | Independent recovery path remains available after insertion | Unknown | Blocked |
@@ -47,14 +49,14 @@ Prepare one narrow Lore node change: allow SSH TCP/22 from Hadrian authority ide
 ## Proposed diff
 
 - Insert one node-level INPUT allow for `src=192.168.80.85/32`, `proto=tcp`, `dport=22` on `hv-lore`.
-- Insertion position: after the existing narrow SSH accepts and before any subnet drop that would match `.80.85`; the exact index remains unknown until fresh capture.
+- Final insertion position: `pos 4`, after the four existing narrow SSH accepts and before the Web UI rules and authority-subnet drop.
 - No change to defaults, comments, rule ordering outside the single allow insertion, or cluster rules.
-- Exact command/API object, rule id, and serialized order index: unknown until a fresh node state capture and export are completed.
+- Local Proxmox VE 9.1.1 source proves POST accepts `pos` and `digest` but does not enforce either: create prepends. The future sequence is therefore disabled create at `pos 0`, fresh digest-guarded move to `pos 4`, then fresh digest-guarded enable. Obtain and verify a new rules digest immediately before every mutating API call; never reuse the recorded preflight digest.
+- Exact commands and rollback are in the linked runbook. They remain future instructions, not authority.
 
 ## Preconditions
 
-- [ ] Access-edge `ether6` confirmed as Hadrian’s sole endpoint.
-- [ ] Hadrian `192.168.80.85/24` accepted as authority identity on VLAN-80.
+- [x] Packet 001b authority profile accepted for Hadrian `192.168.80.85/24`.
 - [ ] Hadrian credential and direct SSH client trust are prepared and valid.
 - [ ] Fresh Lore firewall state capture and backup/export are completed and verified.
 - [ ] Independent recovery path is tested and approved.
@@ -77,14 +79,14 @@ Prepare one narrow Lore node change: allow SSH TCP/22 from Hadrian authority ide
 
 ## Rollback
 
-- Restore exact captured Lore firewall before-state from the verified backup/export and confirm node rule order is returned to baseline.
+- With a newly fetched digest before each call, disable the exact Hadrian rule and then delete it; stop if its position or fields differ. Compare the resulting ordered rules with the exact captured before-state and use the verified private backup restore only if API rollback cannot restore that order.
 - Re-run the same positive/negative/unchanged tests from this packet against the restored state.
 - If restoration is not possible, stop and hand back to the last safe known management state path; this packet is not authorized until rollback has a tested path.
 
 ## Evidence and documentation handoff
 
 - Private raw capture: unknown; to be recorded only after authorized collection.
-- Firewall summary: planned in `/home/louis/active/hv-cp/evidence/` once the packet is authorized.
+- Firewall summary: [`../evidence/2026-07-27-hv-lore-hadrian-authority-ssh-preflight.md`](../evidence/2026-07-27-hv-lore-hadrian-authority-ssh-preflight.md).
 - Canonical node record: not affected by draft status; record updates only after approved execution.
 - Other affected records, or `not affected` with reason: `hv-cp` planning/state records only; no live settings changed.
 

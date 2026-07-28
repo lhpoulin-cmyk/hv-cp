@@ -20,6 +20,9 @@ remain separate from switch, DNS, credential, and client configuration.
 3. Review [the source evidence](../evidence/2026-07-27-local-hypervisor-firewall-baseline.md).
 4. Use [the packet template](templates/FIREWALL-CHANGE-PACKET.md).
 5. Give a light coder [the bounded starting prompt](LIGHT-CODER-START-PROMPT.md).
+6. For the Lore/Hadrian SSH packet, use the suspended
+   [operator runbook](runbooks/001-hv-lore-hadrian-authority-ssh.md) to
+   collect fresh evidence before proposing an apply revision.
 
 ## Simple operating loop
 
