@@ -1,6 +1,6 @@
 # firewall-cp working rules
 
-This directory inherits `/home/louis/active/hv-cp/AGENTS.md`.
+This directory inherits `/home/louis/helix-arpa/hv-cp/AGENTS.md`.
 
 - Treat `../evidence/2026-07-27-local-hypervisor-firewall-baseline.md` as the
   accepted starting summary, not as an executable configuration.

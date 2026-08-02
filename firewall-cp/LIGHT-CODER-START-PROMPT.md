@@ -1,11 +1,11 @@
 # Light-coder starting prompt
 
 ```text
-Work in /home/louis/active/hv-cp/firewall-cp.
+Work in /home/louis/helix-arpa/hv-cp/firewall-cp.
 
 Read, in order:
 
-1. /home/louis/active/hv-cp/AGENTS.md
+1. /home/louis/helix-arpa/hv-cp/AGENTS.md
 2. AGENTS.md
 3. README.md
 4. decisions/2026-07-27-firewall-control-plane-scope.md

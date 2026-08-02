@@ -11,3 +11,7 @@ described in `../docs/CANONICAL_NODE_DOCUMENTATION_CONTRACT.md`.
 
 `tests/test-node-documentation-contract.sh` exercises both the passing contract
 and a required-file failure with temporary fixtures.
+
+`audit-live-mutation-runbooks.sh` verifies that each execution-ready
+live-mutation packet links to a runbook inside this repository. It is a static
+documentation audit and grants no execution authority.

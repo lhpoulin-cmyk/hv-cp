@@ -36,7 +36,7 @@ staged procedure below, after every remaining gate is satisfied.
 From the firewall-control-plane directory, record the method revision:
 
 ```bash
-cd /home/louis/active/hv-cp/firewall-cp
+cd /home/louis/helix-arpa/hv-cp/firewall-cp
 git rev-parse HEAD
 git status --short
 ```
@@ -104,8 +104,8 @@ apply command:
 Run the workspace runbook audit once the packet is marked execution-ready:
 
 ```bash
-cd /home/louis/active/hv-cp/firewall-cp
-../scripts/audit-live-mutation-runbooks.sh
+cd /home/louis/helix-arpa/hv-cp/firewall-cp
+../tools/audit-live-mutation-runbooks.sh
 ```
 
 ## Future guarded mutation

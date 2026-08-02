@@ -3,7 +3,7 @@
 Status: draft; execution blocked and not authorized
 Owner: operator
 Prepared: 2026-07-27, America/Detroit
-Method commit: local preparation revision `30a62b2ef69f95900f4a7d2f77de05a26773bb62`; remote currency and execution revision remain to be verified
+Method commit: `5ef28c2` (`docs(firewall-cp): prepare lore Hadrian SSH change`)
 Execution runbook: [`../runbooks/001-hv-lore-hadrian-authority-ssh.md`](../runbooks/001-hv-lore-hadrian-authority-ssh.md)
 
 ## Outcome
@@ -33,7 +33,7 @@ Prepare one narrow Lore node change: allow SSH TCP/22 from Hadrian authority ide
 - Successful operator path: Matriarch identity/source acceptance is currently the observed path to Lore SSH.
 - Independent recovery path: Lore physical console, operator-confirmed usable
   on 2026-07-27; re-confirm immediately before mutation.
-- Evidence location and collection time: `/home/louis/active/hv-cp/evidence/2026-07-27-local-hypervisor-firewall-baseline.md` (collection date `2026-07-27`, `EDT`).
+- Evidence location and collection time: `/home/louis/helix-arpa/hv-cp/evidence/2026-07-27-local-hypervisor-firewall-baseline.md` (collection date `2026-07-27`, `EDT`).
 
 ## Dependencies
 
