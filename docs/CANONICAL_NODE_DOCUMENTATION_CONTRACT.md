@@ -3,7 +3,7 @@
 ## Purpose
 
 Every accepted hypervisor must project its non-secret observed state into the
-canonical `infrastructure` repository. Contract-equivalent means the same
+private canonical node-record root managed by `hv-cp`. Contract-equivalent means the same
 required files, sections, classifications, and completion checks. It does not
 mean copying another node's addresses, identifiers, hardware facts, receipts,
 or operational history.
@@ -26,10 +26,10 @@ For `nodes/<node>/`, the minimum hv-cp projection is:
 | `command-log/README.md` | Evidence classification and a warning that logs do not authorize repetition. |
 | `outputs/README.md` | Generated-evidence classification and a warning that output is not current truth by itself. |
 
-The node identity must also appear in `LAB_IPS.md` and
-`standards/IP_ADDRESSING.md`. When a predecessor or planning alias has been
-retired, those shared records must describe the deployed identity rather than
-continuing to present the old plan as current work.
+Network addressing and DNS authority remain in `network-cp`; node records must
+refer to that peer rather than duplicate its policy. When a predecessor or
+planning alias has been retired, the node record must describe the deployed
+identity rather than continuing to present the old plan as current work.
 
 Role-specific records such as `RUNBOOK.md`, `HARDWARE.md`, `NETWORKING.md`,
 `STORAGE.md`, recovery procedures, and service records remain required when the
@@ -85,7 +85,8 @@ From this repository:
 ```bash
 tools/validate-node-documentation-contract.sh \
   --profile heartbeat \
-  /home/louis/infrastructure hv-katra hv-lore hv-matrix
+  /home/louis/helix-arpa/helix-arpa-private/nodes/local-compute/hv \
+  hv-katra hv-lore hv-matrix
 ```
 
 The check is static. It proves required documentation structure and guardrail

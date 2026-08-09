@@ -55,6 +55,7 @@ standalone doctrine is the durable method; it does not erase the source.
 
 No legacy hypervisor file was adopted verbatim: none is newer than the
 standalone control-plane doctrine, and all candidate state either belongs in a
-private node record or crosses another authority boundary.  This record is the
-accepted migration artifact and supersession record; the legacy source remains
-unchanged.
+private node record or crosses another authority boundary. This record accepts
+the reusable `hv-cp` method; node-specific authority becomes canonical only
+after the private projections are realized and validated. The legacy source
+remains unchanged.

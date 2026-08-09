@@ -16,7 +16,8 @@ lets an operator answer four questions without relying on memory:
 | --- | --- | --- | --- |
 | Identity | hostname, role, management boundary, hardware identity | private node record | Change only after observed verification. |
 | Evidence | Lifetap archive, checksums, dated captures, Ceph health/quorum/PG state, exact device identity, and recovery-drill results | private node record | Append dated captures; preserve originals. |
-| Canonical operations | non-secret service/node facts and shared standards | `infrastructure` | Reviewable Git commits; never automatic credential sync. |
+| Canonical operations | non-secret shared hypervisor method | this project | Reviewable Git commits; never automatic credential sync. |
+| Node projection | non-secret node-specific observed state | private `nodes/local-compute/hv/<node>/` record | Change only after observed verification. |
 | Active method | templates, decisions, runbooks, implementation packets | this project | Small commits; safe to evolve. |
 | Live execution | services, disks, networking, and access | node itself | Only after explicit target, rollback, and evidence destination. |
 

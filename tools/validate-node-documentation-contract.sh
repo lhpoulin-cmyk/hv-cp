@@ -2,7 +2,7 @@
 set -euo pipefail
 
 usage() {
-  printf 'usage: %s [--profile base|notification|heartbeat] INFRASTRUCTURE_ROOT NODE [NODE ...]\n' \
+  printf 'usage: %s [--profile base|notification|heartbeat] RECORDS_ROOT NODE [NODE ...]\n' \
     "${0##*/}" >&2
 }
 
@@ -29,22 +29,17 @@ if (( $# < 2 )); then
   exit 2
 fi
 
-infrastructure_root="$1"
+records_root="$1"
 shift
 
-if [[ ! -d "${infrastructure_root}/nodes" ]]; then
-  printf 'FAIL infrastructure nodes directory not found: %s/nodes\n' \
-    "${infrastructure_root}" >&2
+if [[ -d "${records_root}/nodes" ]]; then
+  node_parent="${records_root}/nodes"
+elif [[ -d "${records_root}" ]]; then
+  node_parent="${records_root}"
+else
+  printf 'FAIL node-record root not found: %s\n' "${records_root}" >&2
   exit 2
 fi
-
-for shared_record in LAB_IPS.md standards/IP_ADDRESSING.md; do
-  if [[ ! -s "${infrastructure_root}/${shared_record}" ]]; then
-    printf 'FAIL missing or empty shared record: %s/%s\n' \
-      "${infrastructure_root}" "${shared_record}" >&2
-    exit 2
-  fi
-done
 
 status=0
 
@@ -90,7 +85,7 @@ require_literal() {
 declare -A seen_node_ids=()
 
 for node in "$@"; do
-  node_root="${infrastructure_root}/nodes/${node}"
+  node_root="${node_parent}/${node}"
   printf 'CHECK %s\n' "${node}"
 
   if [[ ! -d "${node_root}" ]]; then
@@ -127,11 +122,6 @@ for node in "$@"; do
     'missing explicit recovery-confidence value'
   require_pattern "${node_root}/README.md" '^Status: .+' \
     'missing concise node status'
-  require_literal "${infrastructure_root}/LAB_IPS.md" "\`${node}\`" \
-    'node absent from LAB_IPS'
-  require_literal "${infrastructure_root}/standards/IP_ADDRESSING.md" \
-    "\`${node}\`" 'node absent from IP_ADDRESSING'
-
   if [[ "${profile}" == "notification" || "${profile}" == "heartbeat" ]]; then
     identity="${node_root}/NOTIFICATION_IDENTITY.md"
     require_pattern "${identity}" "^# Notification identity: ${node}$" \

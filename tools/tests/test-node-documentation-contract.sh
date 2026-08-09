@@ -8,13 +8,8 @@ fixture_root="$(mktemp -d /tmp/hv-cp-node-doc-test.XXXXXX)"
 trap 'rm -rf "${fixture_root}"' EXIT
 
 node="hv-fixture"
-node_root="${fixture_root}/nodes/${node}"
-mkdir -p "${node_root}/command-log" "${node_root}/outputs" \
-  "${fixture_root}/standards"
-
-printf '%s\n' '| `hv-fixture` | fixture |' >"${fixture_root}/LAB_IPS.md"
-printf '%s\n' '| `hv-fixture` | fixture |' \
-  >"${fixture_root}/standards/IP_ADDRESSING.md"
+node_root="${fixture_root}/${node}"
+mkdir -p "${node_root}/command-log" "${node_root}/outputs"
 
 printf '%s\n' '# hv-fixture' 'Status: fixture.' >"${node_root}/README.md"
 printf '%s\n' '# Current State: hv-fixture' '' 'Observed: 2026-07-27' \

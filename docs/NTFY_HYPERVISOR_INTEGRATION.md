@@ -30,8 +30,8 @@ Current assigned identities:
 
 | Current host name | Immutable `node_id` | Canonical binding record |
 | --- | --- | --- |
-| `hv-lore` | `helix-node-05368cc1-41b9-483c-97a1-d555c9c054f1` | `/home/louis/infrastructure/nodes/hv-lore/NOTIFICATION_IDENTITY.md` |
-| `hv-katra` | `helix-node-8501120a-6cd8-46ec-bbd7-dc76b5c71f84` | `/home/louis/infrastructure/nodes/hv-katra/NOTIFICATION_IDENTITY.md` |
+| `hv-lore` | `helix-node-05368cc1-41b9-483c-97a1-d555c9c054f1` | private `nodes/local-compute/hv/hv-lore/NOTIFICATION_IDENTITY.md` |
+| `hv-katra` | `helix-node-8501120a-6cd8-46ec-bbd7-dc76b5c71f84` | private `nodes/local-compute/hv/hv-katra/NOTIFICATION_IDENTITY.md` |
 
 The publisher derives its idempotency key from:
 
