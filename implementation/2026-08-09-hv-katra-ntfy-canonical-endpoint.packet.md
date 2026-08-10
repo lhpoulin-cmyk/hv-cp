@@ -1,6 +1,6 @@
 # HAD-SVC-02D: Katra Ntfy canonical endpoint consumer migration
 
-Status: execution-ready
+Status: complete
 
 ## Authority and target
 
@@ -50,3 +50,17 @@ DNS, hosts files, topic history, certificates, or other consumers.
   update after success with the heartbeat endpoint only.
 - `/home/louis/helix-arpa/helix-arpa-private/nodes/local-compute/hv/hv-katra/VALIDATION.md`:
   update after success with canonical/legacy service acceptance references.
+
+## Result
+
+The shared service gate passed immediately before the change: both resolvers
+answered the canonical and retained legacy names at `192.168.10.245`, and both
+HTTP endpoints returned `200`.  The exact rollback copy is
+`/var/backups/had-svc-02d/ntfy-hypervisor-canary-heartbeat.before`, with the
+same SHA-256 as the captured before-state.
+
+Only the helper URL changed.  One bounded heartbeat run succeeded at
+2026-08-09 21:10:12 EDT with exit status `0`; the resulting helper SHA-256 is
+`9100537c8207cea5d49fae7bf36c0ab292cee4997091c298d4823fa79f8afc99`.
+The timer remains active/enabled.  No rollback was required.  Matrix and all
+non-hypervisor consumers remain unchanged.
