@@ -11,7 +11,7 @@ change).
 
 Target: `hv-lore` PVE backup-job realization through active `pbs-core-lore`
 -> `pbs-core`. Desired inclusion is all Lore guests except VM 120
-`truenas-lore`; that exclusion is explicit.
+`truenas-lore` and VM 260 `pbs-core`; both exclusions are explicit.
 
 `pbs-core` is the shared fleet datastore. Lore's 4 TB figure is an internal
 fleet-budget allocation, not a dedicated datastore or independent hard quota.
@@ -45,11 +45,26 @@ storage, or change TrueNAS.
 
 ## Validation and canonical outputs
 
-The 2026-08-10 execution created enabled job `pbs-core-lore-all-guests` with
-`all=1`, `exclude=120`, storage `pbs-core-lore`, and schedule `02:15`.
+The 2026-08-10 configuration execution created enabled job
+`pbs-core-lore-all-guests` with `all=1`, `exclude=120`, storage
+`pbs-core-lore`, and schedule `02:15`.
 Read-only validation confirmed active `pbs-core-lore` and a disabled preserved
 `arpa-all-guests` predecessor. No backup was run, so receipt, integrity, and
 restore confidence remain unvalidated.
+
+## Forward correction: VM 260 self-target exclusion
+
+The subsequent single validation run attempted VM 260 `pbs-core` through the
+same job. VM 260 is the running PBS server that provides datastore
+`pbs-core` for `pbs-core-lore`; its attempt to back itself up to that datastore
+failed with a PBS connection timeout. The durable policy is therefore
+`all=1` with `exclude=120,260`. VM 120 remains the intentionally excluded
+TrueNAS backing-storage appliance. VM 260 recovery/protection requires a
+separate non-self-targeted design and is not claimed here.
+
+The approved live correction changes only the existing job's exclusion set;
+it does not alter its enabled state, storage, schedule, or all-guests policy,
+and it does not invoke a backup.
 
 - this packet: records the completed bounded configuration transition;
 - `evidence/2026-08-10-hv-lore-pbs-core-configuration.md`: records
