@@ -1,6 +1,6 @@
 # HAD-SVC-02C: Lore Ntfy canonical endpoint consumer migration
 
-Status: execution-ready
+Status: complete
 
 ## Authority and target
 
@@ -60,3 +60,18 @@ Ntfy configuration, topic ACLs, TLS, certificates, or other consumers.
 
 Run the heartbeat-profile canonical-node documentation validator after the
 declared projections are updated.
+
+## Result
+
+The committed canonical artifact passed direct validation on `.251` and `.252`
+before this consumer was changed.  The exact helper before-state SHA-256 was
+`84b56c0ed49e155e3495bfc10d805055ee3eb88093ed3b9f08287c29e042bfb9` and its
+exact root-owned rollback copy is
+`/var/backups/had-svc-02c/ntfy-hypervisor-canary-heartbeat.before`.
+
+Only the URL changed to `http://ntfy.helix.home.arpa/ntfy-canary`.  One
+bounded service run succeeded; the resulting helper SHA-256 is
+`9100537c8207cea5d49fae7bf36c0ab292cee4997091c298d4823fa79f8afc99`; the
+timer remains active and enabled.  CT245 returned HTTP `200` for both the
+canonical and legacy Ntfy URLs.  No rollback was required and no other
+consumer was changed.
