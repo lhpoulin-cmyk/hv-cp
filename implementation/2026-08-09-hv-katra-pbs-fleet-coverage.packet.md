@@ -45,6 +45,21 @@ fields while setting exact selection `249,320,251,244` and storage
 `pbs-core-katra`. Read-only validation confirmed the target active. No backup
 was run, so receipt, integrity, and restore confidence remain unvalidated.
 
+## Forward correction: centralized pbs-core retention authority
+
+The Katra receipt validation proved every selected snapshot was received, then
+each client-side `prune-backups` attempt failed because the Katra PBS identity
+does not have datastore prune authority. Fleet PVE jobs targeting `pbs-core`
+submit backups only: guest selection, schedule, target, and client validation
+remain `hv-cp` authority; retention and pruning remain `pbs-cp` authority.
+
+The canonical shared-datastore realization is PBS job `pbs-core-retention` at
+04:40 with daily/weekly/monthly 7/4/3. The approved correction removes only
+`prune-backups` from `vaultwarden-lore-pbs`; it preserves the job ID, enabled
+state, target, schedule, selected guests, compression, hook, notification
+settings, and all unrelated options. It neither grants
+`Datastore.Modify|Datastore.Prune` nor runs a backup or maintenance task.
+
 - this packet: records the completed bounded configuration transition;
 - `evidence/2026-08-10-hv-katra-pbs-core-configuration.md`: records
   non-secret execution evidence;
