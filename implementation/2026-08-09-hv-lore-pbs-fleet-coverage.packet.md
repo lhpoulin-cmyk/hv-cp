@@ -6,12 +6,16 @@ Status: prepared — execution remains separately authorized.
 
 ## Method and target
 
-Method version: `ede4162e889ae701052a62ae930484e234035147` (local `hv-cp`
-main at packet creation; this packet does not authorize a live change).
+Method version: `1cf2fa912e64c388083323517fd96f13ff13f324` (published `hv-cp`
+main at shared-core reconciliation; this packet does not authorize a live
+change).
 
 Target: `hv-lore` PVE backup-job realization through active `pbs-core-lore`
 -> `pbs-core`. Desired inclusion is all Lore guests except VM 120
 `truenas-lore`; that exclusion is explicit.
+
+`pbs-core` is the shared fleet datastore. Lore's 4 TB figure is an internal
+fleet-budget allocation, not a dedicated datastore or independent hard quota.
 
 ## Current state and required decision
 
@@ -19,7 +23,8 @@ Target: `hv-lore` PVE backup-job realization through active `pbs-core-lore`
 selects it. Existing `arpa-all-guests` selects non-PBS `arpa-vzdump`, which was
 offline in read-only evidence. The operator selected `pbs-core-lore` ->
 `pbs-core` and approved reuse of the existing daily `02:15` schedule after
-execution-time read-only confirmation.
+execution-time read-only confirmation. `pbs-lore` remains transitional and is
+not repaired or retired by this packet.
 
 The offline non-PBS `arpa-all-guests` job is superseded by the validated PBS
 successor. Preserve its exact captured definition, then disable it only after

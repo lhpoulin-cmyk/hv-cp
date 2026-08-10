@@ -6,11 +6,15 @@ Status: prepared — execution remains separately authorized.
 
 ## Method and target
 
-Method version: `ede4162e889ae701052a62ae930484e234035147` (local `hv-cp`
-main at packet creation; this packet does not authorize a live change).
+Method version: `1cf2fa912e64c388083323517fd96f13ff13f324` (published `hv-cp`
+main at shared-core reconciliation; this packet does not authorize a live
+change).
 
 Target: `hv-matrix`, active PVE PBS target `pbs-core` -> datastore `pbs-core`.
 Desired guest inclusion: VM 310 `b70-encode` only.
+
+`pbs-core` is the shared fleet datastore. Matrix's 1 TB figure is an internal
+fleet-budget allocation, not a dedicated datastore or independent hard quota.
 
 ## Current state and required decision
 
