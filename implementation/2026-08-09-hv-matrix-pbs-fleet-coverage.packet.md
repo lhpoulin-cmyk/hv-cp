@@ -1,6 +1,6 @@
 # PBS-FLEET-01C: Matrix PVE backup coverage
 
-Status: blocked — target is known; schedule is not decided.
+Status: prepared — execution remains separately authorized.
 
 **NOT EXECUTION AUTHORITY**
 
@@ -15,17 +15,14 @@ Desired guest inclusion: VM 310 `b70-encode` only.
 ## Current state and required decision
 
 Matrix has active `pbs-core` storage and no scheduled PVE backup job. The
-operator approved the service/datastore and VM, but has not approved a backup
-schedule.
-
-**BLOCKED pending backup schedule.** Do not infer one from another host or PBS
-maintenance cadence.
+operator approved daily `04:00` as the backup schedule. It is not inferred
+from another host or PBS maintenance cadence.
 
 ## Preconditions, rollback, and stop boundary
 
-Before any later execution: record the operator-approved schedule; capture
-exact PVE storage/job state; prove `pbs-core` availability; confirm VM 310 and
-its backup eligibility; verify the existing credential reference without
+Before any later execution: capture exact PVE storage/job state; prove
+`pbs-core` availability; confirm VM 310 and its backup eligibility; verify the
+approved daily `04:00` schedule and existing credential reference without
 changing it; and name private evidence output.
 
 The sole future mutation may be creation of one Matrix PVE backup job for VM

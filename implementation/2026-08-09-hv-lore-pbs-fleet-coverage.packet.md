@@ -1,6 +1,6 @@
 # PBS-FLEET-01A: Lore PVE backup coverage
 
-Status: blocked — policy recorded; PBS target not selected.
+Status: prepared — execution remains separately authorized.
 
 **NOT EXECUTION AUTHORITY**
 
@@ -9,28 +9,25 @@ Status: blocked — policy recorded; PBS target not selected.
 Method version: `ede4162e889ae701052a62ae930484e234035147` (local `hv-cp`
 main at packet creation; this packet does not authorize a live change).
 
-Target: `hv-lore` PVE backup-job realization. Desired inclusion is all Lore
-guests except VM 120 `truenas-lore`; that exclusion is explicit.
+Target: `hv-lore` PVE backup-job realization through active `pbs-core-lore`
+-> `pbs-core`. Desired inclusion is all Lore guests except VM 120
+`truenas-lore`; that exclusion is explicit.
 
 ## Current state and required decision
 
 `pbs-lore` -> `hv-lore` is disabled. `pbs-core-lore` is active, but no job
 selects it. Existing `arpa-all-guests` selects non-PBS `arpa-vzdump`, which was
-offline in read-only evidence. `pbs-cp` records desired coverage but does not
-select the PVE target.
-
-**BLOCKED pending PBS target decision** between `pbs-lore`, `pbs-core-lore`,
-or another separately approved target. A schedule is also not approved for a
-new PBS job.
+offline in read-only evidence. The operator selected `pbs-core-lore` ->
+`pbs-core` and approved reuse of the existing daily `02:15` schedule after
+execution-time read-only confirmation.
 
 ## Preconditions, rollback, and stop boundary
 
 Before any later execution: capture exact current PVE storage/job state; prove
-the approved PBS target and datastore are active; verify no credential or
-storage-definition change is needed; verify the guest inventory and VM 120
-exclusion; record an operator-approved schedule; and name a private evidence
-destination. Stop on any target, availability, guest-set, schedule, or
-credential mismatch.
+`pbs-core-lore` and datastore `pbs-core` are active; verify no credential or
+storage-definition change is needed; confirm the existing `02:15` schedule and
+guest inventory/VM 120 exclusion; and name a private evidence destination.
+Stop on any target, availability, guest-set, schedule, or credential mismatch.
 
 Rollback is limited to restoring the exact captured PVE job definition. Do not
 repair `pbs-lore`, alter PVE storage, mount backing storage, or change TrueNAS.
