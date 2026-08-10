@@ -21,6 +21,11 @@ offline in read-only evidence. The operator selected `pbs-core-lore` ->
 `pbs-core` and approved reuse of the existing daily `02:15` schedule after
 execution-time read-only confirmation.
 
+The offline non-PBS `arpa-all-guests` job is superseded by the validated PBS
+successor. Preserve its exact captured definition, then disable it only after
+the successor job's exact target, guest set, exclusion, and schedule validate.
+Do not delete it in this packet.
+
 ## Preconditions, rollback, and stop boundary
 
 Before any later execution: capture exact current PVE storage/job state; prove
@@ -29,8 +34,10 @@ storage-definition change is needed; confirm the existing `02:15` schedule and
 guest inventory/VM 120 exclusion; and name a private evidence destination.
 Stop on any target, availability, guest-set, schedule, or credential mismatch.
 
-Rollback is limited to restoring the exact captured PVE job definition. Do not
-repair `pbs-lore`, alter PVE storage, mount backing storage, or change TrueNAS.
+Rollback is limited to restoring the exact captured PVE job definitions,
+including re-enabling `arpa-all-guests` only if the validated successor cannot
+remain configured. Do not repair `pbs-lore`, alter PVE storage, mount backing
+storage, or change TrueNAS.
 
 ## Validation and canonical outputs
 
