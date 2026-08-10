@@ -1,8 +1,7 @@
 # PBS-FLEET-01C: Matrix PVE backup coverage
 
-Status: prepared — execution remains separately authorized.
-
-**NOT EXECUTION AUTHORITY**
+Status: completed 2026-08-10 — configuration validation passed; backup receipt
+remains separately authorized and unvalidated.
 
 ## Method and target
 
@@ -29,19 +28,22 @@ Before any later execution: capture exact PVE storage/job state; prove
 approved daily `04:00` schedule and existing credential reference without
 changing it; and name private evidence output.
 
-The sole future mutation may be creation of one Matrix PVE backup job for VM
-310 using the approved schedule. Stop on a storage, identity, schedule, or
-credential-reference mismatch. Rollback is deletion of only the newly created
-job, after preserving its exact before/after evidence.
+The 2026-08-10 execution created one enabled Matrix PVE backup job,
+`pbs-core-matrix-vm310`, for VM310 using the approved schedule and existing
+`pbs-core` storage. Stop conditions were satisfied. Rollback, if separately
+authorized, is deletion of only this newly created job after preserving its
+exact before/after evidence.
 
 ## Validation and canonical outputs
 
-After separately authorized execution, validate the job's exact VM, target,
-schedule, and a separately authorized bounded result. Do not claim restore
-confidence from job creation or backup completion alone.
+Read-only validation confirmed VM310-only selection, target `pbs-core`, active
+storage, and schedule `04:00`. No backup was run, so receipt, integrity, and
+restore confidence remain unvalidated.
 
-- `implementation/2026-08-09-hv-matrix-pbs-fleet-coverage.packet.md`: create.
-- `evidence/`: create dated non-secret execution evidence after success.
-- private `hv-matrix` current state and validation record: update after success.
-- `pbs-cp/docs/PBS_FLEET_COVERAGE.md`: update current realization only after
-  validated execution.
+- this packet: records the completed bounded configuration transition;
+- `evidence/2026-08-10-hv-matrix-pbs-core-configuration.md`: records
+  non-secret execution evidence;
+- private `hv-matrix` current-state and validation records: record
+  configuration status; and
+- `pbs-cp/docs/PBS_FLEET_COVERAGE.md`: records realized configuration and the
+  pending receipt gate.
