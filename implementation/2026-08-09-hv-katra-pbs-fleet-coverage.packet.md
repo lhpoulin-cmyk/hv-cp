@@ -1,8 +1,7 @@
 # PBS-FLEET-01B: Katra PVE backup coverage
 
-Status: prepared — execution remains separately authorized.
-
-**NOT EXECUTION AUTHORITY**
+Status: completed 2026-08-10 — configuration validation passed; backup receipt
+remains separately authorized and unvalidated.
 
 ## Method and target
 
@@ -28,11 +27,11 @@ confirm all four guest identities and no current backup lock; verify that the
 existing credential reference remains usable without alteration; and capture a
 private before-state/evidence destination.
 
-The sole proposed mutation is to update the existing PVE backup job to select
-the approved guest set and `pbs-core` target. Do not alter storage definitions,
-credentials, service placement, retention values, or PBS maintenance jobs.
-The existing `pbs-katra` target/service is transitional: preserve its exact
-before-state and do not remove or retire it in this mutation.
+The execution updated existing PVE job `vaultwarden-lore-pbs` to select the
+approved guest set and `pbs-core-katra` target. Storage definitions,
+credentials, service placement, retention values, and PBS maintenance jobs
+were not altered. The existing `pbs-katra` target/service remains transitional
+and was not removed or retired.
 
 ## Rollback, validation, and canonical outputs
 
@@ -41,12 +40,15 @@ identity, or PBS availability. Roll back only by restoring the exact captured
 prior job selection and target; do not run a backup merely to validate
 configuration.
 
-After separately authorized execution, validate exact PVE selection, retained
-schedule/retention, target availability, and a separately authorized bounded
-backup result. A successful backup does not raise restore confidence.
+The 2026-08-10 execution retained the `03:30` schedule and existing retention
+fields while setting exact selection `249,320,251,244` and storage
+`pbs-core-katra`. Read-only validation confirmed the target active. No backup
+was run, so receipt, integrity, and restore confidence remain unvalidated.
 
-- `implementation/2026-08-09-hv-katra-pbs-fleet-coverage.packet.md`: create.
-- `evidence/`: create dated non-secret execution evidence after success.
-- private `hv-katra` current state and validation record: update after success.
-- `pbs-cp/docs/PBS_FLEET_COVERAGE.md`: update current realization only after
-  validated execution.
+- this packet: records the completed bounded configuration transition;
+- `evidence/2026-08-10-hv-katra-pbs-core-configuration.md`: records
+  non-secret execution evidence;
+- private `hv-katra` current-state and validation records: record
+  configuration status; and
+- `pbs-cp/docs/PBS_FLEET_COVERAGE.md`: records realized configuration and the
+  pending receipt gate.
