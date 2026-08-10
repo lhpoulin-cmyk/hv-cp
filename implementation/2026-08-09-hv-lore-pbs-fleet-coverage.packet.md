@@ -1,8 +1,7 @@
 # PBS-FLEET-01A: Lore PVE backup coverage
 
-Status: prepared — execution remains separately authorized.
-
-**NOT EXECUTION AUTHORITY**
+Status: completed 2026-08-10 — configuration validation passed; backup receipt
+remains separately authorized and unvalidated.
 
 ## Method and target
 
@@ -27,9 +26,9 @@ execution-time read-only confirmation. `pbs-lore` remains transitional and is
 not repaired or retired by this packet.
 
 The offline non-PBS `arpa-all-guests` job is superseded by the validated PBS
-successor. Preserve its exact captured definition, then disable it only after
-the successor job's exact target, guest set, exclusion, and schedule validate.
-Do not delete it in this packet.
+successor. Its exact captured definition was preserved, then it was disabled
+after the successor's exact target, guest set, exclusion, and schedule
+validated. It was not deleted.
 
 ## Preconditions, rollback, and stop boundary
 
@@ -46,12 +45,16 @@ storage, or change TrueNAS.
 
 ## Validation and canonical outputs
 
-After a separately authorized execution, validate the PVE job definition,
-selected target, exact inclusion/exclusion, and one bounded job result without
-claiming restore confidence.
+The 2026-08-10 execution created enabled job `pbs-core-lore-all-guests` with
+`all=1`, `exclude=120`, storage `pbs-core-lore`, and schedule `02:15`.
+Read-only validation confirmed active `pbs-core-lore` and a disabled preserved
+`arpa-all-guests` predecessor. No backup was run, so receipt, integrity, and
+restore confidence remain unvalidated.
 
-- `implementation/2026-08-09-hv-lore-pbs-fleet-coverage.packet.md`: create.
-- `evidence/`: create dated non-secret execution evidence after success.
-- private `hv-lore` current state and validation record: update after success.
-- `pbs-cp/docs/PBS_FLEET_COVERAGE.md`: update current realization only after
-  validated execution.
+- this packet: records the completed bounded configuration transition;
+- `evidence/2026-08-10-hv-lore-pbs-core-configuration.md`: records
+  non-secret execution evidence;
+- private `hv-lore` current-state and validation records: record configuration
+  status; and
+- `pbs-cp/docs/PBS_FLEET_COVERAGE.md`: records realized configuration and the
+  pending receipt gate.
