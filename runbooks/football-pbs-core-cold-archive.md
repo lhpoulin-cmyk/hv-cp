@@ -18,6 +18,8 @@ an fstab entry or PVE storage definition.
 
 ## Source and archive boundary
 
+Snapshot creation and removal are performed only through the trusted VM120 TrueNAS control path. hv-matrix pulls with the dedicated `football-pbs-export` account, whose ZFS delegation is `send` only; it has no snapshot, destroy, mount, receive, or administrative authority.
+
 The only source is `slowPool/backup/pbs/pbs-core` on `truenas-lore`. Require
 the source pool and pbs-core service healthy, with no active backup, prune,
 GC, or verification task. Create one Football-specific snapshot, send it as a
