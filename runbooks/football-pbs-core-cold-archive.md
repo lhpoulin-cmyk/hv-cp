@@ -27,6 +27,15 @@ full, non-incremental stream to a `.zfs.part` file, SHA-256 it, validate the
 stream with `zstreamdump`, then atomically rename it and write non-secret
 metadata. The initial accepted stream serves both DAILY and MONTHLY roles.
 
+The creation sequence is mandatory: `TRANSFER COMPLETE` → capture the exact
+producer/SSH/local-writer status → sync → SHA-256 with durable result capture
+→ complete structural validation → promote → accept. Keep the destination as
+`.part` until the validator passes. The first archive incident established
+that an early file-size observation can occur while an SSH producer is still
+writing, and that long-running hashes must persist their result before they
+start; neither a transient size nor a terminal wrapper alone is acceptance
+evidence.
+
 Never delete an accepted point until a validated replacement exists. At 70%
 Football filesystem use, review capacity; at 80%, stop. Never touch legacy
 Football files, partitioning, or future GitLab/LUKS reservation intent.
