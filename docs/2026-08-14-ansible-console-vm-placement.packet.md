@@ -1,6 +1,6 @@
 # Ansible console VM placement packet
 
-Status: `PLACEMENT_BLOCKED — candidate prepared; VM not created`
+Status: `APPROVED_FOR_REALIZATION — REALIZED`
 
 This packet records the bounded VM request for the first Helix automation
 console. Semaphore remains an implementation detail of `ansible-cp`; this is
@@ -20,9 +20,16 @@ not a new authority or service repository.
 | Network | one virtio interface on the current internal service network |
 | Database | none external; SQLite inside guest |
 | Containers | none required |
-| VMID | unallocated |
-| IP | unallocated by `network-cp` |
-| Storage | `local-zfs` on selected host, subject to owner validation |
+| VMID | `100` |
+| IP | `192.168.10.250` (`network-cp` allocation) |
+| Prefix | `/24` |
+| Gateway | `192.168.10.1` |
+| DNS | `192.168.10.251`, `192.168.10.252` |
+| NTP | `192.168.10.243`, `192.168.10.244` |
+| Storage | `local-zfs` on `hv-lore` |
+| Bridge | `vmbr0` |
+| Placement | `hv-lore` |
+| Placement authority | explicit operator decision, continuation drive 2026-08-14 |
 
 ## Candidate evidence
 
@@ -35,10 +42,10 @@ Read-only Proxmox discovery on 2026-08-14 found:
 - `hv-katra`: approximately 4.4 GiB available RAM and 97.6 GiB available
   `local-zfs` capacity.
 
-`hv-matrix` is the leading candidate by current isolated-service capacity,
-but the reusable hv-cp doctrine does not currently declare a generic small
-service placement rule. Capacity observation is not, by itself, placement
-authority. The operator or an owning hv-cp decision must select the host
-before creation.
+The operator explicitly selected `hv-lore` for this service. VMID `100` was
+verified as the next free identifier on the host before creation. The VM is
+realized with the requested Debian 13, 2-vCPU, 2-GiB, 20-GiB baseline on
+`local-zfs` and `vmbr0`.
 
-No VM, disk, bridge, or guest configuration was changed by this packet.
+The realized VM remains a service implementation surface of `ansible-cp`;
+Semaphore owns no desired state and no fleet configuration was applied.
