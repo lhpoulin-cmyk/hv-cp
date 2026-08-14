@@ -1,0 +1,20 @@
+VMID NAME STATUS ONBOOT STARTUP
+VM 100 ansible-console stopped 1 -
+VM 120 truenas-lore stopped 1 order=2,up=60
+VM 130 jellyfin-lore stopped 1 order=3,up=180
+VM 140 ws-lore-agent stopped 1 order=4,up=30
+VM 141 ws-lore-apropos stopped 0 -
+VM 142 eq-lore stopped 1 -
+VM 149 ws-matriarch-gauntlet stopped 0 -
+VM 150 wow-unbound-prod stopped 0 -
+VM 242 pbs-katra stopped 1 order=50,up=30,down=60
+VM 260 pbs-core stopped 1 order=3,up=60
+CTID NAME STATUS ONBOOT STARTUP
+CT 243 time-lore stopped 1 order=1,up=10
+CT 245 ntfy-lore stopped 1 order=1,up=10
+CT 246 lxc-lore-headscale stopped 1 order=2,up=20
+CT 247 lxc-lore-monitor stopped 1 order=3,up=20
+CT 248 lxc-lore-www stopped 1 order=4,up=20
+CT 249 vaultwarden-lore stopped 1 -
+CT 252 lxc-lore-dns stopped 1 order=1,up=20
+

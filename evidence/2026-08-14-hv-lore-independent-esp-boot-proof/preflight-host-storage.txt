@@ -1,0 +1,177 @@
+hv-lore
+2026-08-14T19:58:09-04:00
+7.0.14-8-pve
+proxmox-ve: 9.2.0 (running kernel: 7.0.14-8-pve)
+pve-manager: 9.2.6 (running version: 9.2.6/7f8d010005bd72cb)
+proxmox-kernel-helper: 9.2.0
+proxmox-kernel-7.0.14-8-pve-signed: 7.0.14-8
+proxmox-kernel-7.0: 7.0.14-8
+proxmox-kernel-6.17: 6.17.13-21
+proxmox-kernel-6.17.13-21-pve-signed: 6.17.13-21
+proxmox-kernel-6.17.2-1-pve-signed: 6.17.2-1
+ceph-fuse: 19.2.3-pve2
+corosync: 3.1.10-pve3
+criu: 4.1.1-1
+frr-pythontools: 10.6.1-1+pve2
+ifupdown2: 3.3.0-1+pmx12
+intel-microcode: 3.20251111.1~deb13u1
+ksm-control-daemon: 1.5-1
+libjs-extjs: 7.0.0-5
+libproxmox-acme-perl: 1.7.2
+libproxmox-backup-qemu0: 2.0.2
+libproxmox-rs-perl: 0.4.1
+libpve-access-control: 9.1.1
+libpve-apiclient-perl: 3.4.2
+libpve-cluster-api-perl: 9.1.6
+libpve-cluster-perl: 9.1.6
+libpve-common-perl: 9.1.20
+libpve-guest-common-perl: 6.0.5
+libpve-http-server-perl: 6.0.5
+libpve-network-perl: 1.6.7
+libpve-notify-perl: 9.1.6
+libpve-rs-perl: 0.15.3
+libpve-storage-perl: 9.1.7
+libspice-server1: 0.15.2-1+b1
+lvm2: 2.03.31-2+pmx1
+lxc-pve: 7.0.0-2
+lxcfs: 7.0.0-pve1
+novnc-pve: 1.7.0-2
+proxmox-backup-client: 4.2.3-1
+proxmox-backup-file-restore: 4.2.3-1
+proxmox-backup-restore-image: 1.0.0
+proxmox-enterprise-support-keyring: 1.1
+proxmox-firewall: 1.2.3
+proxmox-kernel-helper: 9.2.0
+proxmox-mail-forward: 1.0.3
+proxmox-mini-journalreader: 1.7
+proxmox-offline-mirror-helper: 0.7.4
+proxmox-widget-toolkit: 5.2.6
+pve-cluster: 9.1.6
+pve-container: 6.1.12
+pve-docs: 9.2.3
+pve-edk2-firmware: 4.2025.05-2
+pve-esxi-import-tools: 1.0.1
+pve-firewall: 6.0.5
+pve-firmware: 3.18-5
+pve-ha-manager: 5.2.5
+pve-i18n: 3.9.0
+pve-qemu-kvm: 11.0.3-1
+pve-xtermjs: 6.0.0-2
+qemu-server: 9.2.1
+smartmontools: 7.5-pve2
+spiceterm: 3.4.2
+swtpm: 0.8.0+pve3
+vncterm: 1.9.2
+zfsutils-linux: 2.4.3-pve1
+TARGET SOURCE           FSTYPE OPTIONS
+/      rpool/ROOT/pve-1 zfs    rw,relatime,xattr,posixacl,casesensitive
+  pool: rpool
+ state: ONLINE
+status: Some supported and requested features are not enabled on the pool.
+	The pool can still be used, but some features are unavailable.
+action: Enable all features using 'zpool upgrade'. Once this is done,
+	the pool may no longer be accessible by software that does not support
+	the features. See zpool-features(7) for details.
+  scan: scrub repaired 0B in 00:02:32 with 0 errors on Sun Aug  9 00:26:34 2026
+config:
+
+	NAME                                 STATE     READ WRITE CKSUM
+	rpool                                ONLINE       0     0     0
+	  mirror-0                           ONLINE       0     0     0
+	    nvme-eui.6479a7b01ad00f81-part3  ONLINE       0     0     0
+	    nvme-eui.6479a7b01ad00df5-part3  ONLINE       0     0     0
+
+errors: No known data errors
+NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
+rpool   472G   129G   343G        -         -    43%    27%  1.00x    ONLINE  -
+  pool: rpool-sata-stage
+ state: ONLINE
+config:
+
+	NAME                                STATE     READ WRITE CKSUM
+	rpool-sata-stage                    ONLINE       0     0     0
+	  mirror-0                          ONLINE       0     0     0
+	    ata-P3-256_9760522200232-part3  ONLINE       0     0     0
+	    ata-P3-256_9760511210658-part3  ONLINE       0     0     0
+
+errors: No known data errors
+NAME        PATH           MODEL                SERIAL            SIZE FSTYPE      PARTTYPE                             PARTUUID                             UUID                                   MOUNTPOINTS
+sda         /dev/sda       TOSHIBA HDWG51CUZSVA 16N2A02XFWUH     10.9T                                                                                                                              
+└─sda1      /dev/sda1                                            10.9T zfs_member  6a898cc3-1dd2-11b2-99a6-080020736631 af6fd188-9df3-4e30-85a8-78cddac72faf 14310142021328732737                   
+sdb         /dev/sdb       TOSHIBA HDWG51CUZSVA 16N2A042FWUH     10.9T                                                                                                                              
+└─sdb1      /dev/sdb1                                            10.9T zfs_member  6a898cc3-1dd2-11b2-99a6-080020736631 bf2d6f49-653b-4545-8255-4af8d9a04f7d 14310142021328732737                   
+sdc         /dev/sdc       TOSHIBA HDWG51CUZSVA 16X2A00KFWUH     10.9T                                                                                                                              
+└─sdc1      /dev/sdc1                                            10.9T zfs_member  6a898cc3-1dd2-11b2-99a6-080020736631 ed8f0208-9ff4-4fdb-b693-afb6e81d1ba5 14310142021328732737                   
+sdd         /dev/sdd       P3-256               9760522200232   238.5G                                                                                                                              
+├─sdd1      /dev/sdd1                                            1007K             21686148-6449-6e6f-744e-656564454649 54b1c19e-f16f-459c-859d-e4aaa9560ef6                                        
+├─sdd2      /dev/sdd2                                               1G vfat        c12a7328-f81f-11d2-ba4b-00a0c93ec93b 605466b7-698d-4597-813b-ebb091fd7e71 6A94-CDF5                              
+└─sdd3      /dev/sdd3                                           237.5G zfs_member  6a898cc3-1dd2-11b2-99a6-080020736631 007812e2-ab51-40e0-a4d3-85d6e5ff0042 13385512179250869319                   
+sde         /dev/sde       P3-256               9760511210658   238.5G                                                                                                                              
+├─sde1      /dev/sde1                                            1007K             21686148-6449-6e6f-744e-656564454649 d5aa19e2-426b-4795-a790-9cef1b12822e                                        
+├─sde2      /dev/sde2                                               1G vfat        c12a7328-f81f-11d2-ba4b-00a0c93ec93b 3191b95c-4dc1-43e4-b13b-53bea0a11e73 6A96-8F07                              
+└─sde3      /dev/sde3                                           237.5G zfs_member  6a898cc3-1dd2-11b2-99a6-080020736631 420bed7f-c32d-4de0-9b34-84b3d0963f1a 13385512179250869319                   
+sdf         /dev/sdf       P3-512               9X50912007143   476.9G                                                                                                                              
+sr0         /dev/sr0       hp HLDS DVDRW GUD1N  739C1028296      1024M                                                                                                                              
+zd0         /dev/zd0                                                8G swap                                                                                  48870393-4b21-45c7-9272-50dcd503c5de   [SWAP]
+zd16        /dev/zd16                                             256G                                                                                                                              
+├─zd16p1    /dev/zd16p1                                           600M vfat        c12a7328-f81f-11d2-ba4b-00a0c93ec93b a51e9d29-9ab9-42dc-a990-f3ac84d76cde D447-193F                              
+├─zd16p2    /dev/zd16p2                                             1G xfs         0fc63daf-8483-4772-8e79-3d69d8477de4 955fda15-9418-453e-a8cd-27c63793ca22 cac7c209-f085-4479-993a-10b230628916   
+└─zd16p3    /dev/zd16p3                                         254.4G LVM2_member e6d6d379-f507-44c2-a23c-238f2a3df928 aea69b3c-b9b6-4e41-9c6c-152466f7315a CjuLDV-R1Kv-f6d9-l6v7-boah-4hXm-6IjX6i 
+zd32        /dev/zd32                                             200G                                                                                                                              
+├─zd32p1    /dev/zd32p1                                             1M             21686148-6449-6e6f-744e-656564454649 d48edbf8-7060-410d-9fae-694a6d8ce652                                        
+├─zd32p2    /dev/zd32p2                                             2G ext4        0fc63daf-8483-4772-8e79-3d69d8477de4 72df3e9c-d069-431c-a494-36ba6ea13f05 a8933dd6-c52a-4497-a3db-f41a7514dba3   
+└─zd32p3    /dev/zd32p3                                           198G LVM2_member 0fc63daf-8483-4772-8e79-3d69d8477de4 9e7727eb-8e20-4448-9f42-e7b256d15ffe fnb5oA-hShh-FhHY-IEz2-m0Cr-NbGO-vECDDN 
+zd48        /dev/zd48                                              64G                                                                                                                              
+├─zd48p1    /dev/zd48p1                                          1007K             21686148-6449-6e6f-744e-656564454649 fd7f88a6-0bd5-43fc-8582-f94d7911e58a                                        
+├─zd48p2    /dev/zd48p2                                           512M vfat        c12a7328-f81f-11d2-ba4b-00a0c93ec93b 84bd00a9-0453-4154-b69e-913726f4680b 03E3-9050                              
+└─zd48p3    /dev/zd48p3                                          63.5G LVM2_member e6d6d379-f507-44c2-a23c-238f2a3df928 b262af2d-d9d6-4672-9d62-1a21130b3a4e xKxpLR-p1Z0-e9MS-mzDx-o0SH-bp1x-HfN6Ki 
+zd64        /dev/zd64                                              64G zfs_member                                                                            4907467426916434690                    
+├─zd64p1    /dev/zd64p1                                             1M             21686148-6449-6e6f-744e-656564454649 3b13862c-8788-4d5a-aee1-c51ac1278fe8                                        
+├─zd64p2    /dev/zd64p2                                           512M vfat        c12a7328-f81f-11d2-ba4b-00a0c93ec93b b11ae1c6-6c22-47f8-bfff-9a0cc950dcae 227B-9915                              
+└─zd64p3    /dev/zd64p3                                          63.5G zfs_member  6a898cc3-1dd2-11b2-99a6-080020736631 9dcd0d5c-60c5-4ce3-9e5d-09aa6f438349 4907467426916434690                    
+zd80        /dev/zd80                                               1M                                                                                                                              
+zd96        /dev/zd96                                               1M                                                                                                                              
+zd112       /dev/zd112                                              1M                                                                                                                              
+zd128       /dev/zd128                                             20G                                                                                                                              
+├─zd128p1   /dev/zd128p1                                         19.9G ext4        4f68bce3-e8cd-4db1-96e7-fbcaf984b709 74147049-7a69-47d1-b05c-84177a962766 76e5250b-18db-43d8-be18-e4c8b24c0bbb   
+├─zd128p14  /dev/zd128p14                                           3M             21686148-6449-6e6f-744e-656564454649 444d85db-7754-4a28-9fc4-4a79726b3893                                        
+└─zd128p15  /dev/zd128p15                                         124M vfat        c12a7328-f81f-11d2-ba4b-00a0c93ec93b 5e170fc7-c185-40d9-956c-42eaa77a35fd DBE6-C387                              
+zd144       /dev/zd144                                              1M                                                                                                                              
+zd160       /dev/zd160                                            256G                                                                                                                              
+├─zd160p1   /dev/zd160p1                                          600M vfat        c12a7328-f81f-11d2-ba4b-00a0c93ec93b a51e9d29-9ab9-42dc-a990-f3ac84d76cde D447-193F                              
+├─zd160p2   /dev/zd160p2                                            1G xfs         0fc63daf-8483-4772-8e79-3d69d8477de4 955fda15-9418-453e-a8cd-27c63793ca22 cac7c209-f085-4479-993a-10b230628916   
+└─zd160p3   /dev/zd160p3                                        254.4G LVM2_member e6d6d379-f507-44c2-a23c-238f2a3df928 aea69b3c-b9b6-4e41-9c6c-152466f7315a CjuLDV-R1Kv-f6d9-l6v7-boah-4hXm-6IjX6i 
+zd176       /dev/zd176                                              1M                                                                                                                              
+zd192       /dev/zd192                                              4M iso9660                                                                               2026-08-14-15-55-57-00                 
+zd208       /dev/zd208                                              1M                                                                                                                              
+zd224       /dev/zd224                                              1M                                                                                                                              
+zd240       /dev/zd240                                             64G                                                                                                                              
+├─zd240p1   /dev/zd240p1                                            1M             21686148-6449-6e6f-744e-656564454649 3aff50bf-68a6-4600-b818-3b583b071c0d                                        
+├─zd240p2   /dev/zd240p2                                            2G ext4        0fc63daf-8483-4772-8e79-3d69d8477de4 4f0cab0b-90b3-45d9-919d-7a191e156dab fd2d6c98-5b00-4ca3-919b-e0242dddf234   
+└─zd240p3   /dev/zd240p3                                           62G LVM2_member 0fc63daf-8483-4772-8e79-3d69d8477de4 21add237-9ab3-4041-9fc7-d009ec423bfe jXnIYW-hwfC-EjYO-B3zb-9rfX-EtYy-fCUmA7 
+nvme1n1     /dev/nvme1n1   Timetec PCIe SSD     TP250913B5D1797 476.9G                                                                                                                              
+├─nvme1n1p1 /dev/nvme1n1p1                                       1007K             21686148-6449-6e6f-744e-656564454649 4872cda6-37d1-459d-a30f-b8e8e4e76f3f                                        
+├─nvme1n1p2 /dev/nvme1n1p2                                          1G vfat        c12a7328-f81f-11d2-ba4b-00a0c93ec93b 7d435626-4240-4f07-8902-d3c99dbc5554 A829-9C79                              
+└─nvme1n1p3 /dev/nvme1n1p3                                        475G zfs_member  6a898cc3-1dd2-11b2-99a6-080020736631 fbe0e98b-4de1-4b05-8f16-f016c5a7b264 8921639095104950851                    
+nvme3n1     /dev/nvme3n1   Timetec PCIe SSD     TP250916B5D0198 476.9G                                                                                                                              
+├─nvme3n1p1 /dev/nvme3n1p1                                        600M vfat        c12a7328-f81f-11d2-ba4b-00a0c93ec93b dd91836f-c7a4-40c1-aba6-629b89903b37 E8B7-2FEB                              
+├─nvme3n1p2 /dev/nvme3n1p2                                          2G ext4        0fc63daf-8483-4772-8e79-3d69d8477de4 59977639-d172-4f54-b2c0-16b4a768bc0a e5817fa9-3766-45da-a811-d50f5d9f6850   
+└─nvme3n1p3 /dev/nvme3n1p3                                      474.4G btrfs       0fc63daf-8483-4772-8e79-3d69d8477de4 91f0a400-a6e3-4774-a370-4759033520a1 c93ddd7d-3e73-4315-a844-e145ae63d230   
+nvme2n1     /dev/nvme2n1   Timetec PCIe SSD     TP250913B5D1792 476.9G                                                                                                                              
+├─nvme2n1p1 /dev/nvme2n1p1                                      476.9G zfs_member  6a898cc3-1dd2-11b2-99a6-080020736631 f1872eae-1665-914d-9f14-028c2601264e 2570796748144080705                    
+└─nvme2n1p9 /dev/nvme2n1p9                                          8M             6a945a3b-1dd2-11b2-99a6-080020736631 e4255743-7fbc-f942-bb6f-a42aae115eb0                                        
+nvme0n1     /dev/nvme0n1   Timetec PCIe SSD     TP250913B5D3323 476.9G                                                                                                                              
+├─nvme0n1p1 /dev/nvme0n1p1                                       1007K             21686148-6449-6e6f-744e-656564454649 f3894cdf-261c-4337-aeff-d2ea5e880332                                        
+├─nvme0n1p2 /dev/nvme0n1p2                                          1G vfat        c12a7328-f81f-11d2-ba4b-00a0c93ec93b 4ebfa530-0466-4f22-bb99-e98a5eabfc30 A829-1935                              
+└─nvme0n1p3 /dev/nvme0n1p3                                        475G zfs_member  6a898cc3-1dd2-11b2-99a6-080020736631 fd894dd0-b02d-4438-83c2-bf9ab5a19663 8921639095104950851                    
+zd256       /dev/zd256                                              4M                                                                                                                              
+zd272       /dev/zd272                                             64G                                                                                                                              
+├─zd272p1   /dev/zd272p1                                         1007K             21686148-6449-6e6f-744e-656564454649 b3e30ce9-c94f-44b2-978b-0d88a48c9c8c                                        
+├─zd272p2   /dev/zd272p2                                          512M vfat        c12a7328-f81f-11d2-ba4b-00a0c93ec93b ba873389-2129-4137-8cd2-ff988314f6a5 1F4E-A948                              
+└─zd272p3   /dev/zd272p3                                         63.5G LVM2_member e6d6d379-f507-44c2-a23c-238f2a3df928 7d6691ca-cc64-409b-a12a-dc2622a9e85c 0cZjZ5-RJbC-x09F-s3Gw-4VGF-pnoO-skPd2L 
+zd288       /dev/zd288                                             40G                                                                                                                              
+├─zd288p1   /dev/zd288p1                                            1M             21686148-6449-6e6f-744e-656564454649 b6665cff-670b-481d-8b06-dcc7019d957f                                        
+├─zd288p2   /dev/zd288p2                                            2G ext4        0fc63daf-8483-4772-8e79-3d69d8477de4 baba0cc7-e967-47e6-8621-a1c79b63f988 ff4052bc-e83d-4767-b6b9-781f68deee05   
+└─zd288p3   /dev/zd288p3                                           38G LVM2_member 0fc63daf-8483-4772-8e79-3d69d8477de4 3fcb2512-1e4e-45a8-a5eb-f7fb7b7fcb2f CHHmNG-ejxy-HLiG-9OfZ-dk38-zYV6-PSnKKD 
+zd304       /dev/zd304                                            128G ext4                                                                                  859844ad-88fa-4401-bab9-b42b1e45da1a   
+
