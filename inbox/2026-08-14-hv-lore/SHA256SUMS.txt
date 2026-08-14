@@ -1,0 +1,8 @@
+dc2d684b643aed83c7dfc6669b683ce0501b2da5369eac8f9ba8370a0411e1a8  /home/louis/helix-arpa/hv-cp/inbox/2026-08-14-hv-lore/2026-08-14-256gb-boot-feasibility.txt
+7cb8abe0fe8088f3f52ef6ca212c73e400f2ddff50d928fd929c9faf9424c291  /home/louis/helix-arpa/hv-cp/inbox/2026-08-14-hv-lore/2026-08-14-256gb-drive-inspection.txt
+281462bc7b53973094bb844dcd3b85efec9b98879107d28b0724b5005883b95c  /home/louis/helix-arpa/hv-cp/inbox/2026-08-14-hv-lore/2026-08-14-current-disk-inventory-after-removal.txt
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  /home/louis/helix-arpa/hv-cp/inbox/2026-08-14-hv-lore/2026-08-14-historical-phy3-attribute-search.txt
+f8b225a19f26f3a4d4799b4c7a20234250641ba6e86e4f6cd9844b80e8cae48e  /home/louis/helix-arpa/hv-cp/inbox/2026-08-14-hv-lore/2026-08-14-journal-list-boots.txt
+6417f4552d37c5354a07abdabbea70386b62a2f1b8c77bf14f8e0d2e4bd3eb67  /home/louis/helix-arpa/hv-cp/inbox/2026-08-14-hv-lore/2026-08-14-phy3-state.txt
+f908a9570cb8f18df8cba1b4b7f0fe511c08cc9230e1a5410d3095a1387def8d  /home/louis/helix-arpa/hv-cp/inbox/2026-08-14-hv-lore/2026-08-14-sas-end-device-sysfs.txt
+1d86c132137001f45fb3a8878a58fbc3c9ed149a055abbe3e690c8f7a0a30318  /home/louis/helix-arpa/hv-cp/inbox/2026-08-14-hv-lore/2026-08-14-sas2308-fourth-device-coldboot.txt

@@ -1,0 +1,175 @@
+===== BOOT -4 =====
+Aug 14 15:43:11 hv-lore kernel: pci 0000:01:00.0: ROM [mem size 0x00100000 pref]: failed to assign
+Aug 14 15:43:11 hv-lore kernel: pci 0000:02:00.1: ROM [mem size 0x00080000 pref]: failed to assign
+Aug 14 15:43:11 hv-lore kernel: ahci 0000:00:11.4: AHCI vers 0001.0300, 32 command slots, 6 Gbps, SATA mode
+Aug 14 15:43:11 hv-lore kernel: ata1: SATA max UDMA/133 abar m2048@0xf3a18000 port 0xf3a18100 irq 42 lpm-pol 1 ext
+Aug 14 15:43:11 hv-lore kernel: ata2: SATA max UDMA/133 abar m2048@0xf3a18000 port 0xf3a18180 irq 42 lpm-pol 1 ext
+Aug 14 15:43:11 hv-lore kernel: ata3: SATA max UDMA/133 abar m2048@0xf3a18000 port 0xf3a18200 irq 42 lpm-pol 1 ext
+Aug 14 15:43:11 hv-lore kernel: ata4: SATA max UDMA/133 abar m2048@0xf3a18000 port 0xf3a18280 irq 42 lpm-pol 1 ext
+Aug 14 15:43:11 hv-lore kernel: ahci 0000:00:1f.2: AHCI vers 0001.0300, 32 command slots, 6 Gbps, SATA mode
+Aug 14 15:43:11 hv-lore kernel: ata5: SATA max UDMA/133 abar m2048@0xf3a17000 port 0xf3a17100 irq 43 lpm-pol 1 ext
+Aug 14 15:43:11 hv-lore kernel: ata6: SATA max UDMA/133 abar m2048@0xf3a17000 port 0xf3a17180 irq 43 lpm-pol 1 ext
+Aug 14 15:43:11 hv-lore kernel: mpt3sas version 54.100.00.00 loaded
+Aug 14 15:43:11 hv-lore kernel: mpt3sas 0000:01:00.0: can't disable ASPM; OS doesn't have ASPM control
+Aug 14 15:43:11 hv-lore kernel: ata4: SATA link down (SStatus 0 SControl 300)
+Aug 14 15:43:11 hv-lore kernel: ata1: SATA link up 1.5 Gbps (SStatus 113 SControl 300)
+Aug 14 15:43:11 hv-lore kernel: ata3: SATA link down (SStatus 0 SControl 300)
+Aug 14 15:43:11 hv-lore kernel: ata2: SATA link down (SStatus 0 SControl 300)
+Aug 14 15:43:11 hv-lore kernel: ata6: SATA link up 6.0 Gbps (SStatus 133 SControl 300)
+Aug 14 15:43:11 hv-lore kernel: ata5: SATA link up 6.0 Gbps (SStatus 133 SControl 300)
+Aug 14 15:43:11 hv-lore kernel: mpt2sas_cm0: host_add: handle(0x0001), sas_addr(0x500143803535fdf8), phys(8)
+Aug 14 15:43:11 hv-lore kernel: mpt2sas_cm0: handle(0x9) sas_address(0x4433221100000000) port_type(0x1)
+Aug 14 15:43:11 hv-lore kernel: mpt2sas_cm0: handle(0xa) sas_address(0x4433221101000000) port_type(0x1)
+Aug 14 15:43:11 hv-lore kernel: mpt2sas_cm0: handle(0xb) sas_address(0x4433221102000000) port_type(0x1)
+Aug 14 15:43:11 hv-lore kernel: scsi 8:0:0:0: SATA: handle(0x0009), sas_addr(0x4433221100000000), phy(0), device_name(0x5000039e88d9becc)
+Aug 14 15:43:11 hv-lore kernel:  end_device-8:0: add: handle(0x0009), sas_addr(0x4433221100000000)
+Aug 14 15:43:11 hv-lore kernel: scsi 8:0:1:0: SATA: handle(0x000a), sas_addr(0x4433221101000000), phy(1), device_name(0x5000039e88d9c4ec)
+Aug 14 15:43:11 hv-lore kernel:  end_device-8:1: add: handle(0x000a), sas_addr(0x4433221101000000)
+Aug 14 15:43:11 hv-lore kernel: scsi 8:0:2:0: SATA: handle(0x000b), sas_addr(0x4433221102000000), phy(2), device_name(0x5000039e88d9d327)
+Aug 14 15:43:11 hv-lore kernel:  end_device-8:2: add: handle(0x000b), sas_addr(0x4433221102000000)
+Aug 14 15:43:12 hv-lore kernel: ee1004 0-0050: Failed to select page 0 (-6)
+Aug 14 15:43:12 hv-lore kernel: hp-wmi hp-wmi: Failed to apply initial fan settings: -22
+Aug 14 15:56:00 hv-lore kernel: audit: type=1400 audit(1786737359.999:136): apparmor="DENIED" operation="mount" class="mount" info="failed flags match" error=-13 profile="lxc-252_</var/lib/lxc>" name="/dev/shm/" pid=10339 comm="(sd-mkdcreds)" fstype="ramfs" srcname="ramfs" flags="rw, nosuid, nodev, noexec"
+Aug 14 15:56:00 hv-lore kernel: audit: type=1400 audit(1786737360.000:137): apparmor="DENIED" operation="mount" class="mount" info="failed flags match" error=-13 profile="lxc-252_</var/lib/lxc>" name="/dev/shm/" pid=10344 comm="(sd-mkdcreds)" fstype="ramfs" srcname="ramfs" flags="rw, nosuid, nodev, noexec"
+Aug 14 15:56:00 hv-lore kernel: audit: type=1400 audit(1786737360.009:138): apparmor="DENIED" operation="mount" class="mount" info="failed flags match" error=-13 profile="lxc-243_</var/lib/lxc>" name="/dev/shm/" pid=10358 comm="(sd-mkdcreds)" fstype="ramfs" srcname="ramfs" flags="rw, nosuid, nodev, noexec"
+Aug 14 15:56:00 hv-lore kernel: faux_driver regulatory: Direct firmware load for regulatory.db failed with error -2
+Aug 14 15:56:00 hv-lore kernel: cfg80211: failed to load regulatory.db
+===== BOOT -3 =====
+Aug 14 16:22:49 hv-lore kernel: pci 0000:01:00.0: ROM [mem size 0x00100000 pref]: failed to assign
+Aug 14 16:22:49 hv-lore kernel: pci 0000:02:00.1: ROM [mem size 0x00080000 pref]: failed to assign
+Aug 14 16:22:49 hv-lore kernel: ahci 0000:00:11.4: AHCI vers 0001.0300, 32 command slots, 6 Gbps, SATA mode
+Aug 14 16:22:49 hv-lore kernel: ata1: SATA max UDMA/133 abar m2048@0xf3a18000 port 0xf3a18100 irq 42 lpm-pol 1 ext
+Aug 14 16:22:49 hv-lore kernel: ata2: SATA max UDMA/133 abar m2048@0xf3a18000 port 0xf3a18180 irq 42 lpm-pol 1 ext
+Aug 14 16:22:49 hv-lore kernel: ata3: SATA max UDMA/133 abar m2048@0xf3a18000 port 0xf3a18200 irq 42 lpm-pol 1 ext
+Aug 14 16:22:49 hv-lore kernel: ata4: SATA max UDMA/133 abar m2048@0xf3a18000 port 0xf3a18280 irq 42 lpm-pol 1 ext
+Aug 14 16:22:49 hv-lore kernel: ahci 0000:00:1f.2: AHCI vers 0001.0300, 32 command slots, 6 Gbps, SATA mode
+Aug 14 16:22:49 hv-lore kernel: ata5: SATA max UDMA/133 abar m2048@0xf3a17000 port 0xf3a17100 irq 43 lpm-pol 1 ext
+Aug 14 16:22:49 hv-lore kernel: ata6: SATA max UDMA/133 abar m2048@0xf3a17000 port 0xf3a17180 irq 43 lpm-pol 1 ext
+Aug 14 16:22:49 hv-lore kernel: mpt3sas version 54.100.00.00 loaded
+Aug 14 16:22:49 hv-lore kernel: mpt3sas 0000:01:00.0: can't disable ASPM; OS doesn't have ASPM control
+Aug 14 16:22:49 hv-lore kernel: ata2: SATA link down (SStatus 0 SControl 300)
+Aug 14 16:22:49 hv-lore kernel: ata3: SATA link down (SStatus 0 SControl 300)
+Aug 14 16:22:49 hv-lore kernel: ata1: SATA link up 1.5 Gbps (SStatus 113 SControl 300)
+Aug 14 16:22:49 hv-lore kernel: ata4: SATA link down (SStatus 0 SControl 300)
+Aug 14 16:22:49 hv-lore kernel: ata6: SATA link up 6.0 Gbps (SStatus 133 SControl 300)
+Aug 14 16:22:49 hv-lore kernel: ata5: SATA link up 6.0 Gbps (SStatus 133 SControl 300)
+Aug 14 16:22:49 hv-lore kernel: mpt2sas_cm0: host_add: handle(0x0001), sas_addr(0x500143803535fdf8), phys(8)
+Aug 14 16:22:49 hv-lore kernel: mpt2sas_cm0: handle(0x9) sas_address(0x4433221100000000) port_type(0x1)
+Aug 14 16:22:49 hv-lore kernel: mpt2sas_cm0: handle(0xa) sas_address(0x4433221101000000) port_type(0x1)
+Aug 14 16:22:49 hv-lore kernel: mpt2sas_cm0: handle(0xb) sas_address(0x4433221102000000) port_type(0x1)
+Aug 14 16:22:49 hv-lore kernel: mpt2sas_cm0: handle(0xc) sas_address(0x4433221103000000) port_type(0x1)
+Aug 14 16:22:49 hv-lore kernel: scsi 8:0:0:0: SATA: handle(0x0009), sas_addr(0x4433221100000000), phy(0), device_name(0x5000039e88d9becc)
+Aug 14 16:22:49 hv-lore kernel:  end_device-8:0: add: handle(0x0009), sas_addr(0x4433221100000000)
+Aug 14 16:22:49 hv-lore kernel: scsi 8:0:1:0: SATA: handle(0x000a), sas_addr(0x4433221101000000), phy(1), device_name(0x5000039e88d9c4ec)
+Aug 14 16:22:49 hv-lore kernel:  end_device-8:1: add: handle(0x000a), sas_addr(0x4433221101000000)
+Aug 14 16:22:49 hv-lore kernel: scsi 8:0:2:0: SATA: handle(0x000b), sas_addr(0x4433221102000000), phy(2), device_name(0x5000039e88d9d327)
+Aug 14 16:22:49 hv-lore kernel:  end_device-8:2: add: handle(0x000b), sas_addr(0x4433221102000000)
+Aug 14 16:22:49 hv-lore kernel:  end_device-8:3: add: handle(0x000c), sas_addr(0x4433221103000000)
+Aug 14 16:22:49 hv-lore kernel: ee1004 0-0050: Failed to select page 0 (-6)
+Aug 14 16:22:49 hv-lore kernel: hp-wmi hp-wmi: Failed to apply initial fan settings: -22
+===== BOOT -2 =====
+Aug 14 16:28:55 hv-lore kernel: pci 0000:01:00.0: ROM [mem size 0x00100000 pref]: failed to assign
+Aug 14 16:28:55 hv-lore kernel: pci 0000:02:00.1: ROM [mem size 0x00080000 pref]: failed to assign
+Aug 14 16:28:55 hv-lore kernel: ahci 0000:00:11.4: AHCI vers 0001.0300, 32 command slots, 6 Gbps, SATA mode
+Aug 14 16:28:55 hv-lore kernel: ata1: SATA max UDMA/133 abar m2048@0xf3a18000 port 0xf3a18100 irq 42 lpm-pol 1 ext
+Aug 14 16:28:55 hv-lore kernel: ata2: SATA max UDMA/133 abar m2048@0xf3a18000 port 0xf3a18180 irq 42 lpm-pol 1 ext
+Aug 14 16:28:55 hv-lore kernel: ata3: SATA max UDMA/133 abar m2048@0xf3a18000 port 0xf3a18200 irq 42 lpm-pol 1 ext
+Aug 14 16:28:55 hv-lore kernel: ata4: SATA max UDMA/133 abar m2048@0xf3a18000 port 0xf3a18280 irq 42 lpm-pol 1 ext
+Aug 14 16:28:55 hv-lore kernel: ahci 0000:00:1f.2: AHCI vers 0001.0300, 32 command slots, 6 Gbps, SATA mode
+Aug 14 16:28:55 hv-lore kernel: ata5: SATA max UDMA/133 abar m2048@0xf3a17000 port 0xf3a17100 irq 43 lpm-pol 1 ext
+Aug 14 16:28:55 hv-lore kernel: ata6: SATA max UDMA/133 abar m2048@0xf3a17000 port 0xf3a17180 irq 43 lpm-pol 1 ext
+Aug 14 16:28:55 hv-lore kernel: mpt3sas version 54.100.00.00 loaded
+Aug 14 16:28:55 hv-lore kernel: mpt3sas 0000:01:00.0: can't disable ASPM; OS doesn't have ASPM control
+Aug 14 16:28:55 hv-lore kernel: ata2: SATA link down (SStatus 0 SControl 300)
+Aug 14 16:28:55 hv-lore kernel: ata1: SATA link up 1.5 Gbps (SStatus 113 SControl 300)
+Aug 14 16:28:55 hv-lore kernel: ata4: SATA link down (SStatus 0 SControl 300)
+Aug 14 16:28:55 hv-lore kernel: ata3: SATA link down (SStatus 0 SControl 300)
+Aug 14 16:28:55 hv-lore kernel: ata5: SATA link up 6.0 Gbps (SStatus 133 SControl 300)
+Aug 14 16:28:55 hv-lore kernel: ata6: SATA link up 6.0 Gbps (SStatus 133 SControl 300)
+Aug 14 16:28:55 hv-lore kernel: mpt2sas_cm0: host_add: handle(0x0001), sas_addr(0x500143803535fdf8), phys(8)
+Aug 14 16:28:55 hv-lore kernel: mpt2sas_cm0: handle(0x9) sas_address(0x4433221100000000) port_type(0x1)
+Aug 14 16:28:55 hv-lore kernel: mpt2sas_cm0: handle(0xa) sas_address(0x4433221101000000) port_type(0x1)
+Aug 14 16:28:55 hv-lore kernel: mpt2sas_cm0: handle(0xb) sas_address(0x4433221102000000) port_type(0x1)
+Aug 14 16:28:55 hv-lore kernel: mpt2sas_cm0: handle(0xc) sas_address(0x4433221103000000) port_type(0x1)
+Aug 14 16:28:55 hv-lore kernel: scsi 8:0:0:0: SATA: handle(0x0009), sas_addr(0x4433221100000000), phy(0), device_name(0x5000039e88d9becc)
+Aug 14 16:28:55 hv-lore kernel:  end_device-8:0: add: handle(0x0009), sas_addr(0x4433221100000000)
+Aug 14 16:28:55 hv-lore kernel: scsi 8:0:1:0: SATA: handle(0x000a), sas_addr(0x4433221101000000), phy(1), device_name(0x5000039e88d9c4ec)
+Aug 14 16:28:55 hv-lore kernel:  end_device-8:1: add: handle(0x000a), sas_addr(0x4433221101000000)
+Aug 14 16:28:55 hv-lore kernel: scsi 8:0:2:0: SATA: handle(0x000b), sas_addr(0x4433221102000000), phy(2), device_name(0x5000039e88d9d327)
+Aug 14 16:28:55 hv-lore kernel:  end_device-8:2: add: handle(0x000b), sas_addr(0x4433221102000000)
+Aug 14 16:28:55 hv-lore kernel:  end_device-8:3: add: handle(0x000c), sas_addr(0x4433221103000000)
+Aug 14 16:28:55 hv-lore kernel: ee1004 0-0050: Failed to select page 0 (-6)
+Aug 14 16:28:55 hv-lore kernel: hp-wmi hp-wmi: Failed to apply initial fan settings: -22
+Aug 14 16:29:27 hv-lore kernel: audit: type=1400 audit(1786739367.776:130): apparmor="DENIED" operation="mount" class="mount" info="failed flags match" error=-13 profile="lxc-245_</var/lib/lxc>" name="/dev/shm/" pid=3926 comm="(sd-mkdcreds)" fstype="ramfs" srcname="ramfs" flags="rw, nosuid, nodev, noexec"
+Aug 14 16:29:27 hv-lore kernel: audit: type=1400 audit(1786739367.780:131): apparmor="DENIED" operation="mount" class="mount" info="failed flags match" error=-13 profile="lxc-245_</var/lib/lxc>" name="/dev/shm/" pid=3928 comm="(sd-mkdcreds)" fstype="ramfs" srcname="ramfs" flags="rw, nosuid, nodev, noexec"
+Aug 14 16:29:27 hv-lore kernel: audit: type=1400 audit(1786739367.796:132): apparmor="DENIED" operation="mount" class="mount" info="failed flags match" error=-13 profile="lxc-245_</var/lib/lxc>" name="/dev/shm/" pid=3931 comm="(sd-mkdcreds)" fstype="ramfs" srcname="ramfs" flags="rw, nosuid, nodev, noexec"
+Aug 14 16:29:27 hv-lore kernel: audit: type=1400 audit(1786739367.864:133): apparmor="DENIED" operation="mount" class="mount" info="failed flags match" error=-13 profile="lxc-245_</var/lib/lxc>" name="/dev/shm/" pid=3947 comm="(sd-mkdcreds)" fstype="ramfs" srcname="ramfs" flags="rw, nosuid, nodev, noexec"
+Aug 14 16:29:27 hv-lore kernel: audit: type=1400 audit(1786739367.884:134): apparmor="DENIED" operation="mount" class="mount" info="failed flags match" error=-13 profile="lxc-245_</var/lib/lxc>" name="/run/systemd/unit-root/proc/" pid=3954 comm="(networkd)" fstype="proc" srcname="proc" flags="rw, nosuid, nodev, noexec"
+Aug 14 16:29:27 hv-lore kernel: audit: type=1400 audit(1786739367.899:135): apparmor="DENIED" operation="mount" class="mount" info="failed flags match" error=-13 profile="lxc-245_</var/lib/lxc>" name="/run/systemd/unit-root/proc/" pid=3962 comm="(networkd)" fstype="proc" srcname="proc" flags="rw, nosuid, nodev, noexec"
+Aug 14 16:29:27 hv-lore kernel: audit: type=1400 audit(1786739367.922:136): apparmor="DENIED" operation="mount" class="mount" info="failed flags match" error=-13 profile="lxc-245_</var/lib/lxc>" name="/run/systemd/unit-root/proc/" pid=3978 comm="(networkd)" fstype="proc" srcname="proc" flags="rw, nosuid, nodev, noexec"
+Aug 14 16:29:27 hv-lore kernel: audit: type=1400 audit(1786739367.923:137): apparmor="DENIED" operation="mount" class="mount" info="failed flags match" error=-13 profile="lxc-245_</var/lib/lxc>" name="/run/systemd/unit-root/proc/" pid=3986 comm="(d-logind)" fstype="proc" srcname="proc" flags="rw, nosuid, nodev, noexec"
+Aug 14 16:29:27 hv-lore kernel: audit: type=1400 audit(1786739367.947:138): apparmor="DENIED" operation="mount" class="mount" info="failed flags match" error=-13 profile="lxc-245_</var/lib/lxc>" name="/run/systemd/unit-root/proc/" pid=4003 comm="(networkd)" fstype="proc" srcname="proc" flags="rw, nosuid, nodev, noexec"
+Aug 14 16:41:03 hv-lore kernel: mpt2sas_cm0: mpt3sas_transport_port_remove: removed: sas_addr(0x4433221103000000)
+Aug 14 16:41:03 hv-lore kernel: mpt2sas_cm0: removing handle(0x000c), sas_addr(0x4433221103000000)
+===== BOOT -1 =====
+Aug 14 16:46:12 hv-lore kernel: pci 0000:01:00.0: ROM [mem size 0x00100000 pref]: failed to assign
+Aug 14 16:46:12 hv-lore kernel: pci 0000:02:00.1: ROM [mem size 0x00080000 pref]: failed to assign
+Aug 14 16:46:12 hv-lore kernel: ahci 0000:00:11.4: AHCI vers 0001.0300, 32 command slots, 6 Gbps, SATA mode
+Aug 14 16:46:12 hv-lore kernel: ata1: SATA max UDMA/133 abar m2048@0xf3a18000 port 0xf3a18100 irq 42 lpm-pol 1 ext
+Aug 14 16:46:12 hv-lore kernel: ata2: SATA max UDMA/133 abar m2048@0xf3a18000 port 0xf3a18180 irq 42 lpm-pol 1 ext
+Aug 14 16:46:12 hv-lore kernel: ata3: SATA max UDMA/133 abar m2048@0xf3a18000 port 0xf3a18200 irq 42 lpm-pol 1 ext
+Aug 14 16:46:12 hv-lore kernel: ata4: SATA max UDMA/133 abar m2048@0xf3a18000 port 0xf3a18280 irq 42 lpm-pol 1 ext
+Aug 14 16:46:12 hv-lore kernel: ahci 0000:00:1f.2: AHCI vers 0001.0300, 32 command slots, 6 Gbps, SATA mode
+Aug 14 16:46:12 hv-lore kernel: ata5: SATA max UDMA/133 abar m2048@0xf3a17000 port 0xf3a17100 irq 43 lpm-pol 1 ext
+Aug 14 16:46:12 hv-lore kernel: ata6: SATA max UDMA/133 abar m2048@0xf3a17000 port 0xf3a17180 irq 43 lpm-pol 1 ext
+Aug 14 16:46:12 hv-lore kernel: ata6: SATA link up 6.0 Gbps (SStatus 133 SControl 300)
+Aug 14 16:46:12 hv-lore kernel: ata3: SATA link down (SStatus 0 SControl 300)
+Aug 14 16:46:12 hv-lore kernel: ata5: SATA link up 6.0 Gbps (SStatus 133 SControl 300)
+Aug 14 16:46:12 hv-lore kernel: ata2: SATA link down (SStatus 0 SControl 300)
+Aug 14 16:46:12 hv-lore kernel: ata4: SATA link down (SStatus 0 SControl 300)
+Aug 14 16:46:12 hv-lore kernel: ata1: SATA link up 1.5 Gbps (SStatus 113 SControl 300)
+Aug 14 16:46:12 hv-lore kernel: mpt3sas version 54.100.00.00 loaded
+Aug 14 16:46:12 hv-lore kernel: mpt3sas 0000:01:00.0: can't disable ASPM; OS doesn't have ASPM control
+Aug 14 16:46:12 hv-lore kernel: mpt2sas_cm0: host_add: handle(0x0001), sas_addr(0x500143803535fdf8), phys(8)
+Aug 14 16:46:12 hv-lore kernel: mpt2sas_cm0: handle(0x9) sas_address(0x4433221100000000) port_type(0x1)
+Aug 14 16:46:12 hv-lore kernel: mpt2sas_cm0: handle(0xa) sas_address(0x4433221101000000) port_type(0x1)
+Aug 14 16:46:12 hv-lore kernel: mpt2sas_cm0: handle(0xb) sas_address(0x4433221102000000) port_type(0x1)
+Aug 14 16:46:12 hv-lore kernel: scsi 8:0:0:0: SATA: handle(0x0009), sas_addr(0x4433221100000000), phy(0), device_name(0x5000039e88d9becc)
+Aug 14 16:46:12 hv-lore kernel:  end_device-8:0: add: handle(0x0009), sas_addr(0x4433221100000000)
+Aug 14 16:46:12 hv-lore kernel: scsi 8:0:1:0: SATA: handle(0x000a), sas_addr(0x4433221101000000), phy(1), device_name(0x5000039e88d9c4ec)
+Aug 14 16:46:12 hv-lore kernel:  end_device-8:1: add: handle(0x000a), sas_addr(0x4433221101000000)
+Aug 14 16:46:12 hv-lore kernel: scsi 8:0:2:0: SATA: handle(0x000b), sas_addr(0x4433221102000000), phy(2), device_name(0x5000039e88d9d327)
+Aug 14 16:46:12 hv-lore kernel:  end_device-8:2: add: handle(0x000b), sas_addr(0x4433221102000000)
+Aug 14 16:46:12 hv-lore kernel: ee1004 0-0050: Failed to select page 0 (-6)
+Aug 14 16:46:12 hv-lore kernel: hp-wmi hp-wmi: Failed to apply initial fan settings: -22
+===== BOOT 0 =====
+Aug 14 17:12:20 hv-lore kernel: pci 0000:01:00.0: ROM [mem size 0x00100000 pref]: failed to assign
+Aug 14 17:12:20 hv-lore kernel: pci 0000:02:00.1: ROM [mem size 0x00080000 pref]: failed to assign
+Aug 14 17:12:20 hv-lore kernel: ahci 0000:00:11.4: AHCI vers 0001.0300, 32 command slots, 6 Gbps, SATA mode
+Aug 14 17:12:20 hv-lore kernel: ata1: SATA max UDMA/133 abar m2048@0xf3a18000 port 0xf3a18100 irq 42 lpm-pol 1 ext
+Aug 14 17:12:20 hv-lore kernel: ata2: SATA max UDMA/133 abar m2048@0xf3a18000 port 0xf3a18180 irq 42 lpm-pol 1 ext
+Aug 14 17:12:20 hv-lore kernel: ata3: SATA max UDMA/133 abar m2048@0xf3a18000 port 0xf3a18200 irq 42 lpm-pol 1 ext
+Aug 14 17:12:20 hv-lore kernel: ata4: SATA max UDMA/133 abar m2048@0xf3a18000 port 0xf3a18280 irq 42 lpm-pol 1 ext
+Aug 14 17:12:20 hv-lore kernel: ahci 0000:00:1f.2: AHCI vers 0001.0300, 32 command slots, 6 Gbps, SATA mode
+Aug 14 17:12:20 hv-lore kernel: ata5: SATA max UDMA/133 abar m2048@0xf3a17000 port 0xf3a17100 irq 43 lpm-pol 1 ext
+Aug 14 17:12:20 hv-lore kernel: ata6: SATA max UDMA/133 abar m2048@0xf3a17000 port 0xf3a17180 irq 43 lpm-pol 1 ext
+Aug 14 17:12:20 hv-lore kernel: mpt3sas version 54.100.00.00 loaded
+Aug 14 17:12:20 hv-lore kernel: mpt3sas 0000:01:00.0: can't disable ASPM; OS doesn't have ASPM control
+Aug 14 17:12:20 hv-lore kernel: ata2: SATA link up 6.0 Gbps (SStatus 133 SControl 300)
+Aug 14 17:12:20 hv-lore kernel: ata4: SATA link down (SStatus 0 SControl 300)
+Aug 14 17:12:20 hv-lore kernel: ata3: SATA link down (SStatus 0 SControl 300)
+Aug 14 17:12:20 hv-lore kernel: ata1: SATA link up 1.5 Gbps (SStatus 113 SControl 300)
+Aug 14 17:12:20 hv-lore kernel: ata6: SATA link up 6.0 Gbps (SStatus 133 SControl 300)
+Aug 14 17:12:20 hv-lore kernel: ata5: SATA link up 6.0 Gbps (SStatus 133 SControl 300)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: host_add: handle(0x0001), sas_addr(0x500143803535fdf8), phys(8)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: handle(0x9) sas_address(0x4433221100000000) port_type(0x1)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: handle(0xa) sas_address(0x4433221101000000) port_type(0x1)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: handle(0xb) sas_address(0x4433221102000000) port_type(0x1)
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:0:0: SATA: handle(0x0009), sas_addr(0x4433221100000000), phy(0), device_name(0x5000039e88d9becc)
+Aug 14 17:12:20 hv-lore kernel:  end_device-8:0: add: handle(0x0009), sas_addr(0x4433221100000000)
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:1:0: SATA: handle(0x000a), sas_addr(0x4433221101000000), phy(1), device_name(0x5000039e88d9c4ec)
+Aug 14 17:12:20 hv-lore kernel:  end_device-8:1: add: handle(0x000a), sas_addr(0x4433221101000000)
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:2:0: SATA: handle(0x000b), sas_addr(0x4433221102000000), phy(2), device_name(0x5000039e88d9d327)
+Aug 14 17:12:20 hv-lore kernel:  end_device-8:2: add: handle(0x000b), sas_addr(0x4433221102000000)
+Aug 14 17:12:20 hv-lore kernel: ee1004 0-0050: Failed to select page 0 (-6)
+Aug 14 17:12:20 hv-lore kernel: hp-wmi hp-wmi: Failed to apply initial fan settings: -22

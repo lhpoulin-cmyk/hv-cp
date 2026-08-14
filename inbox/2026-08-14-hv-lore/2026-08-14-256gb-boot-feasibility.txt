@@ -1,0 +1,40 @@
+HOST=hv-lore
+CAPTURED=2026-08-14T17:38:19-04:00
+--- boot/root state ---
+rpool/ROOT/pve-1 zfs rw,relatime,xattr,posixacl,casesensitive
+  pool: rpool
+ state: ONLINE
+status: Some supported and requested features are not enabled on the pool.
+	The pool can still be used, but some features are unavailable.
+action: Enable all features using 'zpool upgrade'. Once this is done,
+	the pool may no longer be accessible by software that does not support
+	the features. See zpool-features(7) for details.
+  scan: scrub repaired 0B in 00:02:32 with 0 errors on Sun Aug  9 00:26:34 2026
+config:
+
+	NAME                STATE     READ WRITE CKSUM
+	rpool               ONLINE       0     0     0
+	  mirror-0          ONLINE       0     0     0
+	    /dev/nvme0n1p3  ONLINE       0     0     0
+	    /dev/nvme1n1p3  ONLINE       0     0     0
+
+errors: No known data errors
+NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
+rpool   472G   129G   343G        -         -    43%    27%  1.00x    ONLINE  -
+NAME   PROPERTY  VALUE             SOURCE
+rpool  bootfs    rpool/ROOT/pve-1  local
+--- firmware boot entries ---
+BootCurrent: 001F
+BootOrder: 001F,0021,0017,0009,0011,0020,001A,001C,001D,001E,0018,0010,000C,000E,0012,0013,0015,0019,000D,000F,0014,0016,0000,0001,0002,0003,0004,0005,0006,0007,0008,000B,000A
+Boot000D* NVME Slot 4 Socket 3	BBS(HD,Harddisk1,0x400)/PciRoot(0x1)/Pci(0x2,0x0)/Pci(0x0,0x0)02001000000049535048
+Boot000F* NVME Slot 4 Socket 2	BBS(HD,Harddisk1,0x400)/PciRoot(0x1)/Pci(0x2,0x1)/Pci(0x0,0x0)03001000000049535048
+Boot0014* NVME Slot 4 Socket 1	BBS(HD,Harddisk1,0x400)/PciRoot(0x1)/Pci(0x2,0x2)/Pci(0x0,0x0)04001000000049535048
+Boot0016* NVME Slot 4 Socket 0	BBS(HD,Harddisk1,0x400)/PciRoot(0x1)/Pci(0x2,0x3)/Pci(0x0,0x0)05001000000049535048
+Boot001F* proxmox	HD(2,GPT,7d435626-4240-4f07-8902-d3c99dbc5554,0x800,0x200000)/File(\EFI\proxmox\shimx64.efi) File(.)
+Boot0020* P3-256 	PciRoot(0x0)/Pci(0x1f,0x2)/Sata(0,0,0)4eac0881119f594d850ee21a522c59b21000000049535048
+--- candidate disks ---
+NAME MODEL  SERIAL          SIZE TRAN   HCTL
+sdd  P3-256 9760522200232 238.5G sata   1:0:0:0
+sde  P3-256 9760511210658 238.5G sata   4:0:0:0
+--- boot tools ---
+proxmox-boot-tool-unavailable

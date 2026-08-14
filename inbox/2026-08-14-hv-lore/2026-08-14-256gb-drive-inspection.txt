@@ -1,0 +1,33 @@
+HOST=hv-lore
+CAPTURED=2026-08-14T17:36:39-04:00
+--- inventory ---
+NAME MODEL  SERIAL          SIZE TRAN   HCTL
+sdd  P3-256 9760522200232 238.5G sata   1:0:0:0
+sde  P3-256 9760511210658 238.5G sata   4:0:0:0
+--- topology ---
+NAME MODEL  SERIAL          SIZE FSTYPE MOUNTPOINTS TRAN   HCTL
+sdd  P3-256 9760522200232 238.5G                    sata   1:0:0:0
+sde  P3-256 9760511210658 238.5G                    sata   4:0:0:0
+--- mounts ---
+--- zpool ownership ---
+  pool: jellyPool
+ state: ONLINE
+	jellyPool   ONLINE       0     0     0
+	  nvme2n1   ONLINE       0     0     0
+  pool: rpool
+ state: ONLINE
+	rpool          ONLINE       0     0     0
+	  mirror-0     ONLINE       0     0     0
+	    nvme0n1p3  ONLINE       0     0     0
+	    nvme1n1p3  ONLINE       0     0     0
+--- smartctl ---
+smartctl-not-installed
+--- kernel identity ---
+Aug 14 17:12:20 hv-lore kernel: ata2.00: ATA-10: P3-256, VG01A00W, max UDMA/133
+Aug 14 17:12:20 hv-lore kernel: ata5.00: ATA-11: P3-256, ACEC29B2, max UDMA/133
+Aug 14 17:12:20 hv-lore kernel: scsi 1:0:0:0: Direct-Access     ATA      P3-256           A00W PQ: 0 ANSI: 5
+Aug 14 17:12:20 hv-lore kernel: sd 1:0:0:0: [sdd] 500118192 512-byte logical blocks: (256 GB/238 GiB)
+Aug 14 17:12:20 hv-lore kernel: scsi 4:0:0:0: Direct-Access     ATA      P3-256           29B2 PQ: 0 ANSI: 5
+Aug 14 17:12:20 hv-lore kernel: sd 4:0:0:0: [sde] 500118192 512-byte logical blocks: (256 GB/238 GiB)
+Aug 14 17:12:20 hv-lore kernel: sd 1:0:0:0: [sdd] Attached SCSI disk
+Aug 14 17:12:20 hv-lore kernel: sd 4:0:0:0: [sde] Attached SCSI disk

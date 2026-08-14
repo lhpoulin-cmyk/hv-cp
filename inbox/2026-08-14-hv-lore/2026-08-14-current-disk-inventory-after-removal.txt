@@ -1,0 +1,230 @@
+HOST=hv-lore
+CAPTURED=2026-08-14T17:24:05-04:00
+--- lsblk ---
+NAME    MODEL                SERIAL            SIZE TRAN   HCTL
+sda     TOSHIBA HDWG51CUZSVA 16N2A02XFWUH     10.9T sas    8:0:0:0
+sdb     TOSHIBA HDWG51CUZSVA 16N2A042FWUH     10.9T sas    8:0:1:0
+sdc     TOSHIBA HDWG51CUZSVA 16X2A00KFWUH     10.9T sas    8:0:2:0
+sdd     P3-256               9760522200232   238.5G sata   1:0:0:0
+sde     P3-256               9760511210658   238.5G sata   4:0:0:0
+sdf     P3-512               9X50912007143   476.9G sata   5:0:0:0
+sr0     hp HLDS DVDRW GUD1N  739C1028296      1024M sata   0:0:0:0
+zd0                                              8G        
+zd16                                           256G        
+zd32                                           200G        
+zd48                                            64G        
+zd64                                            64G        
+zd80                                             1M        
+zd96                                             1M        
+zd112                                            1M        
+zd128                                           20G        
+zd144                                            1M        
+zd160                                          256G        
+zd176                                            1M        
+zd192                                            4M        
+zd208                                            1M        
+zd224                                            1M        
+zd240                                           64G        
+nvme1n1 Timetec PCIe SSD     TP250913B5D1797 476.9G nvme   
+nvme3n1 Timetec PCIe SSD     TP250916B5D0198 476.9G nvme   
+nvme2n1 Timetec PCIe SSD     TP250913B5D1792 476.9G nvme   
+nvme0n1 Timetec PCIe SSD     TP250913B5D3323 476.9G nvme   
+zd256                                            4M        
+zd272                                           64G        
+zd288                                           40G        
+zd304                                          128G        
+--- SAS block devices ---
+8:0:0:0 /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/host8/port-8:0/end_device-8:0/target8:0:0/8:0:0:0
+8:0:1:0 /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/host8/port-8:1/end_device-8:1/target8:0:1/8:0:1:0
+8:0:2:0 /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/host8/port-8:2/end_device-8:2/target8:0:2/8:0:2:0
+--- current mpt3sas/end-device state ---
+Aug 14 17:12:20 hv-lore kernel: mpt3sas version 54.100.00.00 loaded
+Aug 14 17:12:20 hv-lore kernel: mpt3sas 0000:01:00.0: can't disable ASPM; OS doesn't have ASPM control
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: 64 BIT PCI BUS DMA ADDRESSING SUPPORTED, total mem (197949872 kB)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: CurrentHostPageSize is 0: Setting default host page size to 4k
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: MSI-X vectors supported: 16
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0:  0 16 16
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: High IOPs queues : disabled
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix0: PCI-MSI-X enabled: IRQ 57
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix1: PCI-MSI-X enabled: IRQ 58
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix2: PCI-MSI-X enabled: IRQ 59
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix3: PCI-MSI-X enabled: IRQ 60
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix4: PCI-MSI-X enabled: IRQ 61
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix5: PCI-MSI-X enabled: IRQ 62
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix6: PCI-MSI-X enabled: IRQ 63
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix7: PCI-MSI-X enabled: IRQ 64
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix8: PCI-MSI-X enabled: IRQ 65
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix9: PCI-MSI-X enabled: IRQ 66
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix10: PCI-MSI-X enabled: IRQ 67
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix11: PCI-MSI-X enabled: IRQ 68
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix12: PCI-MSI-X enabled: IRQ 69
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix13: PCI-MSI-X enabled: IRQ 70
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix14: PCI-MSI-X enabled: IRQ 71
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix15: PCI-MSI-X enabled: IRQ 72
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: iomem(0x00000000f3940000), mapped(0x00000000de6095c5), size(65536)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: ioport(0x0000000000005000), size(256)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: CurrentHostPageSize is 0: Setting default host page size to 4k
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: scatter gather: sge_in_main_msg(1), sge_per_chain(9), sge_per_io(128), chains_per_io(15)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: request pool(0x0000000039ca29e4) - dma(0xffe80000): depth(3200), frame_size(128), pool_size(400 kB)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: sense pool(0x000000002cc8559e) - dma(0xff880000): depth(2939), element_size(96), pool_size (275 kB)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: reply pool(0x00000000c2633019) - dma(0xff800000): depth(3264), frame_size(128), pool_size(408 kB)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: config page(0x00000000b0e5c108) - dma(0xff7fa000): size(512)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: Allocated physical memory: size(7417 kB)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: Current Controller Queue Depth(2936),Max Controller Queue Depth(3072)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: Scatter Gather Elements per IO(128)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: overriding NVDATA EEDPTagMode setting from 0 to 1
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: LSISAS2308: FWVersion(18.10.00.00), ChipRevision(0x05)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: Protocol=(Initiator), Capabilities=(Raid,TLR,EEDP,Snapshot Buffer,Diag Trace Buffer,Task Set Full,NCQ)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: sending port enable !!
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: hba_port entry: 0000000061190744, port: 255 is added to hba_port list
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: host_add: handle(0x0001), sas_addr(0x500143803535fdf8), phys(8)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: handle(0x9) sas_address(0x4433221100000000) port_type(0x1)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: handle(0xa) sas_address(0x4433221101000000) port_type(0x1)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: handle(0xb) sas_address(0x4433221102000000) port_type(0x1)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: port enable: SUCCESS
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:0:0: Direct-Access     ATA      TOSHIBA HDWG51CU 0109 PQ: 0 ANSI: 6
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:0:0: SATA: handle(0x0009), sas_addr(0x4433221100000000), phy(0), device_name(0x5000039e88d9becc)
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:0:0: enclosure logical id (0x500143803535fdf8), slot(0) 
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:0:0: atapi(n), ncq(y), asyn_notify(n), smart(y), fua(y), sw_preserve(y)
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:0:0: qdepth(32), tagged(1), scsi_level(7), cmd_que(1)
+Aug 14 17:12:20 hv-lore kernel:  end_device-8:0: add: handle(0x0009), sas_addr(0x4433221100000000)
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:1:0: Direct-Access     ATA      TOSHIBA HDWG51CU 0109 PQ: 0 ANSI: 6
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:1:0: SATA: handle(0x000a), sas_addr(0x4433221101000000), phy(1), device_name(0x5000039e88d9c4ec)
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:1:0: enclosure logical id (0x500143803535fdf8), slot(1) 
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:1:0: atapi(n), ncq(y), asyn_notify(n), smart(y), fua(y), sw_preserve(y)
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:1:0: qdepth(32), tagged(1), scsi_level(7), cmd_que(1)
+Aug 14 17:12:20 hv-lore kernel:  end_device-8:1: add: handle(0x000a), sas_addr(0x4433221101000000)
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:2:0: Direct-Access     ATA      TOSHIBA HDWG51CU 0109 PQ: 0 ANSI: 6
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:2:0: SATA: handle(0x000b), sas_addr(0x4433221102000000), phy(2), device_name(0x5000039e88d9d327)
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:2:0: enclosure logical id (0x500143803535fdf8), slot(2) 
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:2:0: atapi(n), ncq(y), asyn_notify(n), smart(y), fua(y), sw_preserve(y)
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:2:0: qdepth(32), tagged(1), scsi_level(7), cmd_que(1)
+Aug 14 17:12:20 hv-lore kernel:  end_device-8:2: add: handle(0x000b), sas_addr(0x4433221102000000)
+--- recent storage events ---
+Aug 14 17:12:20 hv-lore kernel: ACPI: RSDP 0x00000000CB7C7014 000024 (v02 HPQOEM)
+Aug 14 17:12:20 hv-lore kernel: ACPI: XSDT 0x00000000CB701188 0000DC (v01 HPQOEM SLIC-WKS 00000000      01000013)
+Aug 14 17:12:20 hv-lore kernel: ACPI: DSDT 0x00000000CB78B000 021C89 (v02 HPQOEM SLIC-WKS 00000003 INTL 20091013)
+Aug 14 17:12:20 hv-lore kernel: ACPI: SSDT 0x00000000CB7C4000 0003B3 (v02 HPQOEM Tpm2Tabl 00001000 INTL 20130328)
+Aug 14 17:12:20 hv-lore kernel: ACPI: SSDT 0x00000000CB7C1000 0013A1 (v01 COMPAQ Plat_Wmi 00000001 INTL 20130328)
+Aug 14 17:12:20 hv-lore kernel: ACPI: MSDM 0x00000000CB7BD000 000055 (v03 HPQOEM SLIC-WKS 00000000 INTL 20091013)
+Aug 14 17:12:20 hv-lore kernel: ACPI: SSDT 0x00000000CB704000 086372 (v02 HPQOEM SSDT  PM 00004000 INTL 20130328)
+Aug 14 17:12:20 hv-lore kernel: ACPI: Reserving DSDT table memory at [mem 0xcb78b000-0xcb7acc88]
+Aug 14 17:12:20 hv-lore kernel: ACPI: Reserving SSDT table memory at [mem 0xcb7c4000-0xcb7c43b2]
+Aug 14 17:12:20 hv-lore kernel: ACPI: Reserving SSDT table memory at [mem 0xcb7c1000-0xcb7c23a0]
+Aug 14 17:12:20 hv-lore kernel: ACPI: Reserving MSDM table memory at [mem 0xcb7bd000-0xcb7bd054]
+Aug 14 17:12:20 hv-lore kernel: ACPI: Reserving SSDT table memory at [mem 0xcb704000-0xcb78a371]
+Aug 14 17:12:20 hv-lore kernel: mpt3sas version 54.100.00.00 loaded
+Aug 14 17:12:20 hv-lore kernel: mpt3sas 0000:01:00.0: can't disable ASPM; OS doesn't have ASPM control
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: 64 BIT PCI BUS DMA ADDRESSING SUPPORTED, total mem (197949872 kB)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: CurrentHostPageSize is 0: Setting default host page size to 4k
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: MSI-X vectors supported: 16
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0:  0 16 16
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: High IOPs queues : disabled
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix0: PCI-MSI-X enabled: IRQ 57
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix1: PCI-MSI-X enabled: IRQ 58
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix2: PCI-MSI-X enabled: IRQ 59
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix3: PCI-MSI-X enabled: IRQ 60
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix4: PCI-MSI-X enabled: IRQ 61
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix5: PCI-MSI-X enabled: IRQ 62
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix6: PCI-MSI-X enabled: IRQ 63
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix7: PCI-MSI-X enabled: IRQ 64
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix8: PCI-MSI-X enabled: IRQ 65
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix9: PCI-MSI-X enabled: IRQ 66
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix10: PCI-MSI-X enabled: IRQ 67
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix11: PCI-MSI-X enabled: IRQ 68
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix12: PCI-MSI-X enabled: IRQ 69
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix13: PCI-MSI-X enabled: IRQ 70
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix14: PCI-MSI-X enabled: IRQ 71
+Aug 14 17:12:20 hv-lore kernel: mpt2sas0-msix15: PCI-MSI-X enabled: IRQ 72
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: iomem(0x00000000f3940000), mapped(0x00000000de6095c5), size(65536)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: ioport(0x0000000000005000), size(256)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: CurrentHostPageSize is 0: Setting default host page size to 4k
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: scatter gather: sge_in_main_msg(1), sge_per_chain(9), sge_per_io(128), chains_per_io(15)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: request pool(0x0000000039ca29e4) - dma(0xffe80000): depth(3200), frame_size(128), pool_size(400 kB)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: sense pool(0x000000002cc8559e) - dma(0xff880000): depth(2939), element_size(96), pool_size (275 kB)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: reply pool(0x00000000c2633019) - dma(0xff800000): depth(3264), frame_size(128), pool_size(408 kB)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: config page(0x00000000b0e5c108) - dma(0xff7fa000): size(512)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: Allocated physical memory: size(7417 kB)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: Current Controller Queue Depth(2936),Max Controller Queue Depth(3072)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: Scatter Gather Elements per IO(128)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: overriding NVDATA EEDPTagMode setting from 0 to 1
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: LSISAS2308: FWVersion(18.10.00.00), ChipRevision(0x05)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: Protocol=(Initiator), Capabilities=(Raid,TLR,EEDP,Snapshot Buffer,Diag Trace Buffer,Task Set Full,NCQ)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: sending port enable !!
+Aug 14 17:12:20 hv-lore kernel: ata2: SATA link up 6.0 Gbps (SStatus 133 SControl 300)
+Aug 14 17:12:20 hv-lore kernel: ata4: SATA link down (SStatus 0 SControl 300)
+Aug 14 17:12:20 hv-lore kernel: ata3: SATA link down (SStatus 0 SControl 300)
+Aug 14 17:12:20 hv-lore kernel: ata1: SATA link up 1.5 Gbps (SStatus 113 SControl 300)
+Aug 14 17:12:20 hv-lore kernel: ata6: SATA link up 6.0 Gbps (SStatus 133 SControl 300)
+Aug 14 17:12:20 hv-lore kernel: ata5: SATA link up 6.0 Gbps (SStatus 133 SControl 300)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: hba_port entry: 0000000061190744, port: 255 is added to hba_port list
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: host_add: handle(0x0001), sas_addr(0x500143803535fdf8), phys(8)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: handle(0x9) sas_address(0x4433221100000000) port_type(0x1)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: handle(0xa) sas_address(0x4433221101000000) port_type(0x1)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: handle(0xb) sas_address(0x4433221102000000) port_type(0x1)
+Aug 14 17:12:20 hv-lore kernel: mpt2sas_cm0: port enable: SUCCESS
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:0:0: Direct-Access     ATA      TOSHIBA HDWG51CU 0109 PQ: 0 ANSI: 6
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:0:0: SATA: handle(0x0009), sas_addr(0x4433221100000000), phy(0), device_name(0x5000039e88d9becc)
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:0:0: enclosure logical id (0x500143803535fdf8), slot(0) 
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:0:0: atapi(n), ncq(y), asyn_notify(n), smart(y), fua(y), sw_preserve(y)
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:0:0: qdepth(32), tagged(1), scsi_level(7), cmd_que(1)
+Aug 14 17:12:20 hv-lore kernel:  end_device-8:0: add: handle(0x0009), sas_addr(0x4433221100000000)
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:1:0: Direct-Access     ATA      TOSHIBA HDWG51CU 0109 PQ: 0 ANSI: 6
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:1:0: SATA: handle(0x000a), sas_addr(0x4433221101000000), phy(1), device_name(0x5000039e88d9c4ec)
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:1:0: enclosure logical id (0x500143803535fdf8), slot(1) 
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:1:0: atapi(n), ncq(y), asyn_notify(n), smart(y), fua(y), sw_preserve(y)
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:1:0: qdepth(32), tagged(1), scsi_level(7), cmd_que(1)
+Aug 14 17:12:20 hv-lore kernel:  end_device-8:1: add: handle(0x000a), sas_addr(0x4433221101000000)
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:2:0: Direct-Access     ATA      TOSHIBA HDWG51CU 0109 PQ: 0 ANSI: 6
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:2:0: SATA: handle(0x000b), sas_addr(0x4433221102000000), phy(2), device_name(0x5000039e88d9d327)
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:2:0: enclosure logical id (0x500143803535fdf8), slot(2) 
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:2:0: atapi(n), ncq(y), asyn_notify(n), smart(y), fua(y), sw_preserve(y)
+Aug 14 17:12:20 hv-lore kernel: scsi 8:0:2:0: qdepth(32), tagged(1), scsi_level(7), cmd_que(1)
+Aug 14 17:12:20 hv-lore kernel:  end_device-8:2: add: handle(0x000b), sas_addr(0x4433221102000000)
+Aug 14 17:12:20 hv-lore kernel: sd 8:0:0:0: Attached scsi generic sg0 type 0
+Aug 14 17:12:20 hv-lore kernel: sd 8:0:1:0: Attached scsi generic sg1 type 0
+Aug 14 17:12:20 hv-lore kernel: sd 8:0:2:0: Attached scsi generic sg2 type 0
+Aug 14 17:12:20 hv-lore kernel: sd 8:0:0:0: [sda] 23437770752 512-byte logical blocks: (12.0 TB/10.9 TiB)
+Aug 14 17:12:20 hv-lore kernel: sd 8:0:0:0: [sda] 4096-byte physical blocks
+Aug 14 17:12:20 hv-lore kernel: sd 8:0:1:0: [sdb] 23437770752 512-byte logical blocks: (12.0 TB/10.9 TiB)
+Aug 14 17:12:20 hv-lore kernel: sd 8:0:1:0: [sdb] 4096-byte physical blocks
+Aug 14 17:12:20 hv-lore kernel: sd 8:0:2:0: [sdc] 23437770752 512-byte logical blocks: (12.0 TB/10.9 TiB)
+Aug 14 17:12:20 hv-lore kernel: sd 8:0:2:0: [sdc] 4096-byte physical blocks
+Aug 14 17:12:20 hv-lore kernel: sd 8:0:0:0: [sda] Write Protect is off
+Aug 14 17:12:20 hv-lore kernel: sd 8:0:0:0: [sda] Mode Sense: 7f 00 10 08
+Aug 14 17:12:20 hv-lore kernel: sd 8:0:1:0: [sdb] Write Protect is off
+Aug 14 17:12:20 hv-lore kernel: sd 8:0:1:0: [sdb] Mode Sense: 7f 00 10 08
+Aug 14 17:12:20 hv-lore kernel: sd 8:0:2:0: [sdc] Write Protect is off
+Aug 14 17:12:20 hv-lore kernel: sd 8:0:2:0: [sdc] Mode Sense: 7f 00 10 08
+Aug 14 17:12:20 hv-lore kernel: sd 8:0:0:0: [sda] Write cache: enabled, read cache: enabled, supports DPO and FUA
+Aug 14 17:12:20 hv-lore kernel: sd 8:0:1:0: [sdb] Write cache: enabled, read cache: enabled, supports DPO and FUA
+Aug 14 17:12:20 hv-lore kernel: sd 8:0:2:0: [sdc] Write cache: enabled, read cache: enabled, supports DPO and FUA
+Aug 14 17:12:20 hv-lore kernel: sr 0:0:0:0: Attached scsi CD-ROM sr0
+Aug 14 17:12:20 hv-lore kernel: sr 0:0:0:0: Attached scsi generic sg3 type 5
+Aug 14 17:12:20 hv-lore kernel: sd 1:0:0:0: Attached scsi generic sg4 type 0
+Aug 14 17:12:20 hv-lore kernel: sd 1:0:0:0: [sdd] 500118192 512-byte logical blocks: (256 GB/238 GiB)
+Aug 14 17:12:20 hv-lore kernel: sd 1:0:0:0: [sdd] Write Protect is off
+Aug 14 17:12:20 hv-lore kernel: sd 1:0:0:0: [sdd] Mode Sense: 00 3a 00 00
+Aug 14 17:12:20 hv-lore kernel: sd 1:0:0:0: [sdd] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+Aug 14 17:12:20 hv-lore kernel: sd 1:0:0:0: [sdd] Preferred minimum I/O size 512 bytes
+Aug 14 17:12:20 hv-lore kernel: sd 4:0:0:0: Attached scsi generic sg5 type 0
+Aug 14 17:12:20 hv-lore kernel: sd 4:0:0:0: [sde] 500118192 512-byte logical blocks: (256 GB/238 GiB)
+Aug 14 17:12:20 hv-lore kernel: sd 4:0:0:0: [sde] Write Protect is off
+Aug 14 17:12:20 hv-lore kernel: sd 4:0:0:0: [sde] Mode Sense: 00 3a 00 00
+Aug 14 17:12:20 hv-lore kernel: sd 4:0:0:0: [sde] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+Aug 14 17:12:20 hv-lore kernel: sd 4:0:0:0: [sde] Preferred minimum I/O size 512 bytes
+Aug 14 17:12:20 hv-lore kernel: sd 5:0:0:0: Attached scsi generic sg6 type 0
+Aug 14 17:12:20 hv-lore kernel: sd 5:0:0:0: [sdf] 1000215216 512-byte logical blocks: (512 GB/477 GiB)
+Aug 14 17:12:20 hv-lore kernel: sd 5:0:0:0: [sdf] Write Protect is off
+Aug 14 17:12:20 hv-lore kernel: sd 5:0:0:0: [sdf] Mode Sense: 00 3a 00 00
+Aug 14 17:12:20 hv-lore kernel: sd 5:0:0:0: [sdf] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+Aug 14 17:12:20 hv-lore kernel: sd 5:0:0:0: [sdf] Preferred minimum I/O size 512 bytes
+Aug 14 17:12:20 hv-lore kernel:  sdc: sdc1
+Aug 14 17:12:20 hv-lore kernel: sd 8:0:2:0: [sdc] Attached SCSI disk
+Aug 14 17:12:20 hv-lore kernel:  sdb: sdb1
+Aug 14 17:12:20 hv-lore kernel: sd 8:0:1:0: [sdb] Attached SCSI disk
+Aug 14 17:12:20 hv-lore kernel:  sda: sda1
+Aug 14 17:12:20 hv-lore kernel: sd 8:0:0:0: [sda] Attached SCSI disk
+Aug 14 17:12:20 hv-lore kernel: sd 1:0:0:0: [sdd] Attached SCSI disk
+Aug 14 17:12:20 hv-lore kernel: sd 5:0:0:0: [sdf] Attached SCSI disk
+Aug 14 17:12:20 hv-lore kernel: sd 4:0:0:0: [sde] Attached SCSI disk

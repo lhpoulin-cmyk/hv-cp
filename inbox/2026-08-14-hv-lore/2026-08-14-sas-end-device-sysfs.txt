@@ -1,0 +1,15 @@
+HOST=hv-lore.arpa
+DATE=2026-08-14T17:15:25-04:00
+[/sys/class/sas_end_device/end_device-8:0]
+target_port_protocols=UNAVAILABLE
+sas_address=UNAVAILABLE
+sas_device_handle=UNAVAILABLE
+[/sys/class/sas_end_device/end_device-8:1]
+target_port_protocols=UNAVAILABLE
+sas_address=UNAVAILABLE
+sas_device_handle=UNAVAILABLE
+[/sys/class/sas_end_device/end_device-8:2]
+target_port_protocols=UNAVAILABLE
+sas_address=UNAVAILABLE
+sas_device_handle=UNAVAILABLE
+---TARGETS---

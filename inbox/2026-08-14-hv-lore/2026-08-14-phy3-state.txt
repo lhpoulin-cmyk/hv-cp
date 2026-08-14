@@ -1,0 +1,113 @@
+HOST=hv-lore.arpa
+DATE=2026-08-14T17:15:11-04:00
+---SAS-PHY-SYSFS---
+[/sys/class/sas_phy/phy-8:0]
+negotiated_linkrate=6.0 Gbit
+minimum_linkrate=1.5 Gbit
+maximum_linkrate=6.0 Gbit
+invalid_dword_count=0
+running_disparity_error_count=0
+loss_of_dword_sync_count=0
+phy_reset_problem_count=0
+sas_address=0x500143803535fdf8
+[/sys/class/sas_phy/phy-8:1]
+negotiated_linkrate=6.0 Gbit
+minimum_linkrate=1.5 Gbit
+maximum_linkrate=6.0 Gbit
+invalid_dword_count=0
+running_disparity_error_count=0
+loss_of_dword_sync_count=0
+phy_reset_problem_count=0
+sas_address=0x500143803535fdf8
+[/sys/class/sas_phy/phy-8:2]
+negotiated_linkrate=6.0 Gbit
+minimum_linkrate=1.5 Gbit
+maximum_linkrate=6.0 Gbit
+invalid_dword_count=0
+running_disparity_error_count=0
+loss_of_dword_sync_count=0
+phy_reset_problem_count=0
+sas_address=0x500143803535fdf8
+[/sys/class/sas_phy/phy-8:3]
+negotiated_linkrate=Unknown
+minimum_linkrate=1.5 Gbit
+maximum_linkrate=6.0 Gbit
+invalid_dword_count=0
+running_disparity_error_count=0
+loss_of_dword_sync_count=0
+phy_reset_problem_count=0
+sas_address=0x500143803535fdf8
+[/sys/class/sas_phy/phy-8:4]
+negotiated_linkrate=Unknown
+minimum_linkrate=1.5 Gbit
+maximum_linkrate=6.0 Gbit
+invalid_dword_count=0
+running_disparity_error_count=0
+loss_of_dword_sync_count=0
+phy_reset_problem_count=0
+sas_address=0x500143803535fdf8
+[/sys/class/sas_phy/phy-8:5]
+negotiated_linkrate=Unknown
+minimum_linkrate=1.5 Gbit
+maximum_linkrate=6.0 Gbit
+invalid_dword_count=0
+running_disparity_error_count=0
+loss_of_dword_sync_count=0
+phy_reset_problem_count=0
+sas_address=0x500143803535fdf8
+[/sys/class/sas_phy/phy-8:6]
+negotiated_linkrate=Unknown
+minimum_linkrate=1.5 Gbit
+maximum_linkrate=6.0 Gbit
+invalid_dword_count=0
+running_disparity_error_count=0
+loss_of_dword_sync_count=0
+phy_reset_problem_count=0
+sas_address=0x500143803535fdf8
+[/sys/class/sas_phy/phy-8:7]
+negotiated_linkrate=Unknown
+minimum_linkrate=1.5 Gbit
+maximum_linkrate=6.0 Gbit
+invalid_dword_count=0
+running_disparity_error_count=0
+loss_of_dword_sync_count=0
+phy_reset_problem_count=0
+sas_address=0x500143803535fdf8
+---SAS-END-DEVICES---
+end_device-8:2
+end_device-8:0
+end_device-8:1
+---BLOCK-SCSI---
+NAME    MODEL                SERIAL            SIZE TRAN   HCTL
+sda     TOSHIBA HDWG51CUZSVA 16N2A02XFWUH     10.9T sas    8:0:0:0
+sdb     TOSHIBA HDWG51CUZSVA 16N2A042FWUH     10.9T sas    8:0:1:0
+sdc     TOSHIBA HDWG51CUZSVA 16X2A00KFWUH     10.9T sas    8:0:2:0
+sdd     P3-256               9760522200232   238.5G sata   1:0:0:0
+sde     P3-256               9760511210658   238.5G sata   4:0:0:0
+sdf     P3-512               9X50912007143   476.9G sata   5:0:0:0
+sr0     hp HLDS DVDRW GUD1N  739C1028296      1024M sata   0:0:0:0
+zd0                                              8G        
+zd16                                           256G        
+zd32                                           200G        
+zd48                                            64G        
+zd64                                            64G        
+zd80                                             1M        
+zd96                                             1M        
+zd112                                            1M        
+zd128                                           20G        
+zd144                                            1M        
+zd160                                          256G        
+zd176                                            1M        
+zd192                                            4M        
+zd208                                            1M        
+zd224                                            1M        
+zd240                                           64G        
+nvme1n1 Timetec PCIe SSD     TP250913B5D1797 476.9G nvme   
+nvme3n1 Timetec PCIe SSD     TP250916B5D0198 476.9G nvme   
+nvme2n1 Timetec PCIe SSD     TP250913B5D1792 476.9G nvme   
+nvme0n1 Timetec PCIe SSD     TP250913B5D3323 476.9G nvme   
+zd256                                            4M        
+zd272                                           64G        
+zd288                                           40G        
+zd304                                          128G        
+bash: line 1: lsscsi: command not found
