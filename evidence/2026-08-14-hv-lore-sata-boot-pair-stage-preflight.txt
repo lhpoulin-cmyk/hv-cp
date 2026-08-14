@@ -1,0 +1,325 @@
+=== hv-lore SATA boot pair stage preflight ===
+COLLECTED=2026-08-14T19:31:05-04:00
+--- hostname ---
+hv-lore
+2026-08-14T19:31:06-04:00
+--- pveversion ---
+proxmox-ve: 9.2.0 (running kernel: 7.0.14-8-pve)
+pve-manager: 9.2.6 (running version: 9.2.6/7f8d010005bd72cb)
+proxmox-kernel-helper: 9.2.0
+proxmox-kernel-7.0.14-8-pve-signed: 7.0.14-8
+proxmox-kernel-7.0: 7.0.14-8
+proxmox-kernel-6.17: 6.17.13-21
+proxmox-kernel-6.17.13-21-pve-signed: 6.17.13-21
+proxmox-kernel-6.17.2-1-pve-signed: 6.17.2-1
+ceph-fuse: 19.2.3-pve2
+corosync: 3.1.10-pve3
+criu: 4.1.1-1
+frr-pythontools: 10.6.1-1+pve2
+ifupdown2: 3.3.0-1+pmx12
+intel-microcode: 3.20251111.1~deb13u1
+ksm-control-daemon: 1.5-1
+libjs-extjs: 7.0.0-5
+libproxmox-acme-perl: 1.7.2
+libproxmox-backup-qemu0: 2.0.2
+libproxmox-rs-perl: 0.4.1
+libpve-access-control: 9.1.1
+libpve-apiclient-perl: 3.4.2
+libpve-cluster-api-perl: 9.1.6
+libpve-cluster-perl: 9.1.6
+libpve-common-perl: 9.1.20
+libpve-guest-common-perl: 6.0.5
+libpve-http-server-perl: 6.0.5
+libpve-network-perl: 1.6.7
+libpve-notify-perl: 9.1.6
+libpve-rs-perl: 0.15.3
+libpve-storage-perl: 9.1.7
+libspice-server1: 0.15.2-1+b1
+lvm2: 2.03.31-2+pmx1
+lxc-pve: 7.0.0-2
+lxcfs: 7.0.0-pve1
+novnc-pve: 1.7.0-2
+--- boot tool ---
+Re-executing '/usr/sbin/proxmox-boot-tool' in new private mount namespace..
+System currently booted with uefi
+A829-1935 is configured with: grub (versions: 6.17.13-21-pve, 6.17.2-1-pve, 7.0.14-8-pve)
+A829-9C79 is configured with: grub (versions: 6.17.13-21-pve, 6.17.2-1-pve, 7.0.14-8-pve)
+--- root ---
+TARGET SOURCE           FSTYPE OPTIONS
+/      rpool/ROOT/pve-1 zfs    rw,relatime,xattr,posixacl,casesensitive
+  pool: rpool
+ state: ONLINE
+status: Some supported and requested features are not enabled on the pool.
+	The pool can still be used, but some features are unavailable.
+action: Enable all features using 'zpool upgrade'. Once this is done,
+	the pool may no longer be accessible by software that does not support
+	the features. See zpool-features(7) for details.
+  scan: scrub repaired 0B in 00:02:32 with 0 errors on Sun Aug  9 00:26:34 2026
+config:
+
+	NAME                                 STATE     READ WRITE CKSUM
+	rpool                                ONLINE       0     0     0
+	  mirror-0                           ONLINE       0     0     0
+	    nvme-eui.6479a7b01ad00f81-part3  ONLINE       0     0     0
+	    nvme-eui.6479a7b01ad00df5-part3  ONLINE       0     0     0
+
+errors: No known data errors
+NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
+rpool   472G   129G   343G        -         -    43%    27%  1.00x    ONLINE  -
+NAME                           USED  AVAIL  REFER  MOUNTPOINT
+rpool                          139G   320G   104K  /rpool
+rpool/ROOT                    5.61G   320G    96K  /rpool/ROOT
+rpool/ROOT/pve-1              5.61G   320G  5.61G  /
+rpool/data                     105G   320G   128K  /rpool/data
+rpool/data/subvol-243-disk-0   385M  7.62G   385M  /rpool/data/subvol-243-disk-0
+rpool/data/subvol-245-disk-0   914M  7.11G   914M  /rpool/data/subvol-245-disk-0
+rpool/data/subvol-246-disk-0   441M  7.57G   441M  /rpool/data/subvol-246-disk-0
+rpool/data/subvol-247-disk-0  1.05G  15.0G  1.05G  /rpool/data/subvol-247-disk-0
+rpool/data/subvol-248-disk-0   920M  7.10G   920M  /rpool/data/subvol-248-disk-0
+rpool/data/subvol-249-disk-0  3.07G  4.93G  3.07G  /rpool/data/subvol-249-disk-0
+rpool/data/subvol-252-disk-0   665M  7.35G   665M  /rpool/data/subvol-252-disk-0
+rpool/data/subvol-252-syslog   176K  1024M   176K  /rpool/data/subvol-252-syslog
+rpool/data/vm-100-cloudinit     76K   320G    76K  -
+rpool/data/vm-100-disk-0       731M   320G   731M  -
+rpool/data/vm-120-disk-0       112K   320G   112K  -
+rpool/data/vm-120-disk-1      28.8G   320G  28.8G  -
+rpool/data/vm-130-disk-0      10.6G   320G  10.6G  -
+rpool/data/vm-140-disk-0        72K   320G    72K  -
+rpool/data/vm-140-disk-1        64K   320G    64K  -
+rpool/data/vm-141-disk-0        88K   320G    88K  -
+rpool/data/vm-141-disk-1      4.82G   320G  4.82G  -
+rpool/data/vm-142-disk-0        72K   320G    72K  -
+rpool/data/vm-142-disk-1      9.46G   320G  7.87G  -
+rpool/data/vm-149-disk-0       472K   320G   100K  -
+rpool/data/vm-149-disk-1      4.90G   320G  4.87G  -
+rpool/data/vm-150-disk-0      33.6G   320G  33.6G  -
+rpool/data/vm-242-disk-0       172K   320G   100K  -
+rpool/data/vm-242-disk-1      2.79G   320G  2.61G  -
+rpool/data/vm-260-disk-0        84K   320G    84K  -
+rpool/data/vm-260-disk-1      2.18G   320G  2.18G  -
+rpool/swap                    8.50G   329G   176M  -
+rpool/var-lib-vz              19.0G   320G  19.0G  /var/lib/vz
+--- pvesm ---
+--- inventory ---
+NAME        PATH           MODEL                SERIAL            SIZE TYPE FSTYPE      PTTYPE PARTTYPE                             MOUNTPOINTS TRAN   HCTL
+sda         /dev/sda       TOSHIBA HDWG51CUZSVA 16N2A02XFWUH     10.9T disk             gpt                                                     sas    8:0:0:0
+└─sda1      /dev/sda1                                            10.9T part zfs_member  gpt    6a898cc3-1dd2-11b2-99a6-080020736631                    
+sdb         /dev/sdb       TOSHIBA HDWG51CUZSVA 16N2A042FWUH     10.9T disk             gpt                                                     sas    8:0:1:0
+└─sdb1      /dev/sdb1                                            10.9T part zfs_member  gpt    6a898cc3-1dd2-11b2-99a6-080020736631                    
+sdc         /dev/sdc       TOSHIBA HDWG51CUZSVA 16X2A00KFWUH     10.9T disk             gpt                                                     sas    8:0:2:0
+└─sdc1      /dev/sdc1                                            10.9T part zfs_member  gpt    6a898cc3-1dd2-11b2-99a6-080020736631                    
+sdd         /dev/sdd       P3-256               9760522200232   238.5G disk                                                                     sata   1:0:0:0
+sde         /dev/sde       P3-256               9760511210658   238.5G disk                                                                     sata   4:0:0:0
+sdf         /dev/sdf       P3-512               9X50912007143   476.9G disk                                                                     sata   5:0:0:0
+sr0         /dev/sr0       hp HLDS DVDRW GUD1N  739C1028296      1024M rom                                                                      sata   0:0:0:0
+zd0         /dev/zd0                                                8G disk swap                                                    [SWAP]             
+zd16        /dev/zd16                                             256G disk             gpt                                                            
+├─zd16p1    /dev/zd16p1                                           600M part vfat        gpt    c12a7328-f81f-11d2-ba4b-00a0c93ec93b                    
+├─zd16p2    /dev/zd16p2                                             1G part xfs         gpt    0fc63daf-8483-4772-8e79-3d69d8477de4                    
+└─zd16p3    /dev/zd16p3                                         254.4G part LVM2_member gpt    e6d6d379-f507-44c2-a23c-238f2a3df928                    
+zd32        /dev/zd32                                             200G disk             gpt                                                            
+├─zd32p1    /dev/zd32p1                                             1M part             gpt    21686148-6449-6e6f-744e-656564454649                    
+├─zd32p2    /dev/zd32p2                                             2G part ext4        gpt    0fc63daf-8483-4772-8e79-3d69d8477de4                    
+└─zd32p3    /dev/zd32p3                                           198G part LVM2_member gpt    0fc63daf-8483-4772-8e79-3d69d8477de4                    
+zd48        /dev/zd48                                              64G disk             gpt                                                            
+├─zd48p1    /dev/zd48p1                                          1007K part             gpt    21686148-6449-6e6f-744e-656564454649                    
+├─zd48p2    /dev/zd48p2                                           512M part vfat        gpt    c12a7328-f81f-11d2-ba4b-00a0c93ec93b                    
+└─zd48p3    /dev/zd48p3                                          63.5G part LVM2_member gpt    e6d6d379-f507-44c2-a23c-238f2a3df928                    
+zd64        /dev/zd64                                              64G disk zfs_member  gpt                                                            
+├─zd64p1    /dev/zd64p1                                             1M part             gpt    21686148-6449-6e6f-744e-656564454649                    
+├─zd64p2    /dev/zd64p2                                           512M part vfat        gpt    c12a7328-f81f-11d2-ba4b-00a0c93ec93b                    
+└─zd64p3    /dev/zd64p3                                          63.5G part zfs_member  gpt    6a898cc3-1dd2-11b2-99a6-080020736631                    
+zd80        /dev/zd80                                               1M disk                                                                            
+zd96        /dev/zd96                                               1M disk                                                                            
+zd112       /dev/zd112                                              1M disk                                                                            
+zd128       /dev/zd128                                             20G disk             gpt                                                            
+├─zd128p1   /dev/zd128p1                                         19.9G part ext4        gpt    4f68bce3-e8cd-4db1-96e7-fbcaf984b709                    
+├─zd128p14  /dev/zd128p14                                           3M part             gpt    21686148-6449-6e6f-744e-656564454649                    
+└─zd128p15  /dev/zd128p15                                         124M part vfat        gpt    c12a7328-f81f-11d2-ba4b-00a0c93ec93b                    
+zd144       /dev/zd144                                              1M disk                                                                            
+zd160       /dev/zd160                                            256G disk             gpt                                                            
+├─zd160p1   /dev/zd160p1                                          600M part vfat        gpt    c12a7328-f81f-11d2-ba4b-00a0c93ec93b                    
+├─zd160p2   /dev/zd160p2                                            1G part xfs         gpt    0fc63daf-8483-4772-8e79-3d69d8477de4                    
+└─zd160p3   /dev/zd160p3                                        254.4G part LVM2_member gpt    e6d6d379-f507-44c2-a23c-238f2a3df928                    
+zd176       /dev/zd176                                              1M disk                                                                            
+zd192       /dev/zd192                                              4M disk iso9660                                                                    
+zd208       /dev/zd208                                              1M disk                                                                            
+zd224       /dev/zd224                                              1M disk                                                                            
+zd240       /dev/zd240                                             64G disk             gpt                                                            
+├─zd240p1   /dev/zd240p1                                            1M part             gpt    21686148-6449-6e6f-744e-656564454649                    
+├─zd240p2   /dev/zd240p2                                            2G part ext4        gpt    0fc63daf-8483-4772-8e79-3d69d8477de4                    
+└─zd240p3   /dev/zd240p3                                           62G part LVM2_member gpt    0fc63daf-8483-4772-8e79-3d69d8477de4                    
+nvme1n1     /dev/nvme1n1   Timetec PCIe SSD     TP250913B5D1797 476.9G disk             gpt                                                     nvme   
+├─nvme1n1p1 /dev/nvme1n1p1                                       1007K part             gpt    21686148-6449-6e6f-744e-656564454649             nvme   
+├─nvme1n1p2 /dev/nvme1n1p2                                          1G part vfat        gpt    c12a7328-f81f-11d2-ba4b-00a0c93ec93b             nvme   
+└─nvme1n1p3 /dev/nvme1n1p3                                        475G part zfs_member  gpt    6a898cc3-1dd2-11b2-99a6-080020736631             nvme   
+nvme3n1     /dev/nvme3n1   Timetec PCIe SSD     TP250916B5D0198 476.9G disk             gpt                                                     nvme   
+├─nvme3n1p1 /dev/nvme3n1p1                                        600M part vfat        gpt    c12a7328-f81f-11d2-ba4b-00a0c93ec93b             nvme   
+├─nvme3n1p2 /dev/nvme3n1p2                                          2G part ext4        gpt    0fc63daf-8483-4772-8e79-3d69d8477de4             nvme   
+└─nvme3n1p3 /dev/nvme3n1p3                                      474.4G part btrfs       gpt    0fc63daf-8483-4772-8e79-3d69d8477de4             nvme   
+nvme2n1     /dev/nvme2n1   Timetec PCIe SSD     TP250913B5D1792 476.9G disk             gpt                                                     nvme   
+├─nvme2n1p1 /dev/nvme2n1p1                                      476.9G part zfs_member  gpt    6a898cc3-1dd2-11b2-99a6-080020736631             nvme   
+└─nvme2n1p9 /dev/nvme2n1p9                                          8M part             gpt    6a945a3b-1dd2-11b2-99a6-080020736631             nvme   
+nvme0n1     /dev/nvme0n1   Timetec PCIe SSD     TP250913B5D3323 476.9G disk             gpt                                                     nvme   
+├─nvme0n1p1 /dev/nvme0n1p1                                       1007K part             gpt    21686148-6449-6e6f-744e-656564454649             nvme   
+├─nvme0n1p2 /dev/nvme0n1p2                                          1G part vfat        gpt    c12a7328-f81f-11d2-ba4b-00a0c93ec93b             nvme   
+└─nvme0n1p3 /dev/nvme0n1p3                                        475G part zfs_member  gpt    6a898cc3-1dd2-11b2-99a6-080020736631             nvme   
+zd256       /dev/zd256                                              4M disk                                                                            
+zd272       /dev/zd272                                             64G disk             gpt                                                            
+├─zd272p1   /dev/zd272p1                                         1007K part             gpt    21686148-6449-6e6f-744e-656564454649                    
+├─zd272p2   /dev/zd272p2                                          512M part vfat        gpt    c12a7328-f81f-11d2-ba4b-00a0c93ec93b                    
+└─zd272p3   /dev/zd272p3                                         63.5G part LVM2_member gpt    e6d6d379-f507-44c2-a23c-238f2a3df928                    
+zd288       /dev/zd288                                             40G disk             gpt                                                            
+├─zd288p1   /dev/zd288p1                                            1M part             gpt    21686148-6449-6e6f-744e-656564454649                    
+├─zd288p2   /dev/zd288p2                                            2G part ext4        gpt    0fc63daf-8483-4772-8e79-3d69d8477de4                    
+└─zd288p3   /dev/zd288p3                                           38G part LVM2_member gpt    0fc63daf-8483-4772-8e79-3d69d8477de4                    
+zd304       /dev/zd304                                            128G disk ext4                                                                       
+--- by-id ---
+total 0
+lrwxrwxrwx 1 root root  9 Aug 14 17:12 ata-hp_HLDS_DVDRW_GUD1N_739C1028296 -> ../../sr0
+lrwxrwxrwx 1 root root  9 Aug 14 17:12 ata-P3-256_9760511210658 -> ../../sde
+lrwxrwxrwx 1 root root  9 Aug 14 17:12 ata-P3-256_9760522200232 -> ../../sdd
+lrwxrwxrwx 1 root root  9 Aug 14 17:12 ata-P3-512_9X50912007143 -> ../../sdf
+lrwxrwxrwx 1 root root  9 Aug 14 17:12 ata-TOSHIBA_HDWG51CUZSVA_16N2A02XFWUH -> ../../sda
+lrwxrwxrwx 1 root root 10 Aug 14 17:12 ata-TOSHIBA_HDWG51CUZSVA_16N2A02XFWUH-part1 -> ../../sda1
+lrwxrwxrwx 1 root root  9 Aug 14 17:12 ata-TOSHIBA_HDWG51CUZSVA_16N2A042FWUH -> ../../sdb
+lrwxrwxrwx 1 root root 10 Aug 14 17:12 ata-TOSHIBA_HDWG51CUZSVA_16N2A042FWUH-part1 -> ../../sdb1
+lrwxrwxrwx 1 root root  9 Aug 14 17:12 ata-TOSHIBA_HDWG51CUZSVA_16X2A00KFWUH -> ../../sdc
+lrwxrwxrwx 1 root root 10 Aug 14 17:12 ata-TOSHIBA_HDWG51CUZSVA_16X2A00KFWUH-part1 -> ../../sdc1
+lrwxrwxrwx 1 root root 13 Aug 14 17:12 lvm-pv-uuid-0cZjZ5-RJbC-x09F-s3Gw-4VGF-pnoO-skPd2L -> ../../zd272p3
+lrwxrwxrwx 1 root root 13 Aug 14 17:12 lvm-pv-uuid-CHHmNG-ejxy-HLiG-9OfZ-dk38-zYV6-PSnKKD -> ../../zd288p3
+lrwxrwxrwx 1 root root 13 Aug 14 17:12 lvm-pv-uuid-CjuLDV-R1Kv-f6d9-l6v7-boah-4hXm-6IjX6i -> ../../zd160p3
+lrwxrwxrwx 1 root root 12 Aug 14 17:12 lvm-pv-uuid-fnb5oA-hShh-FhHY-IEz2-m0Cr-NbGO-vECDDN -> ../../zd32p3
+lrwxrwxrwx 1 root root 13 Aug 14 17:12 lvm-pv-uuid-jXnIYW-hwfC-EjYO-B3zb-9rfX-EtYy-fCUmA7 -> ../../zd240p3
+lrwxrwxrwx 1 root root 12 Aug 14 17:12 lvm-pv-uuid-xKxpLR-p1Z0-e9MS-mzDx-o0SH-bp1x-HfN6Ki -> ../../zd48p3
+lrwxrwxrwx 1 root root 13 Aug 14 17:12 nvme-eui.6479a7b01ad00da4 -> ../../nvme2n1
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-eui.6479a7b01ad00da4-part1 -> ../../nvme2n1p1
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-eui.6479a7b01ad00da4-part9 -> ../../nvme2n1p9
+lrwxrwxrwx 1 root root 13 Aug 14 17:12 nvme-eui.6479a7b01ad00df5 -> ../../nvme1n1
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-eui.6479a7b01ad00df5-part1 -> ../../nvme1n1p1
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-eui.6479a7b01ad00df5-part2 -> ../../nvme1n1p2
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-eui.6479a7b01ad00df5-part3 -> ../../nvme1n1p3
+lrwxrwxrwx 1 root root 13 Aug 14 17:12 nvme-eui.6479a7b01ad00f81 -> ../../nvme0n1
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-eui.6479a7b01ad00f81-part1 -> ../../nvme0n1p1
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-eui.6479a7b01ad00f81-part2 -> ../../nvme0n1p2
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-eui.6479a7b01ad00f81-part3 -> ../../nvme0n1p3
+lrwxrwxrwx 1 root root 13 Aug 14 17:12 nvme-eui.6479a7b05a500df2 -> ../../nvme3n1
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-eui.6479a7b05a500df2-part1 -> ../../nvme3n1p1
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-eui.6479a7b05a500df2-part2 -> ../../nvme3n1p2
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-eui.6479a7b05a500df2-part3 -> ../../nvme3n1p3
+lrwxrwxrwx 1 root root 13 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250913B5D1792 -> ../../nvme2n1
+lrwxrwxrwx 1 root root 13 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250913B5D1792_1 -> ../../nvme2n1
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250913B5D1792_1-part1 -> ../../nvme2n1p1
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250913B5D1792_1-part9 -> ../../nvme2n1p9
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250913B5D1792-part1 -> ../../nvme2n1p1
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250913B5D1792-part9 -> ../../nvme2n1p9
+lrwxrwxrwx 1 root root 13 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250913B5D1797 -> ../../nvme1n1
+lrwxrwxrwx 1 root root 13 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250913B5D1797_1 -> ../../nvme1n1
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250913B5D1797_1-part1 -> ../../nvme1n1p1
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250913B5D1797_1-part2 -> ../../nvme1n1p2
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250913B5D1797_1-part3 -> ../../nvme1n1p3
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250913B5D1797-part1 -> ../../nvme1n1p1
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250913B5D1797-part2 -> ../../nvme1n1p2
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250913B5D1797-part3 -> ../../nvme1n1p3
+lrwxrwxrwx 1 root root 13 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250913B5D3323 -> ../../nvme0n1
+lrwxrwxrwx 1 root root 13 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250913B5D3323_1 -> ../../nvme0n1
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250913B5D3323_1-part1 -> ../../nvme0n1p1
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250913B5D3323_1-part2 -> ../../nvme0n1p2
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250913B5D3323_1-part3 -> ../../nvme0n1p3
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250913B5D3323-part1 -> ../../nvme0n1p1
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250913B5D3323-part2 -> ../../nvme0n1p2
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250913B5D3323-part3 -> ../../nvme0n1p3
+lrwxrwxrwx 1 root root 13 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250916B5D0198 -> ../../nvme3n1
+lrwxrwxrwx 1 root root 13 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250916B5D0198_1 -> ../../nvme3n1
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250916B5D0198_1-part1 -> ../../nvme3n1p1
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250916B5D0198_1-part2 -> ../../nvme3n1p2
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250916B5D0198_1-part3 -> ../../nvme3n1p3
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250916B5D0198-part1 -> ../../nvme3n1p1
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250916B5D0198-part2 -> ../../nvme3n1p2
+lrwxrwxrwx 1 root root 15 Aug 14 17:12 nvme-Timetec_PCIe_SSD_TP250916B5D0198-part3 -> ../../nvme3n1p3
+lrwxrwxrwx 1 root root  9 Aug 14 17:12 wwn-0x5000039e88d9becc -> ../../sda
+lrwxrwxrwx 1 root root 10 Aug 14 17:12 wwn-0x5000039e88d9becc-part1 -> ../../sda1
+lrwxrwxrwx 1 root root  9 Aug 14 17:12 wwn-0x5000039e88d9c4ec -> ../../sdb
+lrwxrwxrwx 1 root root 10 Aug 14 17:12 wwn-0x5000039e88d9c4ec-part1 -> ../../sdb1
+lrwxrwxrwx 1 root root  9 Aug 14 17:12 wwn-0x5000039e88d9d327 -> ../../sdc
+lrwxrwxrwx 1 root root 10 Aug 14 17:12 wwn-0x5000039e88d9d327-part1 -> ../../sdc1
+lrwxrwxrwx 1 root root  9 Aug 14 17:12 wwn-0x5001480000000000 -> ../../sr0
+--- candidates ---
+### SERIAL 9760522200232
+### SERIAL 9760511210658
+--- candidate signatures/tables ---
+### SERIAL 9760522200232 PATH 
+### SERIAL 9760511210658 PATH 
+--- current NVMe boot geometry ---
+### /dev/disk/by-id/nvme-eui.6479a7b01ad00f81
+/dev/nvme0n1
+Disk /dev/disk/by-id/nvme-eui.6479a7b01ad00f81: 1000215216 sectors, 476.9 GiB
+Sector size (logical/physical): 512/512 bytes
+Disk identifier (GUID): 49D74B2F-8A3E-4ECB-B423-CA15D8C09CE3
+Partition table holds up to 128 entries
+Main partition table begins at sector 2 and ends at sector 33
+First usable sector is 34, last usable sector is 1000215182
+Partitions will be aligned on 8-sector boundaries
+Total free space is 1970830 sectors (962.3 MiB)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1              34            2047   1007.0 KiB  EF02  
+   2            2048         2099199   1024.0 MiB  EF00  
+   3         2099200       998244352   475.0 GiB   BF01  
+Partition GUID code: 21686148-6449-6E6F-744E-656564454649 (BIOS boot partition)
+Partition unique GUID: F3894CDF-261C-4337-AEFF-D2EA5E880332
+First sector: 34 (at 17.0 KiB)
+Last sector: 2047 (at 1023.5 KiB)
+Partition size: 2014 sectors (1007.0 KiB)
+Attribute flags: 0000000000000000
+Partition name: ''
+Partition GUID code: C12A7328-F81F-11D2-BA4B-00A0C93EC93B (EFI system partition)
+Partition unique GUID: 4EBFA530-0466-4F22-BB99-E98A5EABFC30
+First sector: 2048 (at 1024.0 KiB)
+Last sector: 2099199 (at 1025.0 MiB)
+Partition size: 2097152 sectors (1024.0 MiB)
+Attribute flags: 0000000000000000
+Partition name: ''
+Partition GUID code: 6A898CC3-1DD2-11B2-99A6-080020736631 (Solaris /usr & Mac ZFS)
+Partition unique GUID: FD894DD0-B02D-4438-83C2-BF9AB5A19663
+First sector: 2099200 (at 1.0 GiB)
+Last sector: 998244352 (at 476.0 GiB)
+Partition size: 996145153 sectors (475.0 GiB)
+Attribute flags: 0000000000000000
+Partition name: ''
+### /dev/disk/by-id/nvme-eui.6479a7b01ad00df5
+/dev/nvme1n1
+Disk /dev/disk/by-id/nvme-eui.6479a7b01ad00df5: 1000215216 sectors, 476.9 GiB
+Sector size (logical/physical): 512/512 bytes
+Disk identifier (GUID): 031A03B7-AD02-473E-9D62-551F5025E49B
+Partition table holds up to 128 entries
+Main partition table begins at sector 2 and ends at sector 33
+First usable sector is 34, last usable sector is 1000215182
+Partitions will be aligned on 8-sector boundaries
+Total free space is 1970830 sectors (962.3 MiB)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1              34            2047   1007.0 KiB  EF02  
+   2            2048         2099199   1024.0 MiB  EF00  
+   3         2099200       998244352   475.0 GiB   BF01  
+Partition GUID code: 21686148-6449-6E6F-744E-656564454649 (BIOS boot partition)
+Partition unique GUID: 4872CDA6-37D1-459D-A30F-B8E8E4E76F3F
+First sector: 34 (at 17.0 KiB)
+Last sector: 2047 (at 1023.5 KiB)
+Partition size: 2014 sectors (1007.0 KiB)
+Attribute flags: 0000000000000000
+Partition name: ''
+Partition GUID code: C12A7328-F81F-11D2-BA4B-00A0C93EC93B (EFI system partition)
+Partition unique GUID: 7D435626-4240-4F07-8902-D3C99DBC5554
+First sector: 2048 (at 1024.0 KiB)
+Last sector: 2099199 (at 1025.0 MiB)
+Partition size: 2097152 sectors (1024.0 MiB)
+Attribute flags: 0000000000000000
+Partition name: ''
+Partition GUID code: 6A898CC3-1DD2-11B2-99A6-080020736631 (Solaris /usr & Mac ZFS)
+Partition unique GUID: FBE0E98B-4DE1-4B05-8F16-F016C5A7B264
+First sector: 2099200 (at 1.0 GiB)
+Last sector: 998244352 (at 476.0 GiB)
+Partition size: 996145153 sectors (475.0 GiB)
+Attribute flags: 0000000000000000
+Partition name: ''

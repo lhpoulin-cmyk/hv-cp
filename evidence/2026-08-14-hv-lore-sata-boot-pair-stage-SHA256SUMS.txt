@@ -1,0 +1,11 @@
+d54a11642a80efc9a5685d3b1caa8607a0acfa1c5a5350a9bfa2b99c4c04e87f  evidence/2026-08-14-hv-lore-sata-boot-pair-stage-esp-format.txt
+346984e50ed563c2e3c9236463aaf19adb26b0ef4c4a8d0e783946a1af5b2d41  evidence/2026-08-14-hv-lore-sata-boot-pair-stage-esp-uuid.txt
+9c77c948bdb9e6d0c6233838df1b2bda325bd7e40a230b2680c6797588d3986e  evidence/2026-08-14-hv-lore-sata-boot-pair-stage-final.txt
+126269b95ec38ebaae33233a92464f57e855cdcd2704545542c7b03ea5b20967  evidence/2026-08-14-hv-lore-sata-boot-pair-stage-partitioning.txt
+1df98162a2afddd324e8d95efffb0192b6db16c5d65e3ecb9c1e6b6cb2720aad  evidence/2026-08-14-hv-lore-sata-boot-pair-stage-post-zpool.txt
+3543fe538d0e897ac99b37ea63070123f40b1b13ecc70a7794da3339596643aa  evidence/2026-08-14-hv-lore-sata-boot-pair-stage-preflight-corrected.txt
+507cb21c6b1ba763cf4767371701ce28483bf782adcac7e05e2502a79ff470c0  evidence/2026-08-14-hv-lore-sata-boot-pair-stage-preflight.txt
+59d72ff08afa53bb1fe33eddea526342358162029ce063493e9cdcb6c545d610  evidence/2026-08-14-hv-lore-sata-boot-pair-stage-rpool-properties.txt
+e1e2153413c2b2698f996e3dc085e8aa1f07936459a8527a580ef0ed3e6423c7  evidence/2026-08-14-hv-lore-sata-boot-pair-stage-smart-after.txt
+f11d59bc9ae0b3efbab65486e563598ed9a260e17172fdac4f51b5e4510524c9  evidence/2026-08-14-hv-lore-sata-boot-pair-stage-smart-before.txt
+c3456652bfe4a0ae6c227181abe83747b14e51b5b9cca3450a4c27cbc4d5eea0  evidence/2026-08-14-hv-lore-sata-boot-pair-stage-zpool-create.txt

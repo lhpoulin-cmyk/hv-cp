@@ -1,0 +1,59 @@
+=== corrected Lore preflight ===
+COLLECTED=2026-08-14T19:31:34-04:00
+--- pvesm ---
+--- boot tool ---
+Re-executing '/usr/sbin/proxmox-boot-tool' in new private mount namespace..
+System currently booted with uefi
+A829-1935 is configured with: grub (versions: 6.17.13-21-pve, 6.17.2-1-pve, 7.0.14-8-pve)
+A829-9C79 is configured with: grub (versions: 6.17.13-21-pve, 6.17.2-1-pve, 7.0.14-8-pve)
+--- candidates exact stable paths ---
+### /dev/disk/by-id/ata-P3-256_9760522200232
+/dev/sdd
+DEVTYPE=disk
+ID_MODEL=P3-256
+ID_SERIAL=P3-256_9760522200232
+ID_PATH=pci-0000:00:11.4-ata-2.0
+NAME PATH     MODEL  SERIAL          SIZE TYPE FSTYPE PTTYPE PARTTYPE MOUNTPOINTS
+sdd  /dev/sdd P3-256 9760522200232 238.5G disk                        
+Creating new GPT entries in memory.
+Disk /dev/disk/by-id/ata-P3-256_9760522200232: 500118192 sectors, 238.5 GiB
+Sector size (logical/physical): 512/512 bytes
+Disk identifier (GUID): DF9D2BA4-43C7-4E70-8D8B-F5EE5DE28E49
+Partition table holds up to 128 entries
+Main partition table begins at sector 2 and ends at sector 33
+First usable sector is 34, last usable sector is 500118158
+Partitions will be aligned on 2048-sector boundaries
+Total free space is 500118125 sectors (238.5 GiB)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+### /dev/disk/by-id/ata-P3-256_9760511210658
+/dev/sde
+DEVTYPE=disk
+ID_MODEL=P3-256
+ID_SERIAL=P3-256_9760511210658
+ID_PATH=pci-0000:00:1f.2-ata-1.0
+NAME PATH     MODEL  SERIAL          SIZE TYPE FSTYPE PTTYPE PARTTYPE MOUNTPOINTS
+sde  /dev/sde P3-256 9760511210658 238.5G disk                        
+Creating new GPT entries in memory.
+Disk /dev/disk/by-id/ata-P3-256_9760511210658: 500118192 sectors, 238.5 GiB
+Sector size (logical/physical): 512/512 bytes
+Disk identifier (GUID): 3B2861E3-5367-4295-8ACA-23F3468CC9E7
+Partition table holds up to 128 entries
+Main partition table begins at sector 2 and ends at sector 33
+First usable sector is 34, last usable sector is 500118158
+Partitions will be aligned on 2048-sector boundaries
+Total free space is 500118125 sectors (238.5 GiB)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+--- smartctl/package state ---
+smartctl-missing
+  
+NOTE: This is only a simulation!
+      apt-get needs root privileges for real execution.
+      Keep also in mind that locking is deactivated,
+      so don't depend on the relevance to the real current situation!
+Reading package lists...
+Building dependency tree...
+Reading state information...
+smartmontools is already the newest version (7.5-pve2).
+0 upgraded, 0 newly installed, 0 to remove and 24 not upgraded.

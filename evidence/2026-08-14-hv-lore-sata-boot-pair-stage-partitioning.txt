@@ -1,0 +1,93 @@
+=== PARTITION FINAL SERIAL 9760522200232 PATH /dev/disk/by-id/ata-P3-256_9760522200232 ===
+RESOLVED=/dev/sdd
+DEVTYPE=disk
+ID_MODEL=P3-256
+ID_SERIAL=P3-256_9760522200232
+Creating new GPT entries in memory.
+GPT data structures destroyed! You may now partition the disk using fdisk or
+other utilities.
+The operation has completed successfully.
+=== PARTITION FINAL SERIAL 9760511210658 PATH /dev/disk/by-id/ata-P3-256_9760511210658 ===
+RESOLVED=/dev/sde
+DEVTYPE=disk
+ID_MODEL=P3-256
+ID_SERIAL=P3-256_9760511210658
+Creating new GPT entries in memory.
+GPT data structures destroyed! You may now partition the disk using fdisk or
+other utilities.
+Warning: The kernel is still using the old partition table.
+The new table will be used at the next reboot or after you
+run partprobe(8) or kpartx(8)
+The operation has completed successfully.
+=== GPT AFTER /dev/disk/by-id/ata-P3-256_9760522200232 ===
+/dev/sdd
+Disk /dev/disk/by-id/ata-P3-256_9760522200232: 500118192 sectors, 238.5 GiB
+Sector size (logical/physical): 512/512 bytes
+Disk identifier (GUID): EF50DD67-609C-4C06-B9DE-4B0B92080760
+Partition table holds up to 128 entries
+Main partition table begins at sector 2 and ends at sector 33
+First usable sector is 34, last usable sector is 500118158
+Partitions will be aligned on 2-sector boundaries
+Total free space is 0 sectors (0 bytes)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1              34            2047   1007.0 KiB  EF02  
+   2            2048         2099199   1024.0 MiB  EF00  
+   3         2099200       500118158   237.5 GiB   BF01  
+Partition GUID code: 21686148-6449-6E6F-744E-656564454649 (BIOS boot partition)
+Partition unique GUID: 54B1C19E-F16F-459C-859D-E4AAA9560EF6
+First sector: 34 (at 17.0 KiB)
+Last sector: 2047 (at 1023.5 KiB)
+Partition size: 2014 sectors (1007.0 KiB)
+Attribute flags: 0000000000000000
+Partition name: ''
+Partition GUID code: C12A7328-F81F-11D2-BA4B-00A0C93EC93B (EFI system partition)
+Partition unique GUID: 605466B7-698D-4597-813B-EBB091FD7E71
+First sector: 2048 (at 1024.0 KiB)
+Last sector: 2099199 (at 1025.0 MiB)
+Partition size: 2097152 sectors (1024.0 MiB)
+Attribute flags: 0000000000000000
+Partition name: ''
+Partition GUID code: 6A898CC3-1DD2-11B2-99A6-080020736631 (Solaris /usr & Mac ZFS)
+Partition unique GUID: 007812E2-AB51-40E0-A4D3-85D6E5FF0042
+First sector: 2099200 (at 1.0 GiB)
+Last sector: 500118158 (at 238.5 GiB)
+Partition size: 498018959 sectors (237.5 GiB)
+Attribute flags: 0000000000000000
+Partition name: ''
+=== GPT AFTER /dev/disk/by-id/ata-P3-256_9760511210658 ===
+/dev/sde
+Disk /dev/disk/by-id/ata-P3-256_9760511210658: 500118192 sectors, 238.5 GiB
+Sector size (logical/physical): 512/512 bytes
+Disk identifier (GUID): 69953101-FC77-4056-A028-E1CCBC20AEF1
+Partition table holds up to 128 entries
+Main partition table begins at sector 2 and ends at sector 33
+First usable sector is 34, last usable sector is 500118158
+Partitions will be aligned on 2-sector boundaries
+Total free space is 0 sectors (0 bytes)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1              34            2047   1007.0 KiB  EF02  
+   2            2048         2099199   1024.0 MiB  EF00  
+   3         2099200       500118158   237.5 GiB   BF01  
+Partition GUID code: 21686148-6449-6E6F-744E-656564454649 (BIOS boot partition)
+Partition unique GUID: D5AA19E2-426B-4795-A790-9CEF1B12822E
+First sector: 34 (at 17.0 KiB)
+Last sector: 2047 (at 1023.5 KiB)
+Partition size: 2014 sectors (1007.0 KiB)
+Attribute flags: 0000000000000000
+Partition name: ''
+Partition GUID code: C12A7328-F81F-11D2-BA4B-00A0C93EC93B (EFI system partition)
+Partition unique GUID: 3191B95C-4DC1-43E4-B13B-53BEA0A11E73
+First sector: 2048 (at 1024.0 KiB)
+Last sector: 2099199 (at 1025.0 MiB)
+Partition size: 2097152 sectors (1024.0 MiB)
+Attribute flags: 0000000000000000
+Partition name: ''
+Partition GUID code: 6A898CC3-1DD2-11B2-99A6-080020736631 (Solaris /usr & Mac ZFS)
+Partition unique GUID: 420BED7F-C32D-4DE0-9B34-84B3D0963F1A
+First sector: 2099200 (at 1.0 GiB)
+Last sector: 500118158 (at 238.5 GiB)
+Partition size: 498018959 sectors (237.5 GiB)
+Attribute flags: 0000000000000000
+Partition name: ''

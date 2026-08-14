@@ -1,0 +1,10 @@
+### /dev/disk/by-id/ata-P3-256_9760522200232-part2
+/dev/sdd2
+/dev/disk/by-id/ata-P3-256_9760522200232-part2: UUID="6A94-CDF5" BLOCK_SIZE="512" TYPE="vfat" PARTUUID="605466b7-698d-4597-813b-ebb091fd7e71"
+NAME PATH      MODEL SERIAL SIZE TYPE FSTYPE UUID                                 PARTTYPE                             MOUNTPOINTS
+sdd2 /dev/sdd2                1G part vfat   6A94-CDF5                            c12a7328-f81f-11d2-ba4b-00a0c93ec93b 
+### /dev/disk/by-id/ata-P3-256_9760511210658-part2
+/dev/sde2
+/dev/disk/by-id/ata-P3-256_9760511210658-part2: UUID="6A96-8F07" BLOCK_SIZE="512" TYPE="vfat" PARTUUID="3191b95c-4dc1-43e4-b13b-53bea0a11e73"
+NAME PATH      MODEL SERIAL SIZE TYPE FSTYPE UUID                                 PARTTYPE                             MOUNTPOINTS
+sde2 /dev/sde2                1G part vfat   6A96-8F07                            c12a7328-f81f-11d2-ba4b-00a0c93ec93b 

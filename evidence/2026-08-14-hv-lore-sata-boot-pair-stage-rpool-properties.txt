@@ -1,0 +1,32 @@
+=== rpool properties ===
+NAME   PROPERTY       VALUE             SOURCE
+rpool  ashift         12                local
+rpool  autoexpand     off               default
+rpool  autoreplace    off               default
+rpool  autotrim       off               default
+rpool  cachefile      -                 default
+rpool  compatibility  off               default
+rpool  delegation     on                default
+rpool  failmode       wait              default
+rpool  listsnapshots  off               default
+rpool  readonly       off               -
+rpool  version        -                 default
+rpool  bootfs         rpool/ROOT/pve-1  local
+=== rpool config ===
+  pool: rpool
+ state: ONLINE
+status: Some supported and requested features are not enabled on the pool.
+	The pool can still be used, but some features are unavailable.
+action: Enable all features using 'zpool upgrade'. Once this is done,
+	the pool may no longer be accessible by software that does not support
+	the features. See zpool-features(7) for details.
+  scan: scrub repaired 0B in 00:02:32 with 0 errors on Sun Aug  9 00:26:34 2026
+config:
+
+	NAME                STATE     READ WRITE CKSUM
+	rpool               ONLINE       0     0     0
+	  mirror-0          ONLINE       0     0     0
+	    /dev/nvme0n1p3  ONLINE       0     0     0
+	    /dev/nvme1n1p3  ONLINE       0     0     0
+
+errors: No known data errors

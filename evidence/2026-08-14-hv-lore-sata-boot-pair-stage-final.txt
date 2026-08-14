@@ -1,0 +1,117 @@
+=== FINAL Lore SATA boot-pair stage validation ===
+COLLECTED=2026-08-14T19:38:30-04:00
+--- host/root ---
+hv-lore
+TARGET SOURCE           FSTYPE OPTIONS
+/      rpool/ROOT/pve-1 zfs    rw,relatime,xattr,posixacl,casesensitive
+pool 'rpool' is healthy
+  pool: rpool
+ state: ONLINE
+status: Some supported and requested features are not enabled on the pool.
+	The pool can still be used, but some features are unavailable.
+action: Enable all features using 'zpool upgrade'. Once this is done,
+	the pool may no longer be accessible by software that does not support
+	the features. See zpool-features(7) for details.
+  scan: scrub repaired 0B in 00:02:32 with 0 errors on Sun Aug  9 00:26:34 2026
+config:
+
+	NAME                STATE     READ WRITE CKSUM
+	rpool               ONLINE       0     0     0
+	  mirror-0          ONLINE       0     0     0
+	    /dev/nvme0n1p3  ONLINE       0     0     0
+	    /dev/nvme1n1p3  ONLINE       0     0     0
+
+errors: No known data errors
+--- boot-tool after ---
+Re-executing '/usr/sbin/proxmox-boot-tool' in new private mount namespace..
+System currently booted with uefi
+A829-1935 is configured with: grub (versions: 6.17.13-21-pve, 6.17.2-1-pve, 7.0.14-8-pve)
+A829-9C79 is configured with: grub (versions: 6.17.13-21-pve, 6.17.2-1-pve, 7.0.14-8-pve)
+--- stage pool ---
+  pool: rpool-sata-stage
+ state: ONLINE
+config:
+
+	NAME              STATE     READ WRITE CKSUM
+	rpool-sata-stage  ONLINE       0     0     0
+	  mirror-0        ONLINE       0     0     0
+	    /dev/sdd3     ONLINE       0     0     0
+	    /dev/sde3     ONLINE       0     0     0
+
+errors: No known data errors
+NAME                                 SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
+rpool-sata-stage                     236G   408K   236G        -         -     0%     0%  1.00x    ONLINE  -
+  mirror-0                           236G   408K   236G        -         -     0%  0.00%      -    ONLINE        -
+    ata-P3-256_9760522200232-part3   237G      -      -        -         -      -      -      -    ONLINE        -
+    ata-P3-256_9760511210658-part3   237G      -      -        -         -      -      -      -    ONLINE        -
+NAME               USED  AVAIL  REFER  MOUNTPOINT  CANMOUNT
+rpool-sata-stage   408K   229G    96K  none        off
+                ashift: 12
+                    path: '/dev/disk/by-id/ata-P3-256_9760522200232-part3'
+                    path: '/dev/disk/by-id/ata-P3-256_9760511210658-part3'
+--- final candidate layout ---
+### /dev/disk/by-id/ata-P3-256_9760522200232
+/dev/sdd
+DEVTYPE=disk
+ID_MODEL=P3-256
+ID_SERIAL=P3-256_9760522200232
+Disk /dev/disk/by-id/ata-P3-256_9760522200232: 500118192 sectors, 238.5 GiB
+Sector size (logical/physical): 512/512 bytes
+Disk identifier (GUID): EF50DD67-609C-4C06-B9DE-4B0B92080760
+Partition table holds up to 128 entries
+Main partition table begins at sector 2 and ends at sector 33
+First usable sector is 34, last usable sector is 500118158
+Partitions will be aligned on 2-sector boundaries
+Total free space is 0 sectors (0 bytes)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1              34            2047   1007.0 KiB  EF02  
+   2            2048         2099199   1024.0 MiB  EF00  
+   3         2099200       500118158   237.5 GiB   BF01  
+### /dev/disk/by-id/ata-P3-256_9760511210658
+/dev/sde
+DEVTYPE=disk
+ID_MODEL=P3-256
+ID_SERIAL=P3-256_9760511210658
+Disk /dev/disk/by-id/ata-P3-256_9760511210658: 500118192 sectors, 238.5 GiB
+Sector size (logical/physical): 512/512 bytes
+Disk identifier (GUID): 69953101-FC77-4056-A028-E1CCBC20AEF1
+Partition table holds up to 128 entries
+Main partition table begins at sector 2 and ends at sector 33
+First usable sector is 34, last usable sector is 500118158
+Partitions will be aligned on 2-sector boundaries
+Total free space is 0 sectors (0 bytes)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1              34            2047   1007.0 KiB  EF02  
+   2            2048         2099199   1024.0 MiB  EF00  
+   3         2099200       500118158   237.5 GiB   BF01  
+--- ESP UUIDs ---
+### /dev/disk/by-id/ata-P3-256_9760522200232-part2
+/dev/disk/by-id/ata-P3-256_9760522200232-part2: UUID="6A94-CDF5" BLOCK_SIZE="512" TYPE="vfat" PARTUUID="605466b7-698d-4597-813b-ebb091fd7e71"
+### /dev/disk/by-id/ata-P3-256_9760511210658-part2
+/dev/disk/by-id/ata-P3-256_9760511210658-part2: UUID="6A96-8F07" BLOCK_SIZE="512" TYPE="vfat" PARTUUID="3191b95c-4dc1-43e4-b13b-53bea0a11e73"
+--- member identity ---
+### /dev/disk/by-id/ata-P3-256_9760522200232-part3
+/dev/sdd3
+DEVTYPE=partition
+ID_MODEL=P3-256
+ID_SERIAL=P3-256_9760522200232
+ID_PART_ENTRY_NUMBER=3
+### /dev/disk/by-id/ata-P3-256_9760511210658-part3
+/dev/sde3
+DEVTYPE=partition
+ID_MODEL=P3-256
+ID_SERIAL=P3-256_9760511210658
+ID_PART_ENTRY_NUMBER=3
+--- PVE storage view ---
+pbs-katra-vm260: error fetching datastores - 500 Can't connect to 192.168.10.242:8007 (No route to host)
+pbs-core-lore: error fetching datastores - 500 Can't connect to pbs-core.arpa:8007 (No route to host)
+Name                   Type     Status     Total (KiB)      Used (KiB) Available (KiB)        %
+arpa-vzdump             nfs     active      1585777664      1584834560          943104   99.94%
+jelly-zfs           zfspool     active       485631432        53147280       432484152   10.94%
+local                   dir     active       355739648        19961088       335778560    5.61%
+local-zfs           zfspool     active       446190188       110411512       335778676   24.75%
+pbs-core-lore           pbs   inactive               0               0               0    0.00%
+pbs-katra-vm260         pbs   inactive               0               0               0    0.00%
+pbs-lore                pbs   disabled               0               0               0      N/A
