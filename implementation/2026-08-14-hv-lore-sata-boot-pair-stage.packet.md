@@ -34,8 +34,8 @@ No other disk may be written.
 Read before action:
 
 - `decisions/2026-07-31-lore-boot-layout.md`
-- `evidence/2026-08-14-hv-lore-256gb-boot-feasibility.md`
-- `evidence/2026-08-14-hv-lore-256gb-boot-feasibility-raw.txt`
+- `evidence/2026-08-14-hv-lore-storage-and-boot-record.md`
+- `inbox/2026-08-14-hv-lore/`
 - `evidence/2026-08-14-hv-lore-guest-autostart-restored.md`
 - `runbooks/hv-lore-sata-boot-pair-stage.md`
 
