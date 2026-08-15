@@ -1,0 +1,28 @@
+{
+  "schema": "pve-guest-timing-v2-calibration",
+  "date": "2026-08-15",
+  "lore": {"status": "HV_LORE_TIMING_COLLECTION=DEFERRED_AUTH", "reason": "expired governed workstation certificate; fresh one-time authorization required and Foundation signer profile disabled"},
+  "guests": [
+    {
+      "host": "hv-katra", "type": "VM", "id": 320, "name": "cuda-compute-katra", "cycles": 3,
+      "selection_basis": "QGA healthy; no established guest connections beyond inspection and no GPU compute processes",
+      "shutdown_seconds": {"min": 0.550480, "median": 0.558628, "max": 0.563420},
+      "running_seconds": {"min": 0.564642, "median": 0.564899, "max": 0.567926},
+      "qga_seconds": {"min": 22.974610, "median": 23.088306, "max": 23.321305},
+      "network_seconds": {"min": 19.066105, "median": 19.180549, "max": 19.412665},
+      "service": "systemctl is-active ollama",
+      "service_seconds": {"min": 19.066105, "median": 19.180549, "max": 19.412665},
+      "recommended_pve_up": 30, "recommended_pve_down": 10, "confidence": "MEDIUM", "restored": true, "force_stop": false
+    },
+    {
+      "host": "hv-katra", "type": "CT", "id": 131, "name": "lxc-katra-jellyfin", "cycles": 0,
+      "selection_basis": "stopped noncritical application guest; no storage/DNS/identity authority",
+      "failure": "startup for container '131' failed",
+      "failure_evidence": "mp0=/mnt/truenas/secure-rw/jellyfin-media,mp=/media/private",
+      "shutdown_seconds": null, "running_seconds": null, "init_seconds": null, "service_seconds": null,
+      "recommended_pve_up": 20, "recommended_pve_down": 30, "recommendation_basis": "existing values retained, unmeasured",
+      "confidence": "UNAVAILABLE", "restored": true, "force_stop": false
+    }
+  ],
+  "live_effects": {"calibration_guests_stopped": 3, "calibration_guests_started": 4, "original_states_restored": true, "startup_configuration_changed": false, "hosts_rebooted": false, "ceph_changed": false}
+}

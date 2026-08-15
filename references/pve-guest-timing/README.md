@@ -44,9 +44,13 @@ remote currency was not used as a claim for this play.
 
 ## Design boundary
 
-`tools/pve-guest-timing` is standard-library Python and read-only. It uses
+`tools/pve-guest-timing` is standard-library Python. Its inventory, boot, plan,
+and readiness surfaces are read-only; its explicitly invoked `measure-cycle`
+is the bounded guest lifecycle actuator described in the V2 calibration packet.
+It uses
 supported `qm`, `pct`, `pvesh`-compatible guest query surfaces, `qm guest cmd`
 for an already configured QGA probe, `pct exec true` for an already-running
 container init probe, and journal/systemd evidence. It never invokes `qm set`,
-`pct set`, start, stop, reboot, or force-stop. `measure-cycle` is a prepared
-schema only and is refused in remote mode.
+`pct set`, reboot, or force-stop. `measure-cycle` invokes only explicit graceful
+start/shutdown requests, captures milestones, and restores the original state;
+it refuses to run without an explicit guest type and ID.
