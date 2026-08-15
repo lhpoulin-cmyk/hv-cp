@@ -8,8 +8,9 @@ authority is missing. Native shutdown reverses these waves, yielding
 applications → network/identity → storage → foundation.
 
 The only measured policy is VM320: `up=30`, `down=10`, from three cycles. All
-other delays retain observed values or remain unset. Lore entries are historical
-proposals only until authentication is renewed.
+other delays retain observed values or remain unset. Lore inventory and
+readiness were refreshed over key-only SSH; its boot task ordering and timing
+remain unavailable in current evidence.
 
 | host | ID | guest | class | onboot | order | up | down | readiness basis | confidence |
 | --- | ---: | --- | --- | ---: | ---: | ---: | ---: | --- | --- |
@@ -25,10 +26,10 @@ proposals only until authentication is renewed.
 | hv-katra | 9320 | tpl-compute-ubuntu2604-20260808 | BEST_EFFORT | 0 | 90 | - | - | stopped | LOW |
 | hv-matrix | 149 | semaphore-matrix-stage | UNRESOLVED | 0 | unset | - | - | init observed | LOW |
 | hv-matrix | 310 | b70-encode | APPLICATION | 0 | 50 | - | - | QGA/network observed | LOW |
-| hv-lore | 100,120,130,140,142,242,260,243,245,246,247,248,252 | historical guests | historical proposal | existing | coarse waves | existing | existing | auth deferred | UNAVAILABLE |
-| hv-lore | 141,149,150 | historical offboot guests | BEST_EFFORT | 0 | 90 | - | - | auth deferred | UNAVAILABLE |
+| hv-lore | 100,120,130,140,142,242,260,243,245,246,247,248,252 | current guests | existing classes | existing | coarse waves | existing | existing | inventory/readiness current; timing unavailable | LOW/UNAVAILABLE |
+| hv-lore | 141,149,150 | current offboot guests | BEST_EFFORT | 0 | 90 | - | - | inventory current; timing unavailable | UNAVAILABLE |
 
-Unresolved dependencies are Katra 120/249, Matrix 149/310, and all current Lore
-state. The historical Lore VM130 `up=180` is the largest proposal delay but is
+Unresolved dependencies are Katra 120/249, Matrix 149/310, and Lore 249. The
+Lore VM130 `up=180` is the largest proposal delay but is
 not accepted as measured policy. Ansible-cp may consume the machine-readable
 proposal later; hv-cp remains policy authority.

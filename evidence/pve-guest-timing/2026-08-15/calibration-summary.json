@@ -1,17 +1,18 @@
 {
   "schema": "pve-guest-timing-v2-calibration",
   "date": "2026-08-15",
-  "lore": {"status": "HV_LORE_TIMING_COLLECTION=DEFERRED_AUTH", "reason": "expired governed workstation certificate; fresh one-time authorization required and Foundation signer profile disabled"},
+  "lore": {"status": "COLLECTED_VIA_KEY_ONLY_SSH", "guests": 17, "inventory": true, "recent_boot": true, "readiness": true, "plan": true, "timing_confidence": "UNAVAILABLE", "note": "The expired workstation certificate was not needed; Lore boot task ordering was not recoverable from current evidence."},
   "guests": [
     {
       "host": "hv-katra", "type": "VM", "id": 320, "name": "cuda-compute-katra", "cycles": 3,
       "selection_basis": "QGA healthy; no established guest connections beyond inspection and no GPU compute processes",
-      "shutdown_seconds": {"min": 0.550480, "median": 0.558628, "max": 0.563420},
-      "running_seconds": {"min": 0.564642, "median": 0.564899, "max": 0.567926},
-      "qga_seconds": {"min": 22.974610, "median": 23.088306, "max": 23.321305},
-      "network_seconds": {"min": 19.066105, "median": 19.180549, "max": 19.412665},
+      "shutdown_seconds": {"min": 0.553, "median": null, "max": 0.557},
+      "running_seconds": {"min": 0.567, "median": null, "max": 0.580},
+      "qga_seconds": {"min": 22.975, "median": null, "max": 23.535},
+      "network_seconds": {"min": 19.066, "median": null, "max": 19.743},
       "service": "systemctl is-active ollama",
-      "service_seconds": {"min": 19.066105, "median": 19.180549, "max": 19.412665},
+      "service_seconds": {"min": 19.066, "median": null, "max": 19.743},
+      "statistics_note": "Operator retry summary supplied ranges only; medians are intentionally unavailable.",
       "recommended_pve_up": 30, "recommended_pve_down": 10, "confidence": "MEDIUM", "restored": true, "force_stop": false
     },
     {
@@ -24,5 +25,5 @@
       "confidence": "UNAVAILABLE", "restored": true, "force_stop": false
     }
   ],
-  "live_effects": {"calibration_guests_stopped": 3, "calibration_guests_started": 4, "original_states_restored": true, "startup_configuration_changed": false, "hosts_rebooted": false, "ceph_changed": false}
+  "live_effects": {"vm320_graceful_stops": 3, "vm320_starts": 3, "ct131_start_attempts": 1, "original_states_restored": true, "startup_configuration_changed": false, "hosts_rebooted": false, "ceph_changed": false, "force_stop": false}
 }
