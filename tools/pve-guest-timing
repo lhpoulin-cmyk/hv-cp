@@ -278,7 +278,7 @@ def measure_cycle(args):
         ready_started = time.monotonic()
         first_ready = {}
         readiness = readiness_probe(kind, ident, service)
-        while (not readiness["init_or_qga"] or (service and not readiness.get("service", {}).get("ok", False))) and time.monotonic() - ready_started < 120:
+        while (not readiness["init_or_qga"] or (service and not (readiness.get("service") or {}).get("ok", False))) and time.monotonic() - ready_started < 120:
             elapsed = time.monotonic() - ready_started
             if readiness["init_or_qga"] and "init_or_qga" not in first_ready:
                 first_ready["init_or_qga"] = {"timestamp": iso_now(), "seconds": elapsed}
@@ -293,7 +293,7 @@ def measure_cycle(args):
             first_ready["init_or_qga"] = {"timestamp": iso_now(), "seconds": elapsed}
         if readiness.get("network") and "network" not in first_ready:
             first_ready["network"] = {"timestamp": iso_now(), "seconds": elapsed}
-        if readiness.get("service", {}).get("ok") and "service" not in first_ready:
+        if (readiness.get("service") or {}).get("ok") and "service" not in first_ready:
             first_ready["service"] = {"timestamp": iso_now(), "seconds": elapsed}
         return {"start_request": request, "running": running_ts, "running_seconds": running_elapsed, "readiness": readiness, "milestones": first_ready}
 

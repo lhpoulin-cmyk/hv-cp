@@ -16,6 +16,16 @@
       "recommended_pve_up": 30, "recommended_pve_down": 10, "confidence": "MEDIUM", "restored": true, "force_stop": false
     },
     {
+      "host": "hv-katra", "type": "CT", "id": 122, "name": "lxc-katra-print", "cycles": 3,
+      "selection_basis": "running unprivileged best-effort print guest; no mpX mount or storage/DNS/Foundation authority",
+      "shutdown_seconds": {"min": 0.537893, "median": 0.542049, "max": 0.542112},
+      "running_seconds": {"min": 0.566342, "median": 0.566454, "max": 0.569646},
+      "init_seconds": {"min": 1.655817, "median": 1.664904, "max": 1.674866},
+      "network_seconds": {"min": 1.655817, "median": 1.664904, "max": 1.674866},
+      "service": null, "service_seconds": null,
+      "recommended_pve_up": 5, "recommended_pve_down": 5, "confidence": "MEDIUM", "restored": true, "force_stop": false
+    },
+    {
       "host": "hv-katra", "type": "CT", "id": 131, "name": "lxc-katra-jellyfin", "cycles": 0,
       "selection_basis": "stopped noncritical application guest; no storage/DNS/identity authority",
       "failure": "startup for container '131' failed",
@@ -25,5 +35,5 @@
       "confidence": "UNAVAILABLE", "restored": true, "force_stop": false
     }
   ],
-  "live_effects": {"vm320_graceful_stops": 3, "vm320_starts": 3, "ct131_start_attempts": 1, "original_states_restored": true, "startup_configuration_changed": false, "hosts_rebooted": false, "ceph_changed": false, "force_stop": false}
+  "live_effects": {"vm320_graceful_stops": 3, "vm320_starts": 3, "ct122_graceful_stops": 3, "ct122_starts": 3, "ct131_start_attempts": 1, "ct131_destroyed": true, "ct131_purge": true, "original_states_restored": true, "startup_configuration_changed": false, "hosts_rebooted": false, "ceph_changed": false, "force_stop": false, "unreferenced_disk_destruction": false, "active_fleet_before": 29, "active_fleet_after": 28}
 }
