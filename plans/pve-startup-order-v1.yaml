@@ -14,8 +14,7 @@ guests:
   - {host: hv-katra, id: 251, name: lxc-katra-dns, class: IDENTITY_DNS, onboot: true, order: 30, up: 20, down: 30, readiness: init-existing, confidence: LOW, rationale: DNS-service}
   - {host: hv-katra, id: 120, name: lxc-katra-os, class: UNRESOLVED, onboot: true, order: null, up: null, down: null, readiness: init-observed, confidence: LOW, rationale: no-accepted-dependency-record}
   - {host: hv-katra, id: 249, name: vaultwarden-lore, class: UNRESOLVED, onboot: true, order: null, up: 20, down: 30, readiness: init-existing, confidence: LOW, rationale: class-not-assigned}
-  - {host: hv-katra, id: 122, name: lxc-katra-print, class: BEST_EFFORT, onboot: true, order: 90, up: null, down: null, readiness: init-observed, confidence: LOW, rationale: ordinary-print-service}
-  - {host: hv-katra, id: 131, name: lxc-katra-jellyfin, class: APPLICATION, onboot: false, order: 50, up: 20, down: 30, readiness: start-failed-mount, confidence: LOW, rationale: retain-stopped-state}
+  - {host: hv-katra, id: 122, name: lxc-katra-print, class: BEST_EFFORT, onboot: true, order: 90, up: 5, down: 5, readiness: init-network-measured, confidence: MEDIUM, rationale: replacement-three-cycle-calibration}
   - {host: hv-katra, id: 320, name: cuda-compute-katra, class: BEST_EFFORT, onboot: true, order: 90, up: 30, down: 10, readiness: qga-network-ollama-measured, confidence: MEDIUM, rationale: measured-appliance-off-critical-path}
   - {host: hv-katra, id: 9320, name: tpl-compute-ubuntu2604-20260808, class: BEST_EFFORT, onboot: false, order: 90, up: null, down: null, readiness: stopped, confidence: LOW, rationale: template-offboot}
   - {host: hv-matrix, id: 149, name: semaphore-matrix-stage, class: UNRESOLVED, onboot: false, order: null, up: null, down: null, readiness: init-observed, confidence: LOW, rationale: maintenance-boundary}

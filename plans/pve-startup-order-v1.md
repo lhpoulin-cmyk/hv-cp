@@ -7,8 +7,8 @@ Coarse waves: 10 FOUNDATION, 20 STORAGE, 30 IDENTITY_DNS, 40 NETWORK_SERVICE,
 authority is missing. Native shutdown reverses these waves, yielding
 applications → network/identity → storage → foundation.
 
-The only measured policy is VM320: `up=30`, `down=10`, from three cycles. All
-other delays retain observed values or remain unset. Lore inventory and
+Measured policies are CT122 `up=5`, `down=5`, and VM320 `up=30`, `down=10`,
+each from three cycles. All other delays retain observed values or remain unset. Lore inventory and
 readiness were refreshed over key-only SSH; its boot task ordering and timing
 remain unavailable in current evidence.
 
@@ -20,8 +20,7 @@ remain unavailable in current evidence.
 | hv-katra | 251 | lxc-katra-dns | IDENTITY_DNS | 1 | 30 | 20 | 30 | init existing | LOW |
 | hv-katra | 120 | lxc-katra-os | UNRESOLVED | 1 | unset | - | - | init observed | LOW |
 | hv-katra | 249 | vaultwarden-lore | UNRESOLVED | 1 | unset | 20 | 30 | init existing | LOW |
-| hv-katra | 122 | lxc-katra-print | BEST_EFFORT | 1 | 90 | - | - | init observed | LOW |
-| hv-katra | 131 | lxc-katra-jellyfin | APPLICATION | 0 | 50 | 20 | 30 | start failed at mount | LOW |
+| hv-katra | 122 | lxc-katra-print | BEST_EFFORT | 1 | 90 | 5 | 5 | init/network, 3 cycles | MEDIUM |
 | hv-katra | 320 | cuda-compute-katra | BEST_EFFORT | 1 | 90 | 30 | 10 | QGA/network/Ollama, 3 cycles | MEDIUM |
 | hv-katra | 9320 | tpl-compute-ubuntu2604-20260808 | BEST_EFFORT | 0 | 90 | - | - | stopped | LOW |
 | hv-matrix | 149 | semaphore-matrix-stage | UNRESOLVED | 0 | unset | - | - | init observed | LOW |
