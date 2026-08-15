@@ -1,6 +1,6 @@
 # Semaphore Matrix temporary LXC allocation
 
-Status: `ALLOCATED_FOR_REALIZATION — BASE_LXC_NOT_CREATED`
+Status: `REALIZED_BASE — APPLICATION_NOT_INSTALLED`
 
 This packet records the operator-authorized temporary Semaphore build surface.
 It is an unprivileged LXC implementation node, not a durable service identity
@@ -43,6 +43,21 @@ Read-only PVE inspection on 2026-08-15 at hv-cp HEAD `8e36bda` found:
 
 The current cluster also contains VM310 only on hv-matrix. The old Lore
 VM100 allocation is not reused or changed.
+
+## Realization result
+
+CT149 was created and started on 2026-08-15 from
+`debian-13-standard_13.6-1_amd64.tar.zst`. Base validation passed for the
+recorded CPU, memory, rootfs, bridge, staging address, route, DNS, NTP, strict
+SSH, unprivileged isolation, no nesting, and no host mounts or passthrough.
+`openssh-server` and `qemu-guest-agent` were installed. The qemu guest-agent
+unit is static/inactive because this is an LXC without a virtio guest-agent
+device; no privileged feature or nesting was added. This is recorded as an
+LXC limitation, not a reason to weaken isolation.
+
+SSH host key: `SHA256:M0CHmIfeJD/DXuNxksR3pZYVX99y20DjFO4Usouz3p0`.
+Governed client key: `SHA256:0wHre6G/AZSNEPYY2ofHMdeFH8eJTUibAxjDztRuk7c`.
+Strict BatchMode SSH as `louis` passed from ws-hadrian.
 
 ## Required realization boundary
 
