@@ -1,0 +1,41 @@
+schema: pve-startup-policy-v1
+status: PROPOSED_NOT_APPLIED
+authority: hv-cp
+provenance:
+  hv_cp_base_commit: 89ef608883fccaeca4f6d74152c0386b8619a7f8
+  calibration: evidence/pve-guest-timing/2026-08-15/calibration-summary.json
+  inventory: evidence/pve-guest-timing/2026-08-15/fleet-summary.json
+  lore_status: COLLECTED_VIA_KEY_ONLY_SSH
+waves: {FOUNDATION: 10, STORAGE: 20, IDENTITY_DNS: 30, NETWORK_SERVICE: 40, APPLICATION: 50, BEST_EFFORT: 90}
+guests:
+  - {host: hv-katra, id: 244, name: time-katra, class: FOUNDATION, onboot: true, order: 10, up: 10, down: null, readiness: init-existing, confidence: LOW, rationale: fallback-time-review-required}
+  - {host: hv-katra, id: 110, name: truenas-katra, class: STORAGE, onboot: true, order: 20, up: 120, down: 120, readiness: qga-existing, confidence: LOW, rationale: storage-provider}
+  - {host: hv-katra, id: 241, name: pbs-lore, class: STORAGE, onboot: true, order: 20, up: 30, down: 60, readiness: qga-existing, confidence: LOW, rationale: PBS-storage-service}
+  - {host: hv-katra, id: 251, name: lxc-katra-dns, class: IDENTITY_DNS, onboot: true, order: 30, up: 20, down: 30, readiness: init-existing, confidence: LOW, rationale: DNS-service}
+  - {host: hv-katra, id: 120, name: lxc-katra-os, class: UNRESOLVED, onboot: true, order: null, up: null, down: null, readiness: init-observed, confidence: LOW, rationale: no-accepted-dependency-record}
+  - {host: hv-katra, id: 249, name: vaultwarden-lore, class: UNRESOLVED, onboot: true, order: null, up: 20, down: 30, readiness: init-existing, confidence: LOW, rationale: class-not-assigned}
+  - {host: hv-katra, id: 122, name: lxc-katra-print, class: BEST_EFFORT, onboot: true, order: 90, up: 5, down: 5, readiness: init-network-measured, confidence: MEDIUM, rationale: replacement-three-cycle-calibration}
+  - {host: hv-katra, id: 320, name: cuda-compute-katra, class: BEST_EFFORT, onboot: true, order: 90, up: 30, down: 10, readiness: qga-network-ollama-measured, confidence: MEDIUM, rationale: measured-appliance-off-critical-path}
+  - {host: hv-katra, id: 9320, name: tpl-compute-ubuntu2604-20260808, class: BEST_EFFORT, onboot: false, order: 90, up: null, down: null, readiness: stopped, confidence: LOW, rationale: template-offboot}
+  - {host: hv-matrix, id: 149, name: semaphore-matrix-stage, class: UNRESOLVED, onboot: false, order: null, up: null, down: null, readiness: init-observed, confidence: LOW, rationale: maintenance-boundary}
+  - {host: hv-matrix, id: 310, name: b70-encode, class: APPLICATION, onboot: false, order: 50, up: null, down: null, readiness: qga-network-observed, confidence: LOW, rationale: active-appliance-offboot}
+  - {host: hv-lore, id: 100, name: ansible-console, class: APPLICATION, onboot: true, order: 50, up: null, down: null, readiness: current-inventory, confidence: UNAVAILABLE, rationale: current-inventory-no-timing-events}
+  - {host: hv-lore, id: 120, name: truenas-lore, class: STORAGE, onboot: true, order: 20, up: 60, down: null, readiness: current-inventory, confidence: UNAVAILABLE, rationale: current-inventory-no-timing-events}
+  - {host: hv-lore, id: 130, name: jellyfin-lore, class: APPLICATION, onboot: true, order: 50, up: 180, down: null, readiness: current-inventory, confidence: UNAVAILABLE, rationale: current-inventory-no-timing-events}
+  - {host: hv-lore, id: 140, name: ws-lore-agent, class: APPLICATION, onboot: true, order: 50, up: 30, down: null, readiness: current-inventory, confidence: UNAVAILABLE, rationale: current-inventory-no-timing-events}
+  - {host: hv-lore, id: 141, name: ws-lore-apropos, class: BEST_EFFORT, onboot: false, order: 90, up: null, down: null, readiness: current-inventory, confidence: UNAVAILABLE, rationale: current-inventory-no-timing-events}
+  - {host: hv-lore, id: 142, name: eq-lore, class: APPLICATION, onboot: true, order: 50, up: null, down: null, readiness: current-inventory, confidence: UNAVAILABLE, rationale: current-inventory-no-timing-events}
+  - {host: hv-lore, id: 149, name: ws-matriarch-gauntlet, class: BEST_EFFORT, onboot: false, order: 90, up: null, down: null, readiness: current-inventory, confidence: UNAVAILABLE, rationale: current-inventory-no-timing-events}
+  - {host: hv-lore, id: 150, name: wow-unbound-prod, class: BEST_EFFORT, onboot: false, order: 90, up: null, down: null, readiness: current-inventory, confidence: UNAVAILABLE, rationale: current-inventory-no-timing-events}
+  - {host: hv-lore, id: 242, name: pbs-katra, class: STORAGE, onboot: true, order: 20, up: 30, down: 60, readiness: current-inventory, confidence: UNAVAILABLE, rationale: current-inventory-no-timing-events}
+  - {host: hv-lore, id: 260, name: pbs-core, class: STORAGE, onboot: true, order: 20, up: 60, down: null, readiness: current-inventory, confidence: UNAVAILABLE, rationale: current-inventory-no-timing-events}
+  - {host: hv-lore, id: 243, name: time-lore, class: FOUNDATION, onboot: true, order: 10, up: 10, down: null, readiness: current-init, confidence: LOW, rationale: current-readiness-no-timing-events}
+  - {host: hv-lore, id: 245, name: ntfy-lore, class: NETWORK_SERVICE, onboot: true, order: 40, up: 10, down: null, readiness: current-init, confidence: LOW, rationale: current-readiness-no-timing-events}
+  - {host: hv-lore, id: 246, name: lxc-lore-headscale, class: NETWORK_SERVICE, onboot: true, order: 40, up: 20, down: null, readiness: current-init, confidence: LOW, rationale: current-readiness-no-timing-events}
+  - {host: hv-lore, id: 247, name: lxc-lore-monitor, class: APPLICATION, onboot: true, order: 50, up: 20, down: null, readiness: current-init, confidence: LOW, rationale: current-readiness-no-timing-events}
+  - {host: hv-lore, id: 248, name: lxc-lore-www, class: APPLICATION, onboot: true, order: 50, up: 20, down: null, readiness: current-init, confidence: LOW, rationale: current-readiness-no-timing-events}
+  - {host: hv-lore, id: 249, name: vaultwarden-lore, class: UNRESOLVED, onboot: true, order: null, up: null, down: null, readiness: current-inventory, confidence: UNAVAILABLE, rationale: do-not-infer-identity-role}
+  - {host: hv-lore, id: 252, name: lxc-lore-dns, class: IDENTITY_DNS, onboot: true, order: 30, up: 20, down: null, readiness: current-init, confidence: LOW, rationale: current-readiness-no-timing-events}
+shutdown_order_check: {expected: applications-network-identity-storage-foundation, result: PROPOSAL_REVERSES_WAVES_AS_EXPECTED}
+unresolved: [hv-katra:120, hv-katra:249, hv-matrix:149, hv-matrix:310, hv-lore:249]
+applied: false

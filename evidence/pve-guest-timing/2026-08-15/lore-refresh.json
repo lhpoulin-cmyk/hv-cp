@@ -1,0 +1,16 @@
+{
+  "schema": "pve-guest-timing-lore-refresh",
+  "date": "2026-08-15",
+  "host": "hv-lore",
+  "auth_path": "authorized_key_only_ssh",
+  "certificate_renewed": false,
+  "collection": {"inventory": true, "recent_boot": true, "readiness": true, "plan": true},
+  "guest_count": 17,
+  "boot_id": "3addd2a1-4c91-4e1a-96a3-b27c039debcd",
+  "boot_timestamp": "2026-08-15 11:36:43",
+  "pve_guests_start": "2026-08-15 11:37:10 EDT",
+  "guest_start_task_ordering": "UNAVAILABLE",
+  "timing_confidence": "UNAVAILABLE",
+  "readiness": {"ct_init_responding": 7, "vm_qga_network_responding": 5, "service_probes": "NOT_TESTED"},
+  "live_effects": {"guests_started": 0, "guests_stopped": 0, "guest_configuration_changed": false}
+}

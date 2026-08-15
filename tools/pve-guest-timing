@@ -1,0 +1,405 @@
+#!/usr/bin/env python3
+"""Read-only Proxmox guest timing inventory and planning helper.
+
+The command is intentionally host-local.  ``--remote HOST`` transfers this
+file to the named host and executes it there over SSH; no guest or host
+mutation command is present in the collector.
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import re
+import shlex
+import subprocess
+import sys
+import socket
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+
+CLASSES = {"FOUNDATION", "STORAGE", "NETWORK_SERVICE", "IDENTITY_DNS", "APPLICATION", "BEST_EFFORT"}
+
+
+def run(cmd, timeout=20):
+    if cmd and cmd[0] in ("qm", "pct"):
+        # PVE installs these in /usr/sbin. The documented operator account
+        # reaches them through passwordless sudo; do not depend on its PATH.
+        cmd = ["sudo", "-n", f"/usr/sbin/{cmd[0]}"] + cmd[1:]
+    try:
+        p = subprocess.run(cmd, text=True, capture_output=True, timeout=timeout)
+        return p.returncode, p.stdout, p.stderr
+    except (OSError, subprocess.TimeoutExpired) as e:
+        return 127, "", str(e)
+
+
+def first_line(s):
+    return next((x.strip() for x in s.splitlines() if x.strip()), "")
+
+
+def command_json(cmd):
+    rc, out, err = run(cmd)
+    if rc == 0:
+        try:
+            return json.loads(out), ""
+        except json.JSONDecodeError:
+            pass
+    return None, err.strip() or f"command failed ({rc}): {' '.join(cmd)}"
+
+
+def parse_startup(value):
+    result = {"raw": value, "order_state": "ORDER_UNSET", "order": None, "up": None, "down": None}
+    if not value:
+        return result
+    for key in ("order", "up", "down"):
+        match = re.search(rf"(?:^|,)\s*{key}=([0-9]+)", value)
+        if match:
+            result[key] = int(match.group(1))
+    if result["order"] is not None:
+        result["order_state"] = "ORDER_SET"
+    return result
+
+
+def config_for(kind, ident):
+    # Plain qm/pct config is the portable supported surface across the PVE 9
+    # hosts in this fleet; it avoids assuming an output-format option.
+    rc, out, err2 = run(["qm", "config", str(ident)] if kind == "VM" else ["pct", "config", str(ident)])
+    cfg = {}
+    if rc == 0:
+        for line in out.splitlines():
+            if ":" in line:
+                key, val = line.split(":", 1)
+                cfg[key.strip()] = val.strip()
+    return cfg, err2.strip()
+
+
+def list_guests(kind):
+    # Plain qm/pct list is the portable supported surface across the PVE 9
+    # hosts in this fleet.
+    rc, out, err2 = run(["qm", "list"] if kind == "VM" else ["pct", "list"])
+    rows = []
+    if rc == 0:
+        for line in out.splitlines()[1:]:
+            fields = line.split()
+            if len(fields) >= 3 and fields[0].isdigit():
+                if kind == "VM":
+                    rows.append({"vmid": int(fields[0]), "name": fields[1], "status": fields[2]})
+                else:
+                    rows.append({"vmid": int(fields[0]), "status": fields[1], "name": fields[-1]})
+    return rows, err2.strip()
+
+
+def inventory():
+    node = socket.gethostname()
+    guests, errors = [], []
+    for kind in ("VM", "CT"):
+        rows, err = list_guests(kind)
+        if err:
+            errors.append(f"{kind}: {err}")
+        for row in rows:
+            ident = row.get("vmid", row.get("id"))
+            if ident is None:
+                continue
+            cfg, cfgerr = config_for(kind, ident)
+            if cfgerr:
+                errors.append(f"{kind} {ident}: {cfgerr}")
+            startup = parse_startup(str(cfg.get("startup", "")))
+            # PVE 9 exposes agent as a structured value in JSON; older output
+            # is a string such as "enabled=1".
+            agent = cfg.get("agent", "") if kind == "VM" else None
+            agent_text = json.dumps(agent) if isinstance(agent, (dict, list)) else str(agent)
+            guest = {
+                "host": node,
+                "owning_node": node,
+                "id": int(ident),
+                "guest": f"{kind.lower()}-{ident}",
+                "name": cfg.get("name", row.get("name", "")),
+                "type": kind,
+                "status": row.get("status", "UNKNOWN"),
+                "onboot": bool(str(cfg.get("onboot", "0")).lower() in ("1", "yes", "true")),
+                "startup": startup,
+                "qga_configured": kind == "VM" and bool(re.search(r"(?:enabled=)?1|true", agent_text, re.I)),
+                "tags": cfg.get("tags", ""),
+                "dependency_class": "UNRESOLVED",
+                "dependency_notes": "No explicit class was found in the local hv-cp/peer records.",
+            }
+            guests.append(guest)
+    guests.sort(key=lambda g: (g["startup"]["order"] is None, g["startup"]["order"] if g["startup"]["order"] is not None else 10**9, g["type"], g["id"]))
+    return {"host": node, "captured_at": datetime.now(timezone.utc).isoformat(), "guests": guests, "errors": errors}
+
+
+def recent_boot(inv):
+    boot_id = first_line(run(["cat", "/proc/sys/kernel/random/boot_id"])[1]) or None
+    boot_ts = first_line(run(["uptime", "-s"])[1]) or None
+    up_seconds = first_line(run(["awk", "{print $1}", "/proc/uptime"])[1]) or None
+    rc, pve_ts, _ = run(["systemctl", "show", "-p", "ExecMainStartTimestamp", "--value", "pve-guests"])
+    journal_rc, journal, journal_err = run(["journalctl", "-b", "0", "--no-pager", "-o", "short-iso"], timeout=35)
+    events = []
+    for line in journal.splitlines():
+        if re.search(r"(?:qmstart|vzstart|starting (?:VM|CT)|VM \d+ started|CT \d+ started|guest.*start)", line, re.I):
+            events.append(line)
+    timing_confidence = {}
+    for guest in inv["guests"]:
+        ident = str(guest["id"])
+        matching = [line for line in events if re.search(rf"(?:VM|CT)\s+{re.escape(ident)}\b", line)]
+        if not matching:
+            timing_confidence[ident] = "UNAVAILABLE"
+        elif any(re.search(rf"(?:VM|CT)\s+{re.escape(ident)}\s+started", line, re.I) for line in matching):
+            timing_confidence[ident] = "EXACT"
+        else:
+            timing_confidence[ident] = "EVENT_ONLY"
+    return {
+        "host": inv["host"], "boot_id": boot_id, "boot_timestamp": boot_ts,
+        "current_uptime_seconds": float(up_seconds) if re.match(r"^[0-9.]+$", up_seconds or "") else up_seconds,
+        "pve_guests_start_timestamp": pve_ts.strip() if rc == 0 else None,
+        "guest_start_events_found": events,
+        "guest_start_task_ordering": "EVENT_ONLY" if events else "UNAVAILABLE",
+        "guest_timing_confidence": timing_confidence,
+        "relevant_task_completion_timestamps": [],
+        "current_onboot_guest_set": [g["id"] for g in inv["guests"] if g["onboot"]],
+        "journal_collection": "OK" if journal_rc == 0 else journal_err.strip() or "UNAVAILABLE",
+    }
+
+
+def readiness(inv):
+    results = []
+    for g in inv["guests"]:
+        if str(g["status"]).lower() != "running":
+            continue
+        item = {"id": g["id"], "type": g["type"], "name": g["name"], "milestones": {}}
+        if g["type"] == "VM":
+            item["milestones"]["PVE_RUNNING"] = True
+            if g["qga_configured"]:
+                rc, out, _ = run(["qm", "guest", "cmd", str(g["id"]), "ping"], timeout=8)
+                item["milestones"]["QGA_RESPONDING"] = rc == 0
+                if rc == 0:
+                    rc2, _, _ = run(["qm", "guest", "cmd", str(g["id"]), "network-get-interfaces"], timeout=8)
+                    item["milestones"]["OPTIONAL_NETWORK_READY"] = rc2 == 0
+            else:
+                item["milestones"]["QGA_RESPONDING"] = False
+            item["milestones"]["OPTIONAL_SERVICE_READY"] = "NOT_TESTED"
+        else:
+            item["milestones"]["PCT_RUNNING"] = True
+            rc, _, _ = run(["pct", "exec", str(g["id"]), "--", "true"], timeout=8)
+            item["milestones"]["INIT_RESPONDING"] = rc == 0
+            item["milestones"]["OPTIONAL_NETWORK_READY"] = "NOT_TESTED"
+            item["milestones"]["OPTIONAL_SERVICE_READY"] = "NOT_TESTED"
+        results.append(item)
+    return {"host": inv["host"], "captured_at": datetime.now(timezone.utc).isoformat(), "guests": results}
+
+
+def plan(inv, ready, edges=None):
+    by_id = {(g["type"], g["id"]): g for g in inv["guests"]}
+    ready_by_id = {(g["type"], g["id"]): g for g in ready["guests"]}
+    recs = []
+    for key, g in by_id.items():
+        s = g["startup"]
+        if s["order"] is None:
+            rationale = "No explicit order, dependency class, or accepted edge evidence; retain ORDER_UNSET."
+            confidence = "LOW"
+        else:
+            rationale = "Retain existing host-local Proxmox order pending measured cycle and dependency review."
+            confidence = "MEDIUM" if g["dependency_class"] != "UNRESOLVED" else "LOW"
+        recs.append({"type": g["type"], "id": g["id"], "name": g["name"], "recommended_order": s["order"], "recommended_up": s["up"], "recommended_down": s["down"], "rationale": rationale, "evidence_basis": ["current Proxmox startup config", "read-only readiness snapshot"], "confidence": confidence, "dependency_class": g["dependency_class"], "explicit_dependencies": [e for e in (edges or []) if e.get("from") == g["id"]], "readiness": ready_by_id.get(key, {}).get("milestones", {})})
+    recs.sort(key=lambda r: (r["recommended_order"] is None, r["recommended_order"] if r["recommended_order"] is not None else 10**9, r["type"], r["id"]))
+    return {"host": inv["host"], "captured_at": datetime.now(timezone.utc).isoformat(), "recommendations_only": True, "recommendations": recs, "cross_host_note": "Proxmox startup order is host-local; cross-host sequencing belongs to future ansible-cp/Semaphore orchestration.", "ceph_note": "After Ceph clustering, account for cluster quorum before pve-guests starts onboot guests."}
+
+
+def iso_now():
+    return datetime.now(timezone.utc).isoformat()
+
+
+def guest_status(kind, ident):
+    cmd = ["qm", "status", str(ident)] if kind == "VM" else ["pct", "status", str(ident)]
+    rc, out, err = run(cmd, timeout=15)
+    match = re.search(r"status:\s*(\S+)", out)
+    return (match.group(1) if match else "UNKNOWN"), rc, err.strip()
+
+
+def wait_status(kind, ident, wanted, timeout=120):
+    started = time.monotonic()
+    while time.monotonic() - started <= timeout:
+        status, _, _ = guest_status(kind, ident)
+        if status == wanted:
+            return iso_now(), time.monotonic() - started
+        time.sleep(1)
+    return None, None
+
+
+def readiness_probe(kind, ident, service=None):
+    result = {"running": False, "init_or_qga": False, "network": None, "service": None}
+    status, _, _ = guest_status(kind, ident)
+    result["running"] = status == "running"
+    if not result["running"]:
+        return result
+    if kind == "CT":
+        rc, _, _ = run(["pct", "exec", str(ident), "--", "true"], timeout=15)
+        result["init_or_qga"] = rc == 0
+        rc, _, _ = run(["pct", "exec", str(ident), "--", "getent", "ahostsv4", "localhost"], timeout=15)
+        result["network"] = rc == 0
+        if service:
+            rc, out, _ = run(["pct", "exec", str(ident), "--", "sh", "-c", service], timeout=15)
+            result["service"] = {"ok": rc == 0, "output": out.strip()[-500:]}
+    else:
+        rc, _, _ = run(["qm", "guest", "cmd", str(ident), "ping"], timeout=15)
+        result["init_or_qga"] = rc == 0
+        rc, _, _ = run(["qm", "guest", "cmd", str(ident), "network-get-interfaces"], timeout=15)
+        result["network"] = rc == 0
+        if service:
+            rc, out, _ = run(["qm", "guest", "exec", str(ident), "--timeout", "15", "--", "sh", "-c", service], timeout=25)
+            try:
+                payload = json.loads(out)
+                result["service"] = {"ok": payload.get("exitcode") == 0, "output": payload.get("out-data", "")[-500:]}
+            except json.JSONDecodeError:
+                result["service"] = {"ok": False, "output": out.strip()[-500:]}
+    return result
+
+
+def measure_cycle(args):
+    kind, ident, service = args.type.upper(), int(args.id), args.service
+    initial, rc, err = guest_status(kind, ident)
+    if rc != 0 or initial not in ("running", "stopped"):
+        raise RuntimeError(f"cannot establish initial {kind} {ident} status: {err or initial}")
+    if kind == "CT":
+        start_cmd, stop_cmd = ["pct", "start", str(ident)], ["pct", "shutdown", str(ident), "--timeout", "120"]
+    else:
+        start_cmd, stop_cmd = ["qm", "start", str(ident)], ["qm", "shutdown", str(ident), "--timeout", "120"]
+    result = {"schema": "pve-guest-timing-measure-cycle-v1", "host": socket.gethostname(), "type": kind, "id": ident, "name": args.name, "cycles_requested": args.cycles, "initial_state": initial, "service_probe": service, "cycles": [], "force_stop": False, "restored": False}
+
+    def start_and_ready():
+        request = iso_now()
+        rc, _, err = run(start_cmd, timeout=30)
+        if rc != 0:
+            raise RuntimeError(f"start failed: {err.strip()}")
+        running_ts, running_elapsed = wait_status(kind, ident, "running")
+        if not running_ts:
+            raise RuntimeError("guest did not reach running state")
+        ready_started = time.monotonic()
+        first_ready = {}
+        readiness = readiness_probe(kind, ident, service)
+        while (not readiness["init_or_qga"] or (service and not (readiness.get("service") or {}).get("ok", False))) and time.monotonic() - ready_started < 120:
+            elapsed = time.monotonic() - ready_started
+            if readiness["init_or_qga"] and "init_or_qga" not in first_ready:
+                first_ready["init_or_qga"] = {"timestamp": iso_now(), "seconds": elapsed}
+            if readiness.get("network") and "network" not in first_ready:
+                first_ready["network"] = {"timestamp": iso_now(), "seconds": elapsed}
+            if readiness.get("service", {}).get("ok") and "service" not in first_ready:
+                first_ready["service"] = {"timestamp": iso_now(), "seconds": elapsed}
+            time.sleep(1)
+            readiness = readiness_probe(kind, ident, service)
+        elapsed = time.monotonic() - ready_started
+        if readiness["init_or_qga"] and "init_or_qga" not in first_ready:
+            first_ready["init_or_qga"] = {"timestamp": iso_now(), "seconds": elapsed}
+        if readiness.get("network") and "network" not in first_ready:
+            first_ready["network"] = {"timestamp": iso_now(), "seconds": elapsed}
+        if (readiness.get("service") or {}).get("ok") and "service" not in first_ready:
+            first_ready["service"] = {"timestamp": iso_now(), "seconds": elapsed}
+        return {"start_request": request, "running": running_ts, "running_seconds": running_elapsed, "readiness": readiness, "milestones": first_ready}
+
+    try:
+        setup = start_and_ready() if initial == "stopped" else None
+        for number in range(1, args.cycles + 1):
+            shutdown_request = iso_now()
+            qga_before = readiness_probe(kind, ident).get("init_or_qga") if kind == "VM" else None
+            rc, _, err = run(stop_cmd, timeout=150)
+            if rc != 0:
+                raise RuntimeError(f"graceful shutdown failed for cycle {number}: {err.strip()}")
+            stopped_ts, stopped_elapsed = wait_status(kind, ident, "stopped", timeout=150)
+            if not stopped_ts:
+                raise RuntimeError(f"guest remained running after graceful shutdown cycle {number}")
+            startup = start_and_ready()
+            result["cycles"].append({"cycle": number, "shutdown_request": shutdown_request, "qga_or_init_before_shutdown": qga_before, "stopped": stopped_ts, "shutdown_seconds": stopped_elapsed, **startup})
+        if initial == "stopped":
+            rc, _, err = run(stop_cmd, timeout=150)
+            if rc != 0:
+                raise RuntimeError(f"restore shutdown failed: {err.strip()}")
+            restored_ts, _ = wait_status(kind, ident, "stopped", timeout=150)
+            if not restored_ts:
+                raise RuntimeError("guest could not be restored to stopped state")
+        result["setup_start"] = setup
+        result["final_state"] = guest_status(kind, ident)[0]
+        result["restored"] = result["final_state"] == initial
+        return result
+    except Exception:
+        result["final_state"] = guest_status(kind, ident)[0]
+        raise
+
+
+def remote_collect(target, args):
+    code = Path(__file__).read_bytes()
+    remote_args = [args.command, "--format", "json"]
+    if args.command == "measure-cycle":
+        remote_args += ["--type", args.type, "--id", str(args.id), "--cycles", str(args.cycles)]
+        if args.name:
+            remote_args += ["--name", args.name]
+        if args.service:
+            remote_args += ["--service", args.service]
+    ssh = ["ssh"]
+    user_config = Path.home() / ".ssh" / "config"
+    if user_config.exists():
+        ssh += ["-F", str(user_config)]
+    ssh += ["-o", "BatchMode=yes", "-o", "ConnectTimeout=8", target]
+    if args.identity_file:
+        ssh += ["-i", os.path.expanduser(args.identity_file), "-o", "CertificateFile=none", "-o", "IdentitiesOnly=yes"]
+    remote_command = "python3 - " + " ".join(shlex.quote(value) for value in remote_args)
+    p = subprocess.run(ssh + [remote_command], input=code, capture_output=True)
+    sys.stdout.buffer.write(p.stdout)
+    if p.returncode and p.stderr:
+        sys.stderr.buffer.write(p.stderr)
+    return p.returncode
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("command", choices=["inventory", "recent-boot", "readiness", "plan", "measure-cycle"])
+    parser.add_argument("--format", choices=["table", "json", "both"], default="table")
+    parser.add_argument("--remote", help="run the read-only command on this host over SSH")
+    parser.add_argument("--identity-file", help="explicit SSH private key for remote collection")
+    parser.add_argument("--type", choices=["VM", "CT", "vm", "ct"], help="guest type for measure-cycle")
+    parser.add_argument("--id", help="guest ID for measure-cycle")
+    parser.add_argument("--name", help="guest name for evidence")
+    parser.add_argument("--cycles", type=int, default=3, help="measure-cycle repetitions (default: 3)")
+    parser.add_argument("--service", help="optional existing read-only service probe command")
+    args = parser.parse_args()
+    if args.remote:
+        if args.command == "measure-cycle":
+            if not args.id or not args.type:
+                print("measure-cycle requires --type and --id in remote mode", file=sys.stderr)
+                return 2
+        return remote_collect(args.remote, args)
+    if args.command == "measure-cycle":
+        if not args.id or not args.type:
+            print(json.dumps({"prepared": True, "executed": False, "mutation": "none", "steps": ["verify guest status", "request graceful shutdown", "observe stopped", "start guest", "observe PVE_RUNNING/PCT_RUNNING", "observe QGA/init", "observe network", "observe optional service", "restore original state", "never force-stop"]}, indent=2))
+            return 0
+        try:
+            print(json.dumps(measure_cycle(args), indent=2, sort_keys=True))
+            return 0
+        except RuntimeError as exc:
+            print(json.dumps({"executed": True, "error": str(exc), "force_stop": False}, indent=2), file=sys.stderr)
+            return 1
+    inv = inventory()
+    if args.command == "inventory":
+        data = inv
+    elif args.command == "recent-boot":
+        data = recent_boot(inv)
+    elif args.command == "readiness":
+        data = readiness(inv)
+    else:
+        data = plan(inv, readiness(inv))
+    if args.format in ("json", "both"):
+        print(json.dumps(data, indent=2, sort_keys=True))
+    if args.format in ("table", "both"):
+        rows = data.get("guests", data.get("recommendations", []))
+        print("ID TYPE NAME STATUS/ORDER ONBOOT UP DOWN QGA/READINESS")
+        for r in rows:
+            if "recommended_order" in r:
+                print(f"{r['id']} {r['type']} {r['name']} {r['recommended_order'] if r['recommended_order'] is not None else 'ORDER_UNSET'} - {r['recommended_up'] or '-'} {r['recommended_down'] or '-'} {r['confidence']}")
+            else:
+                s = r.get("startup", {})
+                print(f"{r['id']} {r['type']} {r.get('name','')} {r.get('status','')} {'1' if r.get('onboot') else '0'} {s.get('up') or '-'} {s.get('down') or '-'} {r.get('qga_configured','')}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
