@@ -1,0 +1,51 @@
+{
+  "schema": "pve-guest-timing-v1-fleet-summary",
+  "captured_at": "2026-08-15",
+  "hv_cp_commit": "16bdaeb4f9c0bff379b303f8f65b1ec986f6922d",
+  "measure_cycle": {"prepared": true, "executed": false},
+  "hosts": {
+    "hv-lore": {
+      "status": "AUTHENTICATION_LIMITATION",
+      "target": "192.168.10.20",
+      "observed": "SSH reached the host but rejected the installed lab-operator-view certificate, expired 2026-08-15T03:30:10.",
+      "current_state": "UNAVAILABLE",
+      "last_durable_startup_record": "evidence/2026-08-14-hv-lore-guest-autostart-restored.md"
+    },
+    "hv-katra": {
+      "status": "COLLECTED",
+      "boot_id": "76adb64b-989e-4f27-877a-4a5940ecca20",
+      "boot_timestamp": "2026-08-15 11:18:40",
+      "pve_guests_start_timestamp": "Sat 2026-08-15 11:18:56 EDT",
+      "guest_start_task_ordering": "EVENT_ONLY",
+      "guest_count": 10,
+      "explicit_order_count": 8,
+      "readiness": {"qga_responding_vms": [110, 241, 320], "init_responding_cts": [244, 249, 251, 120, 122]}
+    },
+    "hv-matrix": {
+      "status": "COLLECTED",
+      "boot_id": "1736dc2d-7573-4e63-bc7c-a1e2f9d63624",
+      "boot_timestamp": "2026-08-02 22:05:39",
+      "pve_guests_start_timestamp": "Sun 2026-08-02 22:06:03 EDT",
+      "guest_start_task_ordering": "UNAVAILABLE",
+      "guest_count": 2,
+      "explicit_order_count": 0,
+      "readiness": {"qga_responding_vms": [310], "init_responding_cts": [149]}
+    }
+  },
+  "rows": [
+    {"host":"hv-katra","id":244,"guest":"time-katra","type":"CT","onboot":1,"order":1,"up":10,"down":null,"running":true,"readiness":"INIT_RESPONDING","recent_boot":"EVENT_ONLY","suggested_order":1,"suggested_up":10,"suggested_down":null,"confidence":"LOW","dependency_class":"UNRESOLVED"},
+    {"host":"hv-katra","id":110,"guest":"truenas-katra","type":"VM","onboot":1,"order":10,"up":120,"down":120,"running":true,"readiness":"QGA_RESPONDING","recent_boot":"EVENT_ONLY","suggested_order":10,"suggested_up":120,"suggested_down":120,"confidence":"LOW","dependency_class":"UNRESOLVED"},
+    {"host":"hv-katra","id":249,"guest":"vaultwarden-lore","type":"CT","onboot":1,"order":20,"up":20,"down":30,"running":true,"readiness":"INIT_RESPONDING","recent_boot":"EVENT_ONLY","suggested_order":20,"suggested_up":20,"suggested_down":30,"confidence":"LOW","dependency_class":"UNRESOLVED"},
+    {"host":"hv-katra","id":251,"guest":"lxc-katra-dns","type":"CT","onboot":1,"order":20,"up":20,"down":30,"running":true,"readiness":"INIT_RESPONDING","recent_boot":"EVENT_ONLY","suggested_order":20,"suggested_up":20,"suggested_down":30,"confidence":"LOW","dependency_class":"UNRESOLVED"},
+    {"host":"hv-katra","id":120,"guest":"lxc-katra-os","type":"CT","onboot":1,"order":30,"up":20,"down":30,"running":true,"readiness":"INIT_RESPONDING","recent_boot":"EVENT_ONLY","suggested_order":30,"suggested_up":20,"suggested_down":30,"confidence":"LOW","dependency_class":"UNRESOLVED"},
+    {"host":"hv-katra","id":131,"guest":"lxc-katra-jellyfin","type":"CT","onboot":0,"order":40,"up":20,"down":30,"running":false,"readiness":"UNAVAILABLE","recent_boot":"EVENT_ONLY","suggested_order":40,"suggested_up":20,"suggested_down":30,"confidence":"LOW","dependency_class":"UNRESOLVED"},
+    {"host":"hv-katra","id":241,"guest":"pbs-lore","type":"VM","onboot":1,"order":50,"up":30,"down":60,"running":true,"readiness":"QGA_RESPONDING","recent_boot":"EVENT_ONLY","suggested_order":50,"suggested_up":30,"suggested_down":60,"confidence":"LOW","dependency_class":"UNRESOLVED"},
+    {"host":"hv-katra","id":122,"guest":"lxc-katra-print","type":"CT","onboot":1,"order":null,"up":null,"down":null,"running":true,"readiness":"INIT_RESPONDING","recent_boot":"EVENT_ONLY","suggested_order":null,"suggested_up":null,"suggested_down":null,"confidence":"LOW","dependency_class":"UNRESOLVED"},
+    {"host":"hv-katra","id":320,"guest":"cuda-compute-katra","type":"VM","onboot":1,"order":null,"up":null,"down":null,"running":true,"readiness":"QGA_RESPONDING","recent_boot":"EVENT_ONLY","suggested_order":null,"suggested_up":null,"suggested_down":null,"confidence":"LOW","dependency_class":"UNRESOLVED"},
+    {"host":"hv-katra","id":9320,"guest":"tpl-compute-ubuntu2604-20260808","type":"VM","onboot":0,"order":null,"up":null,"down":null,"running":false,"readiness":"UNAVAILABLE","recent_boot":"EVENT_ONLY","suggested_order":null,"suggested_up":null,"suggested_down":null,"confidence":"LOW","dependency_class":"UNRESOLVED"},
+    {"host":"hv-matrix","id":149,"guest":"semaphore-matrix-stage","type":"CT","onboot":0,"order":null,"up":null,"down":null,"running":true,"readiness":"INIT_RESPONDING","recent_boot":"UNAVAILABLE","suggested_order":null,"suggested_up":null,"suggested_down":null,"confidence":"LOW","dependency_class":"UNRESOLVED"},
+    {"host":"hv-matrix","id":310,"guest":"b70-encode","type":"VM","onboot":0,"order":null,"up":null,"down":null,"running":true,"readiness":"QGA_RESPONDING","recent_boot":"UNAVAILABLE","suggested_order":null,"suggested_up":null,"suggested_down":null,"confidence":"LOW","dependency_class":"UNRESOLVED"}
+  ],
+  "cross_host_note": "PVE startup order is host-local; future cross-host sequencing belongs to ansible-cp/Semaphore.",
+  "live_effects": {"guests_started":0,"guests_stopped":0,"hosts_rebooted":0,"startup_settings_changed":0,"ceph_changed":0}
+}
