@@ -2,7 +2,18 @@
 
 **Date:** 2026-07-31
 **Authority:** read-only reassessment requested by the operator
-**Status:** blocked by boot-firmware evidence
+**Status:** superseded
+
+```text
+STATUS=SUPERSEDED
+SUPERSEDED_BY=2026-08-29/30 completed P3 migration and accepted post-migration state
+```
+
+This decision remains the historical record of the evidence and authority
+available on 2026-07-31. It is not current guidance. The later planned
+migration installed and accepted the P3-256 mirror as the production `rpool`;
+the former Timetec rpool is now exported historical configuration authority
+and a read-only fallback.
 
 ## Decision
 
