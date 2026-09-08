@@ -1,0 +1,12 @@
+# VM310 local media staging runbook
+
+Use only with the dated operator-authorized packet. Recheck host, serial, GPT and scsi0 before writes. Run ordinary privileged guest operations through `sudo qm guest exec 310` when guest sudo is unavailable.
+
+1. Save `sfdisk --json`, `sfdisk --dump`, `sgdisk --backup`, and `qm config 310` under a unique root-owned host evidence directory. Assert exact p1 geometry, GUID, device identity and no p2/scsi1.
+2. Add `sgdisk --new=2:536872960:1073743871 --typecode=2:8300 --change-name=2:vm310-media /dev/nvme1n1`. Use targeted `partx --add --nr 2` only if the kernel lacks p2. Verify GPT, compare p1 fields byte-for-byte, and check p2 size is 274877906944 bytes.
+3. `qm set 310 --scsi1 /dev/disk/by-id/nvme-WD_PC_SN810_SDCPNRY-1T00-1406_22412Y801751-part2,ssd=1,serial=vm310-media`. Verify live disk hotplug and unchanged scsi0; do not restart VM.
+4. In guest identify disk by serial vm310-media, verify exact size, no children, no mounts, no filesystem signatures, and root disk remains sda. Recheck no active media file handles. Use `mkfs.ext4 -m 0 -L vm310-media` on only that positively identified new disk, without force flags.
+5. Mount at a temporary path, copy old /mnt/media via rsync preserving metadata, verify checksum dry-run is empty and stop if concurrent changes appear. Preserve original tree as /mnt/media.root-before-20260908; never delete originals. Unmount the temporary mount and mount its verified UUID at /mnt/media; mount --move is unsupported beneath this shared parent. Preserve group media-pipeline and directory modes.
+6. Save fstab, append UUID ext4 mount (defaults, 0 2) and four self-bind entries for source/work/output/archive, each with x-systemd.requires-mounts-for=/mnt/media. Reload systemd, establish bind mounts. Do not use nofail: missing media must not silently fall back to root. Existing checks use findmnt -M.
+7. Validate fstab, UUID, four exact mounts on one device, 20% admission reserve (ext4 reserved blocks 0%), free bytes/inodes, directory permissions, and a bounded create/read/unlink probe as louis in work/output/archive. Source content must remain unchanged. Unmount binds and media then reconstruct using fstab to prove persistence without reboot. Verify original work checksum, VM running, scsi0 unchanged, p1 exact match, GPT valid and tail unallocated.
+8. Record measured capacity (filesystem metadata and retained work reduce nominal 204.8 GiB), shared-capacity/one-job policy, rollback and limits. Update canonical projection and run hv-cp canonical-node validator.
