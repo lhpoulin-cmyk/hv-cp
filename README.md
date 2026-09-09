@@ -91,6 +91,12 @@ Every host has its own verified identity, private node record, evidence, impleme
 
 It does **not** own live credentials, generated install media, raw firmware tools, large archives, or the private node record.
 
+### What Lifetap means here
+
+**Lifetap is a universal, custom identity tool I built for Helix-ARPA.** It gives people, machines, services, and other tracked entities a durable identity record that can be reused across control-plane boundaries without making any one application the owner of identity.
+
+In `hv-cp`, a **Lifetap baseline** means the host's identity and essential facts have been captured in that shared identity model. It is not a monitoring daemon, a Proxmox feature, or a mystery subsystem that the reader is expected to already know.
+
 ## Control-plane boundaries
 
 | Need | Durable home | Rule |
