@@ -47,6 +47,13 @@ audio function uses snd_hda_intel. No encoding or GPU reset test was run.
 
 ## Acceptance status
 
+Operator disposition — 2026-09-11: known limitation accepted for now; recabling
+and realization are deferred, with no work scheduled today. The agreed future
+direction is moving HP GUD1N onto an available port on the isolated ASMedia
+controller, after physical verification and a separate powered-off maintenance
+plan. Resume only when the operator requests it. This deferral does not accept
+the current configuration as satisfying the three-drive desired state.
+
 Not realized. Only one native physical optical drive is currently visible in
 the guest. No mutation was made because the shared host-storage controller
 triggered the operator's stop condition. No controller, guest, or host restart

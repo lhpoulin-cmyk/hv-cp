@@ -2,7 +2,9 @@
 
 Use only with the [dated packet](../implementation/2026-09-11-matrix-three-optical.packet.md)
 and [desired state](../docs/MATRIX_OPTICAL_DESIRED_STATE.md). Current status is
-blocked before mutation. The shared Intel controller must never be assigned.
+deferred by the operator as a known limitation. No maintenance is scheduled;
+resume only on an explicit operator request. The shared Intel controller must
+never be assigned.
 
 ## Read-only collection
 

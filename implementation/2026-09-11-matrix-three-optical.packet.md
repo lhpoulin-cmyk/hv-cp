@@ -1,13 +1,19 @@
 # Matrix three physical optical drives
 
-Status: blocked before mutation; not execution-ready
+Status: deferred by operator; known limitation; not execution-ready
 
 PLAY: MATRIX_THREE_OPTICAL
 CHECKPOINT: physical topology and host-storage boundary
-STATUS: operator-authorized scope; safety gate failed
+STATUS: deferred by operator; shared-controller safety gate remains unsatisfied
 RESULT: all identities found; HP controller assignment forbidden; no mutation
 
 ## Authority and method
+
+Operator disposition — 2026-09-11: record the HP shared-controller connection
+as a known limitation. Recabling is not happening today and no maintenance
+window is scheduled. A future powered-off plan may target an available port on
+the isolated ASMedia controller after physical verification. No shutdown,
+recabling or live realization is to proceed until explicit operator resumption.
 
 The operator explicitly authorized discovery, repository work, validation and
 minimum necessary optical-only PVE changes to this VM. The same request
