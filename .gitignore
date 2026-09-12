@@ -11,3 +11,7 @@ inbox/*.BIN
 inbox/*.pyz
 inbox/*.img
 evidence/generated/
+
+# Private optical identity and complete VM configuration captures.
+inbox/optical-*/
+runbooks/helpers/__pycache__/
