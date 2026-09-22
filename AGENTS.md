@@ -123,3 +123,21 @@ drills, and reusable operational tooling.
   device identity, rollback boundary, and evidence destination.
 - Keep install-media creation separate from post-install operations; a passed
   installer does not authorize later storage or cluster mutations.
+
+<!-- BEGIN HELIX_AGENT_WORK_CONTRACT -->
+## Required Helix agent work contract
+
+Before substantive work, read and apply
+[HELIX_AGENT_WORK_CONTRACT_V1, release 1.0.0](https://github.com/lhpoulin-cmyk/repo-cp/blob/4ede9b73501b38a2b0ba5a50c9c32875a2d0eb19/docs/AGENT_WORK_CONTRACT.md).
+Source commit: `4ede9b73501b38a2b0ba5a50c9c32875a2d0eb19`.
+Content SHA-256: `a4838c4bfd8e1d27ed794c48ca1d475d76929309fabc212368234c4073df7674`.
+Use a local copy only when its bytes match this pin; otherwise retrieve the exact
+canonical source through existing authorized GitHub access. Do not substitute a
+newer revision silently or ask the operator to paste accessible documentation.
+Read the governing task-specific documents, record source identity, test failed
+assumptions with bounded experiments, and complete supported remedies in scope.
+Follow the contract's precedence and acceptance rules. Report scoped evidence,
+actual delivery stage and `Live effects:` including remote writes. This adoption
+changes agent working instructions, not peer ownership, credentials, enrollment
+or live authority. Existing stricter safety and secret boundaries remain in force.
+<!-- END HELIX_AGENT_WORK_CONTRACT -->
