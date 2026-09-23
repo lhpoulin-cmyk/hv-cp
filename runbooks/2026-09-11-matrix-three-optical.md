@@ -1,5 +1,10 @@
 # Matrix three-drive optical procedure
 
+Update — 2026-09-12: the operator resumed LG-only realization under the
+[separate LG packet](../implementation/2026-09-12-matrix-lg-passthrough.packet.md).
+LG acceptance passed. The deferral below now applies to HP/three-drive work;
+it is preserved as the prior disposition and does not prohibit accepted LG work.
+
 Use only with the [dated packet](../implementation/2026-09-11-matrix-three-optical.packet.md)
 and [desired state](../docs/MATRIX_OPTICAL_DESIRED_STATE.md). Current status is
 deferred by the operator as a known limitation. No maintenance is scheduled;

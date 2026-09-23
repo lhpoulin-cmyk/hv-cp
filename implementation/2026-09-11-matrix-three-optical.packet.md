@@ -1,5 +1,10 @@
 # Matrix three physical optical drives
 
+Update — 2026-09-12: the operator resumed LG-only realization under the
+[separate LG packet](../implementation/2026-09-12-matrix-lg-passthrough.packet.md).
+LG acceptance passed. The deferral below now applies to HP/three-drive work;
+it is preserved as the prior disposition and does not prohibit accepted LG work.
+
 Status: deferred by operator; known limitation; not execution-ready
 
 PLAY: MATRIX_THREE_OPTICAL
