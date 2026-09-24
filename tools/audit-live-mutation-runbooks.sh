@@ -8,7 +8,7 @@ status=0
 count=0
 
 while IFS= read -r -d '' packet; do
-  if ! grep -Eqi '^Status:[[:space:]]*(execution-ready|approved for execution)([[:space:]]|;|$)' "$packet"; then
+  if ! grep -Eqi '^(\*\*)?Status:(\*\*)?[[:space:]]*(execution-ready|approved for execution)([[:space:]]|;|$)' "$packet"; then
     continue
   fi
 
@@ -31,7 +31,7 @@ while IFS= read -r -d '' packet; do
   fi
 
   printf 'PASS %s -> %s\n' "$relative_packet" "${target#"$repo_root"/}"
-done < <(find "$repo_root" -type f -name '*.packet.md' -print0)
+done < <(find "$repo_root" -type d \( -name .git -o -name .agent-checkouts \) -prune -o -type f -name '*.packet.md' -print0)
 
 if [[ "$count" -eq 0 ]]; then
   printf 'PASS no execution-ready packets found; planning drafts are out of scope.\n'

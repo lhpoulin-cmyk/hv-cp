@@ -1,12 +1,22 @@
 # Implementation packet: Prove Lore independent NVMe ESP boot paths
 
 **Date:** 2026-08-14  
-**Status:** execution-ready after live preflight and operator console confirmation  
-**Runbook:** `runbooks/2026-08-14-hv-lore-independent-nvme-esp-boot-proof.md`
+Status: historical; superseded target layout, not execution-ready
+Runbook: [historical boot-proof procedure](../runbooks/2026-08-14-hv-lore-independent-nvme-esp-boot-proof.md)
+
+## Status reconciliation — 2026-09-24
+
+The [accepted P3 migration](../evidence/2026-08-29-hv-lore-recovery-state.md)
+and [September P3 recovery](../evidence/2026-09-22-hv-lore-p3-recovery-online.md)
+supersede this packet's old NVMe/SATA-stage preconditions. Preserve the procedure
+below as historical planning, not current authorization. The named independent
+ESP boot-proof summary is absent from this checkout; this reconciliation does
+not claim those two boot tests passed. Any new boot-proof work needs a fresh
+packet for the current layout and explicit operator approval.
 
 ## Authority and scope
 
-This packet authorizes the narrow acceptance test requested for `hv-lore`:
+The historical operator request covered the narrow acceptance test for `hv-lore`:
 two temporary UEFI entries targeting the two current managed NVMe ESPs,
 two `BootNext`-controlled normal host reboots, and cleanup. It does not
 authorize SATA migration, SATA ESP initialization, root copying, or bootloader

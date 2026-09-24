@@ -15,6 +15,9 @@ and a required-file failure with temporary fixtures.
 `audit-live-mutation-runbooks.sh` verifies that each execution-ready
 live-mutation packet links to a runbook inside this repository. It is a static
 documentation audit and grants no execution authority.
+It recognizes plain and bold `Status:` declarations and excludes private agent
+checkouts. Run `bash tools/tests/test-live-mutation-runbooks.sh` to check valid
+links and rejection of missing or out-of-repository runbooks.
 
 ## pve-guest-timing
 

@@ -1,0 +1,44 @@
+[
+  {
+    "path": "/home/louis/helix-arpa/helix-arpa-private/nodes/local-compute/hv/hv-lore/CURRENT_STATE.md",
+    "before_sha256": "315e8ee048b9d69db24a1aae28dd50ffe3bfa5932d872c4c71d51a6c41fc1ebf",
+    "after_sha256": "aa0b089f6e166c0abe7ead9d3607ce6ee73f538290ef2b0daadb167cf5bbd702",
+    "change": "append only"
+  },
+  {
+    "path": "/home/louis/helix-arpa/helix-arpa-private/nodes/local-compute/hv/hv-lore/VALIDATION.md",
+    "before_sha256": "c8f2a7ac204cda0dc9907dea2ff7d77093d826ab68e21c01dde4ab64e658c83c",
+    "after_sha256": "17455b2697d235d289bdba22a4164a7c17942f575960a5026bafe8ae1b9ac354",
+    "change": "append only"
+  },
+  {
+    "path": "/home/louis/helix-arpa/helix-arpa-private/nodes/local-compute/hv/hv-lore/TODO.md",
+    "before_sha256": "506632a7c82b67d9c494508fe178417f4a7718efe75dcbd6e302052716241c6f",
+    "after_sha256": "0cbb15af34aa2f95f4c9b2ee158068388b5d5dabb3829b9b39421637f64695d3",
+    "change": "append only"
+  },
+  {
+    "path": "/home/louis/helix-arpa/helix-arpa-private/nodes/local-compute/truenas/truenas-lore/CURRENT_STATE.md",
+    "before_sha256": "91b0f48d3763930eb6429ed64e9775c65fb381aa6420d065be18e68df2f36253",
+    "after_sha256": "f44d4fedb4acc44585a677627b8993c948ee55068c9bb413b88a4f5db26c026d",
+    "change": "append only"
+  },
+  {
+    "path": "/home/louis/helix-arpa/helix-arpa-private/nodes/local-compute/truenas/truenas-lore/VALIDATION.md",
+    "before_sha256": "68dde6a81edb6c9bcd810ed9ad47c66aa1fb7ad431ff11966a1e57f6bd07c0b9",
+    "after_sha256": "e5af0525a424bff057890e444108c63eefa5be8c9023baffe7a86804399eeda4",
+    "change": "append only"
+  },
+  {
+    "path": "/home/louis/helix-arpa/helix-arpa-private/nodes/local-compute/truenas/truenas-lore/TODO.md",
+    "before_sha256": "310dfa8baa2f8a631e3e54feb2707f5c9dbee22f81a40541439b5f741e843043",
+    "after_sha256": "4509b1aa6afb3c4c3a356b3cfd97d7e6c8c5030e2f71ca41dbd2a61e29551ccd",
+    "change": "append only"
+  },
+  {
+    "path": "/home/louis/.codex/.chatgpt-projects/g-p-6aa46e8d9bf48191a9c395c9050dfb6b/publication-work/tv-publication-dev/HANDOFF.md",
+    "before_sha256": "ef93e28288665c70ac4f8cf01b625045293dbc6d70e766a38d31d8518f410c34",
+    "after_sha256": "ba146740dced94f49b35354308594308e286f51627e36d25cda142fcf2b71a87",
+    "change": "append only"
+  }
+]

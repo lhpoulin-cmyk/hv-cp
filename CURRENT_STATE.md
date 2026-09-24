@@ -1,5 +1,20 @@
 # hv-cp current work
 
+## Lore VM120 QGA restored — 2026-09-24
+
+One explicitly approved, operator-executed guest-agent service restart restored
+VM120 ping and no-op execution. VM130 ping passed and both VMs remained running.
+The old agent was alive with the correct channel open but unresponsive; its
+internal sleep/retry trigger remains unknown. No VM/NAS reboot or credential,
+trust, configuration or B70 grant change was required.
+
+Read-only reconciliation found the exact backend-attempt directory absent on
+the verified dataset. The historical dispatch remains UNKNOWN; no replay,
+fixture deletion or media publication occurred. See the
+[recovery result and owner handoff](evidence/2026-09-24-vm120-qga-recovery-result.md)
+for evidence, canonical updates and remaining publication gates. Earlier QGA
+handoffs are dated investigation history, not current channel status.
+
 ## Jellyfin GPU tests passed — 2026-09-22
 
 RTX 5060 qualification passed as the jellyfin service user using bundled FFmpeg:
